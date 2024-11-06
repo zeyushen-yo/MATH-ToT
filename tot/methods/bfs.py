@@ -64,7 +64,7 @@ def solve(args, task, idx, to_print=True):
     if to_print: 
         print(ys)
     
-    # only take ys with "Answer: " in it. Is it the correct thing to do?
+    # only take ys with "Answer: " in it
     ys = [y for y in ys if "Answer: " in y]
     return ys, {'steps': infos}
 
@@ -72,5 +72,6 @@ def naive_solve(args, task, idx, to_print=True):
     global get_output
     get_output = partial(get_output, model=args.backend, temperature=args.temperature)
     x = task.get_input(idx)  # input
-    ys = get_proposals(task, x, '', args.n_generate_sample, stop=None)
+    naive_prompt = task.naive_prompt_wrap(x, '')
+    ys = get_output(naive_prompt, n=args.n_generate_sample, stop=None)
     return ys, {}

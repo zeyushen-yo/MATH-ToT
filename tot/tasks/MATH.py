@@ -3,6 +3,7 @@ import os
 import json
 from tot.tasks.base import Task, DATA_PATH
 from tot.prompts.MATH import *
+from tot.data.MATH.math_equivalence import is_equiv
 
 class MathTask(Task):
     def __init__(self):
@@ -11,8 +12,7 @@ class MathTask(Task):
         self.value_cache = {}
 
         # path = os.path.join(DATA_PATH, 'MATH', 'test')
-        # sanity check on a few examples
-        # remember to change the shell file as well
+        # a small subset of test dataset
         path = os.path.join(DATA_PATH, 'MATH', 'example')
 
         for root, dirs, files in os.walk(path):
@@ -40,7 +40,7 @@ class MathTask(Task):
         if correct_answer is None or model_answer is None:
             return {'r': 0}
         else:
-            return {'r': int(correct_answer.strip() == model_answer.strip())}
+            return {'r': is_equiv(correct_answer.strip(), model_answer.strip())}
 
     @staticmethod
     def extract_from_text(text: str, prefixes: list) -> str:
@@ -88,6 +88,10 @@ class MathTask(Task):
     @staticmethod
     def starting_prompt_wrap(x: str, y:str='') -> str:
         return starting_prompt.format(input_problem=x) + y
+
+    @staticmethod
+    def naive_prompt_wrap(x: str, y:str='') -> str:
+        return naive_prompt.format(input_problem=x) + y
     
     @staticmethod
     def propose_prompt_wrap(x: str, y: str = '') -> str:

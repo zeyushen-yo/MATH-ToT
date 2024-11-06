@@ -8,7 +8,7 @@ from tot.models import usage
 
 def run(args):
     task = get_task(args.task)
-    logs, cnt_avg, cnt_any = [], 0, 0
+    logs, cnt_correct = [], 0
     if args.naive_run:
         file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_{args.prompt_sample}_sample_{args.n_generate_sample}_start{args.task_start_index}_end{args.task_end_index}.json'
     else:
@@ -31,12 +31,11 @@ def run(args):
         
         # log main metric
         accs = [info['r'] for info in infos]
-        cnt_avg += sum(accs) / len(accs)
-        cnt_any += any(accs)
-        print(i, 'sum(accs)', sum(accs), 'cnt_avg', cnt_avg, 'cnt_any', cnt_any, '\n')
+        cnt_correct += 1
+        print('current accuracy: ', cnt_correct / (i - args.task_start_index + 1))
     
     n = args.task_end_index - args.task_start_index
-    print(cnt_avg / n, cnt_any / n)
+    print(cnt_correct / n)
     print('usage_so_far', usage(args.backend))
 
 def parse_args():
