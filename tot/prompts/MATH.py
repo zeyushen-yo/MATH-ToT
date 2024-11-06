@@ -18,10 +18,11 @@ You don't have to do both checks; check whatever you find necessary.
 Then, provide your evaluation in the following format "Evaluation: [Your evaluation]".
 '''
 
-propose_prompt = '''Provide the most likely next step to solve the problem given your current step. If the current step leads to an answer, provide the answer.
+propose_prompt = '''Provide the most likely next step to solve the problem given your current step. If the current step leads to an answer, provide the answer. If the current step already contains an answer, simply output the current step as it is.
 Input Problem: {input_problem}
 Your current step: {input_step}
-If you haven't found the answer, provide your next-step proposal in the following format "Possible next step: [Your possible next step]".
+If the current step already contains an answer, simply output the current step as it is.
+Otherwise, if you haven't found the answer, provide your next-step proposal in the following format "Possible next step: [Your possible next step]".
 If you have found the answer, provide your answer in terms of a single expression in the following format: "Answer: [Your answer]".
 '''
 

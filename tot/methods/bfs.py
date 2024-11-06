@@ -36,7 +36,9 @@ def solve(args, task, idx, to_print=True):
     get_output = partial(get_output, model=args.backend, temperature=args.temperature)
     x = task.get_input(idx)  # input
     ys = ['']  # current output candidates
+    values = []
     infos = []
+    ids = []
     for step in range(task.steps):
         # generation
         new_ys = [get_proposals(task, x, y, args.n_generate_sample) for y in ys]
@@ -64,9 +66,11 @@ def solve(args, task, idx, to_print=True):
     if to_print: 
         print(ys)
     
-    # only take ys with "Answer: " in it
-    ys = [y for y in ys if "Answer: " in y]
-    return ys, {'steps': infos}
+    final_values = [values[idx] for idx in select_ids]
+    # only take ys with "Answer: " in it and whose corresponding value is reasonably large
+    ys_with_values = zip(ys, final_values)
+    ys_filtered = [y for y, v in ys_with_values if "Answer: " in y and v >= 20]
+    return ys_filtered, {'steps': infos}
 
 def naive_solve(args, task, idx, to_print=True):
     global get_output

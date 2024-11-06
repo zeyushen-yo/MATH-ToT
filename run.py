@@ -31,7 +31,10 @@ def run(args):
         
         # log main metric
         accs = [info['r'] for info in infos]
-        cnt_correct += 1
+        # if more than half of the answers are correct, we declare that the ultimate answer is correct
+        # should we take the mode here (instead of requiring at least half of the answers to be correct)?
+        if sum(accs) * 2 >= len(accs):
+            cnt_correct += 1
         print('current accuracy: ', cnt_correct / (i - args.task_start_index + 1))
     
     n = args.task_end_index - args.task_start_index

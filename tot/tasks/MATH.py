@@ -36,6 +36,8 @@ class MathTask(Task):
         solution = self.data[idx]['solution']
         correct_answer = self.extract_answer(solution)
         model_answer = self.extract_answer(output)
+        print("correct answer: ", correct_answer)
+        print("model answer: ", model_answer)
 
         if correct_answer is None or model_answer is None:
             return {'r': 0}
