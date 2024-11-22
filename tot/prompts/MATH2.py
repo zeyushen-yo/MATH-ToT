@@ -1,7 +1,7 @@
 from tot.aggregated_skills import aggregated_skills
 
 skill_list = '''Here is a list of skills that are useful for solving mathematical questions. In the following, you need to solve some problems by applying these skills.
-    
+
 '''
 
 naive_prompt = '''Solve the following problem.

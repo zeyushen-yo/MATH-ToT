@@ -2,8 +2,8 @@ import json
 import os
 import csv
 import pandas as pd
-from openai import OpenAI
-client = OpenAI()
+import openai
+client = openai.OpenAI()
 from tqdm import tqdm
 from tot.aggregated_skills import aggregated_skills
 from tot.tasks.base import DATA_PATH
@@ -11,13 +11,6 @@ from tot.tasks.base import DATA_PATH
 topics = ["algebra", "counting_and_probability", "geometry", "intermediate_algebra", "number_theory", "prealgebra", "precalculus"]
 
 aggregated_skills = aggregated_skills
-prompt = f"Here is a list of skills:\n {aggregated_skills} \n for solving mathematical problems. In the following, we will ask you to assign a skill to each problem, and your answer should be taken from this list. Your naming of the skills must be exactly the same as it appears in the list."
-completion = client.chat.completions.create(
-    model="gpt-4o",
-    messages=[
-        {"role": "system", "content": prompt},
-    ]
-)
 
 with open("math_train_with_skill.csv", "w") as f:
     writer = csv.writer(f)
@@ -53,7 +46,6 @@ with open("math_train_with_skill.csv", "w") as f:
 
 skills_to_example = {}
 df = pd.read_csv("math_train_with_skill.csv")
-print(df)
 
 for i in range(len(df)):
     if ":" in df.loc[i, "skill"]:
