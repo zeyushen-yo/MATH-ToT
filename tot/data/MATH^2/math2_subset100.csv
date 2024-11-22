@@ -1,0 +1,1684 @@
+model,skills,question,solution
+gpt-4-turbo,"[exponentiation_rules, inequality_skills]",Express solutions to the inequality $\frac{1}{2} \left(\frac{1}{4}\right)^{x-1} \geq \frac{1}{8} \left(\frac{1}{2}\right)^{x+2}$ in terms of intervals on the real line.,"To solve the inequality \(\frac{1}{2} \left(\frac{1}{4}\right)^{x-1} \geq \frac{1}{8} \left(\frac{1}{2}\right)^{x+2}\), let's start by simplifying each side.
+
+**1. Simplify the left-hand side:**
+   \[
+   \frac{1}{2} \left(\frac{1}{4}\right)^{x-1} = \frac{1}{2} \left(2^{-2}\right)^{x-1} = \frac{1}{2} \cdot 2^{-2(x-1)} = \frac{1}{2} \cdot 2^{-2x+2} = 2^{-2x+2-1} = 2^{-2x+1}
+   \]
+
+**2. Simplify the right-hand side:**
+   \[
+   \frac{1}{8} \left(\frac{1}{2}\right)^{x+2} = \frac{1}{8} \cdot 2^{-x-2} = 2^{-3} \cdot 2^{-x-2} = 2^{-x-5}
+   \]
+
+So, the inequality becomes:
+\[
+2^{-2x+1} \geq 2^{-x-5}
+\]
+
+**3. Exponents Manipulation:**
+Since the bases are the same and greater than 1, we can solve the inequality with respect to  the exponents:
+\[
+-2x + 1 \geq -x - 5
+\]
+
+**4. Solve the derived linear inequality:**
+\[
+-2x + 1 \geq -x - 5
+\]
+\[
+-2x + x \geq -5 - 1
+\]
+\[
+-x \geq -6
+\]
+\[  
+x \leq 6
+\]
+
+**5. Expressing in interval notation:**
+The solution to the inequality \(\frac{1}{2} \left(\frac{1}{4}\right)^{x-1} \geq \frac{1}{8} \left(\frac{1}{2}\right)^{x+2}\) can be expressed as:
+\[
+\boxed{x \in (-\infty, 6]}
+\]
+This specifies that any real number less than or equal to \(6\) is a solution to the inequality."
+gpt-4-turbo,"[probability_and_combinatorics, combinatorial_operations_and_basic_arithmetic]",A group of 10 friends decide to play a game where they sit in a circle and pass a ball to the person on their right. The game starts with the ball being given to a random person. What is the probability that the ball returns to the starting person after being passed exactly 9 times?,"Suppose we number the people from $1$ to $10$, with $1$ being the person who started with the ball, $2$ being the person to their right, and so on. The ball is always passed to the person on the right. After $k$ passes the ball has moved to the person numbered $k+1$. Thus after $9$ passes the ball is with the person numbered $10$, who is immediately to the left of the person numbered $1$. 
+
+Thus the probability that the ball returns to the person it started with after $9$ passes  is $\boxed{0}$. "
+gpt-4-turbo,"[perimeter_and_area,  percentage_calculations]"," A rectangular garden has a perimeter of 70 feet. The garden is divided into two sections: a rectangular flower bed and a square vegetable patch. The length of the flower bed is 5 feet longer than its width, and the side length of the square vegetable patch is equal to the width of the flower bed. If a plant is randomly chosen from the garden, what is the probability that it is from the vegetable patch?","To solve this problem, let's define:
+- \( w \) as the width of the rectangular flower bed.
+- \( l \) as the length of the rectangular flower bed.
+- \( s \) as the side length of the square vegetable patch.
+
+From the problem description, we know:
+1. \( l = w + 5 \)
+2. \( s = w \)
+3. The perimeter of the garden \( P = 70 \) feet.
+
+The perimeter \( P \) of the garden is given by the combined perimeters of the two sections minus the lengths of the shared sides twice (as it would be counted twice). We note that the flower bed and vegetable patch share 1 common side.
+
+Thus the equation for the perimeter of the rectangle and the square is as follows, where we have substitute  \(s=w\).
+\[ P = 2(l + w) + 4w -2w \]
+Substituting for \(l\)
+\[ P = 2(w + 5 + w) + 2w =  6w + 10 \]
+
+Setting the expression equal to the garden's known perimeter:
+\[ 6w + 10 = 70 \]
+\[ 6w = 60 \]
+\[ w = 10 \]
+
+Thus, \( w = 10 \) feet, \( s = w = 10 \) feet, and \( l = w + 5 = 10+ 5 = 15 \) feet.
+
+Next, calculate the area of each section:
+- Area of the flower bed \( A_{flower} = l \times w = 15 \times 10= 150 \) square feet.
+- Area of the vegetable patch \( A_{vegetable} = s^2 = 10^2 = 100 \) square feet.
+
+The total area of the garden \( A_{total} = A_{flower} + A_{vegetable} = 150 + 100 = 250 \) square feet.
+
+Finally, the probability that a randomly chosen plant is from the vegetable patch is given by the ratio of the area of the vegetable patch to the total area of the garden:
+\[ P_{vegetable} = \frac{A_{vegetable}}{A_{total}} = \frac{100}{250} \]
+\[ P_{vegetable} = 2/5 \]
+
+Therefore, the probability that a randomly chosen plant is from the vegetable patch is $\boxed{2/5}$."
+gpt-4-turbo,"[perimeter_and_area, number_theory_skills]"," A circular pond is surrounded by a walkway of width 2 meters. If the area of the walkway is equal to the 10th prime number times π square meters, what is the radius of the pond?","First, we need to find the 10th prime number. The prime numbers in order are 2, 3, 5, 7, 11, 13, 17, 19, 23, and 29. Thus, the 10th prime number is 29.
+
+The problem stipulates that the area of the walkway is 29π square meters. Let \( r \) be the radius of the pond in meters, so the radius of the outer boundary of the walkway (pond plus walkway) is \( r + 2 \) meters.
+
+The area of the pond itself is \( \pi r^2 \) square meters, and the area of the entire circle including the walkway is \( \pi (r + 2)^2 \) square meters. The area of just the walkway is therefore:
+\[ \pi (r + 2)^2 - \pi r^2 = 29 \pi. \]
+
+Expanding and simplifying the left-hand expression, we get:
+\[ \pi ((r + 2)^2 - r^2) = 29 \pi, \]
+\[ (r + 2)^2 - r^2 = 29, \]
+\[ r^2 + 4r + 4 - r^2 = 29, \]
+\[ 4r + 4 = 29, \]
+\[ 4r = 25, \]
+\[ r = \frac{25}{4} = 6.25. \]
+
+Hence, the radius of the pond is \( r = 6.25 \) meters.
+
+The answer is $\boxed{6.25}$ meters."
+gpt-4-turbo,"[probability_and_combinatorics, function_skills]"," Suppose g(n, k) is the number of ways to distribute ( n ) identical items into  k  distinct boxes, where the number of items in each box is a prime number. If no such way exists, g(n, k) is defined to be 0. What is g(11, 3)?","To find \( g(11, 3) \) where \( g(n, k) \) is the number of ways to distribute \( n \) identical items into \( k \) distinct boxes, with each box receiving a prime number of items, we now need to distribute 11 items across 3 boxes with each box containing a prime count of items. 
+
+**Prime Numbers Under 11:**
+The prime numbers less than or equal to 11 which we can use to distribute among the boxes are 2, 3, 5, 7, and 11. The number of items in each box is one of these numbers. However, the boxes themselves are distinct (i.e., not exchangeable). 
+
+**Step 1: Find Combinations of Primes that Sum to 11 for Three Boxes:**
+The problem involves finding sum combinations of these primes, totaled up to 11, spread across three boxes.  The question allows the same prime to be used in different boxes. 
+
+Possible distributions:
+- \( 2 + 3 + 5 = 10 \) (This fails since it does not total 11).
+- \( 2 + 2 + 7 = 11 \) (This works though a repeat of 2 is necessary).
+- \(3 + 3 + 5= 11\) (This works though a repeat of 3 is necessary).
+- \( 2 + 3 + 7 = 12 \) (This fails since it does not total 11).
+
+
+**Step 2: Calculate Exact Combinations:**
+- With the restriction of all numbers needing to be prime and no involved zeros, the valid combinations  is \( 2 + 2 + 7 = 11 \)  and
+\( 3 + 3 + 5  = 11 \)  . We note that both have one repeated number and one unique number. 
+
+- As for \( 2 + 2 + 7 = 11 \),  although the number 2 is repeated, the boxes are distinct. Thus there are \(3 \) different ways  to choose the box that contains \(7\) items. 
+
+The same holds for \( 3 + 3 + 5 = 11 \), where there are  \(3 \) different ways  to choose the box that contains \(5\) items. 
+
+
+**Conclusion:**
+Hence,  the number of total ways is  3 + 3 =6. The answer is $\boxed{6}$. "
+gpt-4-turbo,"[function_composition_skills, number_theory_skills]"," If $f(x) = \frac{3x + 1}{5}$ and $g(x) = \sqrt{x - 2}$, what is the smallest integer $x$ such that $f(g(x))$ is an integer?","To solve the problem, we need to find the smallest integer \( x \) such that \( f(g(x)) \) is an integer. 
+
+1. **Compose the Functions:**
+   - First, compute \( g(x) \): \( g(x) = \sqrt{x - 2} \)
+   - Then, substitute \( g(x) \) into \( f(x) \) to get \( f(g(x)) \):
+     \[
+     f(g(x)) = f(\sqrt{x - 2}) = \frac{3 \sqrt{x - 2} + 1}{5}
+     \]
+
+2. **Conditions for \( f(g(x)) \) being an integer:**
+   - For \( \sqrt{x - 2} \) to be defined, \( x - 2 \geq 0 \), hence \( x \geq 2 \).
+   - For \( f(g(x)) \) to be an integer:
+     \[
+     3 \sqrt{x - 2} + 1 \text{ must be divisible by } 5.
+     \]
+   This suggests:
+   \[
+   3 \sqrt{x - 2} + 1 = 5k \text{ for some integer } k.
+   \]
+   Thus:
+   \[
+   3 \sqrt{x - 2} = 5k - 1.
+   \]
+   \[
+   \sqrt{x - 2} = \frac{5k - 1}{3}
+   \]
+
+3. **Assessing \( \sqrt{x - 2} \):**
+   - \( \sqrt{x - 2} = \frac{5k - 1}{3} \) must result in a perfect square since \( \sqrt{x - 2} \) is the square root function. Therefore, \( \frac{5k - 1}{3} \) must also be a perfect square.
+   - We check the square root condition by squaring both sides:
+     \[
+     x - 2 = \left(\frac{5k - 1}{3}\right)^2.
+     \]
+     \[
+     x = \left(\frac{5k - 1}{3}\right)^2 + 2.
+     \]
+   - We need to find the smallest \( k \) such that both \( \frac{5k - 1}{3} \) and \( \left(\frac{5k - 1}{3}\right)^2 \) are perfect squares.
+
+4. **Testing for Integer Values:**
+   - First test for \( k = 1 \):
+     \[
+     \frac{5 \times 1 - 1}{3} = \frac{4}{3} \text{ (not an integer)}
+     \]
+   - Test for \( k = 2 \):
+     \[
+     \frac{5 \times 2 - 1}{3} = \frac{9}{3} = 3 \text{ (integer and a perfect square)}
+     \]
+     \[
+     x = 3^2 + 2 = 11 \text{ (integer)}
+     \]
+
+Thus, the smallest integer \( x \) for which \( f(g(x)) \) is an integer is  $boxed{ x = 11} $."
+gpt-4-turbo,"[solving_linear_equation, number_theory_skills]",Making $a$ units of good A requires $(a-5)/3$ units of good C. Making $b$ units of good B requires $(2b-3)/5$ units of good D. The factory's supply chain only supplies integer units of goods C and D and requires using equal amounts of goods C and D. What is the minimum production of goods A and B so that no inventory is left?,"To find the minimum production of goods A and B that uses equal amounts of goods C and D, and leaves no inventory, we need to ensure the requirements for goods C and D, derived from A and B respectively, match. Given the expressions for how much of goods C and D are required:
+
+1. Units of good C needed for \(a\) units of good A: \( \frac{a-5}{3} \)
+2. Units of good D needed for \(b\) units of good B: \( \frac{2b-3}{5} \)
+
+Both expressions must result in integers, and they must equal each other: 
+\[ \frac{a-5}{3} = \frac{2b-3}{5} \]
+
+We look for the smallest integer values of \(a\) and \(b\) that satisfy this equation. We start by cross-multiplying:
+\[ 5(a-5) = 3(2b-3) \]
+\[ 5a - 25 = 6b - 9 \]
+\[ 5a - 6b = 16 \]
+
+To satisfy this equation and also ensure that \(a-5\) is divisible by 3 and \(2b-3\) divisible by 5, we need to find values of \(a\) and \(b\) such that both conditions are met:
+
+1. \(a - 5\) must be a multiple of 3.
+2. \(2b - 3\) must be a multiple of 5.
+
+Testing integer values of \(a\) and \(b\) that meet these conditions:
+- \(a = 3k + 5\) for integers \(k\).
+- \(2b = 5m + 3\) for integers \(m\), or \(b = \frac{5m + 3}{2}\).
+
+Substituting \(a = 3k + 5\) into the first equation:
+\[ 5(3k + 5) - 6b = 16 \]
+\[ 15k + 25 - 6b = 16 \]
+\[ 15k - 6b = -9 \]
+
+Substituting \(b = \frac{5m + 3}{2}\):
+\[ 15k - 6 \left( \frac{5m + 3}{2} \right) = -9 \]
+\[ 15k - 15m - 9 = -9 \]
+\[ 15k - 15m = 0 \]
+\[ k = m \]
+
+Thus \(k\) and \(m\) must be the same integer; moreover, they need to be the smallest values such that \(b\) is an integer:
+- \(b = \frac{5k + 3}{2} \)
+\(b\) will be an integer if \(5k + 3\) is even, or \(k\) is odd.
+
+Trying the smallest odd \(k = 1\), we have:
+- \(a = 3(1) + 5 = 8\)
+- \(b = \frac{5(1) + 3}{2} = 4\)
+
+Verification:
+- \(C = \frac{8-5}{3} = 1\)
+- \(D = \frac{2(4)-3}{5} = 1\)
+
+Both are integers, and they are equal. Thus, the minimum production that meets all conditions is:
+\boxed{8 units of good A and 4 units of good B}."
+gpt-4-turbo,"[polynomial_skills, algebraic_manipulation_skills]"," If $x^2 + \frac{1}{x^2} = 14$ and $x$ is positive, find the value of $x^3 + \frac{1}{x^3}$.","Solution: 
+
+14^3 = (x^2 + 1/x^2)^3 = x^6 + 1/x^6 + 3x^2 + 3/x^2.$
+
+Thus $x^6 + 1/x^6 + 3 \times 14 = 14^3 = 2744.$
+
+Thus $x^6 + 1/x^6 = 2744 - 42 = 2702$. 
+
+But we also know  $x^6 + 1/x^6 +2 = (x^3 + 1/x^3)^2.$
+
+Thus we conclude $(x^3 + 1/x^3)^2 = 2702 + 2$.
+
+Taking square roots and using that $x$ is positive, we obtain $x^3 + 1/x^3 = \sqrt{2704}$. Since $2704 = 2^4 \times 13^2$,
+we conclude $x^3 + 1/x^3 = 2^2\times 13 = 52$. 
+
+The answer is $\boxed{52}$."
+gpt-4-turbo,"[prime_number_theory, number_theory_skills]"," Find the smallest positive integer $k$ such that $k^3 - k$ is divisible by both $9$ and $10$, and the sum of digits of $k$ in its decimal representation is a prime number.","We note that $k^3 -k = k(k^2 -1) = k (k-1) (k+1)$. Thus it is a product of three consecutive integers. Thus exactly one of them is divisible by $3$ and at least one is divisible by $2$. For it to be divisible by $9$, the multiple of $3$ must actually be a multiple of $9$. Since $10 = 5 \times 2$ and $5$ is a prime, the only way it can be a divisor is if one of the numbers is a multiple of $5$. 
+
+Thus we are looking for a $k$ such that one of $k-1, k, k+1$ is a multiple of $5$ and one of these is a multiple of $9$.  In other words, a multiple of $9$ and the multiple of $5$  whose difference is at most $2$. 
+
+We first try values of $k$ under $100$. The multiples of $5$ are $5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95$,
+and the multiples of $9$ are $9, 18, 27, 36, 45, 54, 63, 72, 81, 90, 99$. 
+
+The possible nearby pairs from the two sequences are $9, 10$, $18, 20$, $25, 27$, $35, 36$, $45, 45$,  $54, 55$, $63, 65$, $70, 72$,  $80, 81$, $90, 90$. 
+
+Potential values of $k$ where $k(k-1)(k+1)$ is a multiple of $90$:
+
+$k =9$ and $k=10$. But the sum of digits is $9$ and $1$, neither of which are prime.
+
+$k= 19$. But the sum of digits is $10$, which is not a prime.
+
+$k= 26$. But the sum of digits is $8$, which is not a prime.
+
+$k= 35, 36$. But the sum of digits is $8$ and $9$ respectively neither of which are prime.
+
+$k=44, 45, 46$.   But the sum of digits is $8$, $9$ and $10$ respectively none of which are prime.
+
+$k=54, 55$. But the sum of digits is $9$ and $10$ respectively neither of which are prime.
+
+$k=64$. But the sum of digits is $6+4 =10$, which is not a prime.
+
+$k=71$.   But the sum of digits is $7+1 =8$, which is not a prime.
+
+$k=80, 81$. But the sum of digits is $8$ and $9$ respectively neither of which are prime.
+
+$k= 89, 90, 91$. Here for $k=89$ the sum of digits is $8+ 9=17$ which is indeed a prime.
+
+The answer is $\boxed{k=89}$.
+
+"
+gpt-4-turbo,"[probability_and_combinatorics,  Combinatorial_operations_and_basic_arithmetic]"," Consider a collection of red, blue, and green beads arranged in an infinite series. The beads alternate in color, starting with red, then blue, then green, and this pattern repeats indefinitely. The number of beads in each colored section follows the pattern of powers of 2: the first red section has 2 beads, the first blue section has 4 beads, the first green section has 8 beads, the second red section has 16 beads, and so on. If a bracelet is made using a continuous, unbroken sequence of exactly 6 beads from this series, and each bead has a length of 0.5 units, how many different bracelets can be made such that the perimeter of the bracelet is an integer value?","Each bead has length $0.5$ units, so the length of $6$ beads is $6 \times 0.5 =3$, which is an integer. Thus we will ignore that constraint and look for all distinct sequences of $6$ consecutive beads. 
+
+The possibilities are as follows.
+
+1) All beads of a single color. Such bracelets are always possible, since there are arbitrarily long sequences of each color. 
+Thus there are 3 types of such bracelets: all red, all blue and all green.
+
+2) Beads of three different colors.  This is possible only if we can find sequences of $6$ consecutive beads that contain all colors.  This means the sequence contains all beads from one middle section and then a nonzero number of beads from two adjacent sections. Since the third section has length $8$ it is already too large to serve as the middle section. But the first blue section has $4$ beads, so  by picking all $4$ and then picking a red bead from the previous section and one green beed from the following section, we obtain $6$ consecutive beads that include all three colors. This is the only possible bracelet with beads of all three colors.
+
+3) Beads of exactly two colors. Since the sections get arbitrarily large, we can get all possible combinations of pairs of successive colors: (red, blue), (blue, green), (green, red). Furthermore, for each pair of colors we can get all possible combinations $m, n$ for where $m$ is the number of beads of first color and $n$ is the number of beads of second color, and $m +n+6$, $m, n \geq 1$.
+The number of such combinations of $m, n$ for each pair of colors is $5$. Since the combination exists for all pairs of colors, the total number of two-colored bracelets is $3 \times 5 =15$.
+
+Answer: the total number of distinct bracelets is $3 + 1 + 15$ which is $\boxed{19}$. 
+
+"
+gpt-4-turbo,," A container starts with 500mL of water. At every minute the scientist adds water to the container equal to $1/2$ of the current amount. What is the smallest positive integer $n$ such that the number of liters of water in the container is never in the interval $[n, n+1]$?","""At each step the amount of water increases by a factor $1.5$. Thus after $t$ steps the amount of water in liters is $0.5 (1.5)^t$. 
+
+We want the smallest integer $t$ such that these value for $t$ and $t+1$ skip an interval of type $[n, n+1]$ where $n$ is an integer. 
+
+The following is the list of values.
+
+$t=1$: value is $0.75$
+
+$t=2$: value is $1.125$
+
+$t=3$: value is $1.69$
+
+$t=4$: value is $2.53$
+
+$t=5$: value is $3.80$
+
+$t=6$: value is $5.70$
+
+Thus the value is never in the interval $[4, 5]$ and thus the desired value of $n$ is $\boxed{4}$"
+gpt-4-turbo,," Consider a set $S$ containing all integers from $1$ to $100$. Let $S_1$ and $S_2$ be subsets of $S$ such that $S_1$ contains all numbers which can be expressed as $4k+1$ for integer $k$, and $S_2$ contains all numbers which can be expressed as $4k+3$ for integer $k$. Find the sum of the absolute differences between all pairs $a, b$ where $a$ is an  element in $S_1$ and $b$ is an element in $S_2$.","To solve this problem, the key steps are:
+
+1. Determine the elements in subset S1 (numbers of the form 4k+1)
+2. Determine the elements in subset S2 (numbers of the form 4k+3) 
+3. Calculate the absolute difference between each pair of elements from S1 and S2
+4. Sum up all the absolute differences
+
+1. Elements in S1 (numbers of the form 4k+1 from 1 to 100):
+   1, 5, 9, 13, 17, 21, 25, 29, 33, 37, 41, 45, 49, 53, 57, 61, 65, 69, 73, 77, 81, 85, 89, 93, 97
+
+2. Elements in S2 (numbers of the form 4k+3 from 1 to 100): 
+   3, 7, 11, 15, 19, 23, 27, 31, 35, 39, 43, 47, 51, 55, 59, 63, 67, 71, 75, 79, 83, 87, 91, 95, 99
+
+3. Differences:
+   1-3=-2, 1-7=-6, 1-11=-10, ..., 1-99=-98,
+   5-3=2, 5-7=-2, 5-11=-6, ..., 5-99=-94,
+   9-3=6, 9-7=2, 9-11=-2, ..., 9-99=-90,
+   ...
+   97-3=94, 97-7=90, 97-11=86, ..., 97-99=-2,
+
+4. Counting number of occurrences of differences:
+   -2 appears 25 times, -6 appears 24 times, -10 appears 23 times, ..., -98 appears 1 time
+   2 appears 24 times, 6 appears 23 times, 10 appears 22 times, ..., 94 appears 1 time
+
+5. Sum of absolute differences:
+   The sum of absolute values can be represented as
+   
+   Sum = $[\sum_{k=0}^{25} (2 + 4k) * (25 - k) + \sum_{k=0}^{24} (2 + 4k) * (24 - k)]$
+    = 11050 + 9800 = 20850
+
+Therefore, the sum of the absolute differences between each element in S1 and each element in S2 is 20850."
+gpt-4-turbo,," A semicircle with radius $r$ is placed on top of a square, sharing the same base $AB$ with the square. The diameter of the semicircle (line $AB$) is equal to the side of the square. A point $P$ is chosen at random on the curved part of the semicircle. What is the probability, in percentage, that the length of the line segment from $P$ to the midpoint $M$ of the square's side $AB$ is greater than $r$? Express your answer as a percentage, rounding to the nearest integer.","Reason: $M$ is also the center of the semicircle, hence the distance of each point on the semicircle to $M$ is exactly the radius. Thus the probability that the picked point on the semicircle has distance greater than $r$ to $M$ is zero.
+
+The probability is $\boxed{0}$. "
+gpt-4-turbo,," A rectangular garden measures 20 meters by 15 meters. Inside the garden, a path running parallel to its longer side is to be built. The path is uniformly 3 meters wide. How many square meters of tile are needed to cover this path, if the tiles come in sizes of 0.25 square meters each, and 10% more tiles are to be purchased to account for breakage and cutting losses?","To find the number of tiles needed:
+
+1. Calculate the area of the path:
+   * Path length = Garden length = 20 meters
+   * Path width = 3 meters
+   * Path area = Length × Width = 20 m × 3 m = 60 square meters
+
+2. Calculate the number of tiles needed to cover the path:
+   * Tile size = 0.25 square meters
+   * Number of tiles = Path area ÷ Tile size = 60 ÷ 0.25 = 240 tiles
+
+3. Account for breakage and cutting losses:
+   * Extra tiles needed = 10% of the total tiles
+   * 10% of 240 = 0.1 × 240 = 24 extra tiles
+   * Total tiles needed = 240 + 24 = 264 tiles
+
+Therefore, $\boxed{264}$ tiles of size 0.25 square meters each are needed to cover the path in the garden, accounting for breakage and cutting losses."
+gpt-4-turbo,," Find the sum of all integer values of $x$ for which the function $f(x) = 2^{2x+2} + 2^{x+2} + 1$ takes values  in the interval that is the range of $g(x) = x^2 + 4x + 4$ on the domain of $[0,5]$.","We note that $g(x) = (x+2)^2$ so its range is [4, 49]  when  $x \in [0,5]$.
+
+Now $f(x)$ can be rewritten as $(y+1)^2$  after substituting $y =2^{x+1}$.   It  is an increasing function for positive $y$ and hence an increasing function of $x$.  We want to find integer $x$ such that this function takes values in $[4, 49]$. 
+
+We do trial and error. We first try positive integers.
+For x =0, f(x) = 9. 
+For x = 1, f(x) = 25. 
+For x= 2, f(x) = 81, which is out of range.
+So $x$ has to be less than 2.
+
+Now we try negative integers.
+For x=-1, f(x) =4.
+For x=-2, f(x) = 9/4, which is out of range. 
+So $x$ has to be greater than -2.
+
+Thus the only integer values satisfying the condition are -1, 0,1. Their sum is $\boxed{0}$."
+gpt-4-turbo,,A rectangular prism has dimensions that are integers. The sum of the dimensions is $28$ units and the diagonal of the prism can be expressed as $\sqrt{274}$. What is the volume of the prism?,"Let $l, w, h$ be the three dimensions. Then the sum of the dimensions$l+ h +w =28$ and the diagonal squared is $l^2 + w^2 + h^2 =274$.
+
+This does not have a unique solution in general but we are given additional  information that the three variables are all integers. 
+
+Since the sum of squares is $274$, the largest dimension is at most $\lfooor \sqrt{274} \rfloor$,  which is $19$.  The sum is $28$, so at least one dimension has to be greater than $28/3$, which means it is at least $10$. 
+
+With some trial and error we find that $12, 9, 7$ sum to $28$ and $12^2 + 9^2 + 7^2 = 144 + 81 + 49 =274$. 
+
+Then volume is $l*w*h = 12* 9 * 7$, which is $\boxed{756}$. "
+gpt-4-turbo,,For an integer n let a_n be the sum of all numbers less than n that are divisible by either 3 or 7 but not both. What is a_{100}?,"Solution: It is $S_3 + S_7 - 2S_{21}$ where
+$S_k$ = sum of all numbers from $1$ to $99$ that are divisible by $k$.
+$S_k$ is a an arithmetic series and can be calculated 
+We can calculate each of these using the formula for the sum of an arithmetic series:
+$S_k = \frac{n}{2}(2a + (n-1)k)$
+where $a$ is the first term, $k$ is the common difference, and $n$ is the number of terms.
+[ S_3 = \frac{33}{2} \times (3 + 99) = \frac{33}{2} \times 102 = 33 \times 51 = 1683 ]
+For $S_7$:
+$a=7$, $d=7$, $n=14$ (since 99/7 = 14)
+So $S_7 = \frac{14}{2}(2*7 + (14-1)*7) = 735$
+For $S_{21}$:
+$a=21$, $d=21$, $n=4$ (since 99/21 = 4)
+So $S_{21} = \frac{4}{2}(2*21 + (4-1)*21) = 210$
+Then $a_{100} = S_3 + S_7 - 2S_{21} = 1683 +735 -2\times 210 = 1998$.
+
+Thus $a_{100}$ is $\boxed{1998}$. "
+gpt-4-turbo,,If $P(z) =z^3 -3z +2$ is a complex polynomial then find the sum of  values $x^2 + 4x +4$ where $x$ ranges over real numbers such that $P(x) =0$.,"We look for possible rational roots using the Rational Root Theorem. The constant term is 2 and the leading coefficient is 1, which suggests considering ( \pm 1, \pm 2 ) as possible roots. Testing these:
+( P(1) = 1^3 - 3 \cdot 1 + 2 = 0 )
+( P(-1) = (-1)^3 - 3(-1) + 2 = -1 + 3 + 2 = 4 ) (not a root)
+( P(2) = 2^3 - 3 \cdot 2 + 2 = 8 - 6 + 2 = 4 ) (not a root)
+( P(-2) = (-2)^3 - 3(-2) + 2 = -8 + 6 + 2 = 0 )
+From this trial, we find two roots, ( x = 1 ) and ( x = -2 ). We need one more root, so let's divide ( P(x) ) by ( x - 1 ) and ( x + 2 ) and then resolve the quadratic.
+Performing polynomial division, we find:
+( P(x) = (x - 1)(x + 2)Q(x) )
+( Q(x) = x - 1 )
+Thus, ( P(x) = (x - 1)^2(x + 2) ).
+This shows that ( x = 1 ) is also a double root, and ( x = -2 ) is a simple root.
+Substituting $x=1$ in $x^2 + 4x +4$  gives $9$. Substituting $-2$  gives $0$.  
+        Hence the answer is $9 +0 =9$.
+
+The answer is $\boxed{9}$. "
+gpt-4-turbo,,"A school decides to create a square shaped mathematics study area by placing desks next to one another such that they fill the space. Each desk is a $2$ by $3$ rectangle. If the total area of the study area is a multiple of $9$, what is the smallest possible side length of the study area?","Since desks have an area of $6$ and they fill the space, the total area must be a multiple of $6$ and also of $9$. Thus it must be a multiple of $18$. We are told the area must be a square, so the possible squares are $36, 144,..$.
+We try 36 first.  The number of desks fits exactly has to be $36/6 =6$. This can be arranged by putting $2$ rows of desks with their long edges touching, which creates a rectangle that is $3\times 6$. Two such rectangles fill the $6 \times 6$ square.
+
+Thus the side length is $6$. "
+gpt-4-turbo,," A field is shaped as a right triangle. The lengths of the two legs are consecutive even numbers, and the area of the field is 24 square units. A farmer decides to divide this triangular field into smaller sections, each section shaped as a square  with edge length 1 unit each. How many such sections can fit in the entire field if their sides are parallel to the legs of the right triangle?","We try to fill the space with squares that are aligned with the two smaller sides of the right triangle. These squares form 6 columns and 8 rows, and a half triangle of empty space (with the same aspect ratio as the full triangle) remains in each row. Numbering the rows from $1$ to $8$ the total number of squares that fit is the sum of  $ \lfloor 3(i-1)/4 \rfloor$ for $i=1, 2, 3, \ldots, 8$. This is $0 + 0 +  1 + 2 + 3 + 3 + 4 +5$ which is $\boxed{18}$.
+
+"
+gpt-4-turbo,," A recipe for a cake requires flour, sugar, and eggs in the ratio of $3:1:7$ and weighs 1 kg.  How many cakes can you make if the amount of flour available is 40 kg, the amount of sugar is 10 kg, and eggs equivalent to 20 kg?","In the recipe, the ratio of flour : sugar : eggs is 3 : 1 : 7.
+The total parts is 3 + 1 + 7 = 11
+In a 1 kg cake mix, flour is 3/11 kg, sugar is 1/11 kg, eggs are 7/11 kg. 
+With 40 kg flour, we can make 40 / (3/11) = 146.67 cakes
+With 10 kg sugar, we can make 10 / (1/11) = 110 cakes
+With 20 kg eggs, we can make 20 / (7/11) = 31.43 cakes
+The limiting ingredient is eggs. With 20 kg eggs, the maximum number of 1 kg cakes that can be made is  $\boxed{31}$."
+gpt-4-turbo,," A certain species of tree grows its height according to a geometric progression, where the height of the tree after the first year of its growth is 2 feet, and it triples its height every subsequent year. Given that a tree has grown for $n$ years, where $n$ is a positive integer, its height is recorded as a function $H(n)$. Another tree species grows according to the quadratic function $Q(n) = 4n^2 + 4n + 2$, where the height of the tree after $n$ years is given by $Q(n)$ feet. Find the largest age such that the height of the second species of tree at this age exceeds that of the first species of tree.","Let's break this down step-by-step:
+For the first tree species, its height H(n) triples each year, starting from 2 feet in year 1. So the height formula is:
+H(n) = 2 * 3^(n-1), for n ≥ 1
+For the second tree species, the height Q(n) is given by the quadratic formula:
+Q(n) = 4n^2 + 4n + 2
+We want to find the largest value of n where Q(n) > H(n). So let's set up that inequality:
+4n^2 + 4n + 2 > 2 * 3^(n-1)
+Calculating for n=1, 2, 3, 4, 5 we see $Q(n) > H(n)$ for $n \leq 4$ but not for $n=5$.
+Since $H(n)$ grows exponentially, the inequality cannot be satisfied for $n>5$ either. 
+
+Correct answer is $\boxed{4}$."
+gpt-4-turbo,," A park is shaped as a right-angled triangle with sides 60 feet, 80 feet, and 100 feet long. At the right angle, a path is constructed straight towards the hypotenuse, dividing the triangle into two smaller right-angled triangles. For a festival, it is decided to decorate the path with colored lights. If the lights are to be placed 5 feet apart starting from the vertex of the right angle, how many lights will be needed?","Given the path goes from the right angle to the hypotenuse, the path divides the triangle into two similar triangles, but the method to calculate the height directly involves realizing the path is also the altitude of the right-angled triangle to its hypotenuse. The length of this path can be found directly by the formula for the height ($h$) to the hypotenuse of a right triangle derived from the areas: $h = \frac{2 \cdot \text{Area of the triangle}}{\text{Hypotenuse}} = \frac{2 \cdot 2400}{100} = 48$ feet.
+Given the lights are placed 5 feet apart, starting with one at the vertex, we divide this path length by 5 and add one for the light at the start, resulting in $\frac{48}{5} + 1 = 9.6 + 1$. Since we cannot have a fraction of a light, we round down to 9 lights and add the one at the start for a total of 10 lights.
+
+The answer is $\boxed{10}$ lights."
+gpt-4-turbo,,A perfect square garden is divided into smaller square plots each measuring 4 feet on a side. Each of these square plots has to be surrounded on all sides by a narrow walkway of width 2 feet. If exactly two of these smaller square plots (along with their walkways) can fit along one side of the garden then what is the area of the walkways?,"Okay, let's solve this step-by-step:
+                        1. Calculate the total length of one side of the garden square:
+                        * Each flower patch is 4 feet wide
+                        * There are 2 flower patches in a row
+                        * There are 3 walkway segments in a row (2 between patches, 1 on each end)
+                        * Each walkway segment is 2 feet wide
+So, the total length of one side is: (2 * 4 feet) + (3 * 2 feet) = 8 feet + 6 feet = 14 feet
+                           2. Calculate the area of the whole garden square:
+                           * The garden is a square with side length 14 feet
+                           * Area of a square = side length squared
+So, the area of the garden is: 14 feet * 14 feet = 196 square feet
+                              3. Calculate the total area of the flower patches (without walkways):
+                              * Each flower patch is a 4ft by 4ft square
+                              * There are 4 total flower patches (2 in a row, 2 rows)
+                              * Area of each flower patch = 4 feet * 4 feet = 16 square feet
+                              * Total area of flower patches = 4 * 16 square feet = 64 square feet
+                              4. Calculate the area of the walkways by subtracting flower patch area from total garden area:
+                              * Walkway area = Total garden area - Total flower patch area
+= 196 square feet - 64 square feet
+= 132 square feet
+Therefore, the area of the walkways is $\boxed{132}$ square feet.
+"
+gpt-4-turbo,,A rectangular garden is 63 x 49 feet and divided into square patches of 7x7 feet. We wish to plant one patch of roses and one patch of mint. But if they are in patches that touch each other (either by the side or by the corner) they cannot thrive. In how many ways can we plant them so that they both thrive?,"The number of square patches is $63/7 \times 49/7$ which is $9 \times 7 =63$. 
+
+If the rose patch is planted in a corner, then 3 patches are touching this patch, and the mint can only be planted in $63 - 3 = 60$ patches.
+There are 4 patches that are in a corner. $4 \times 60 = 240$.
+
+If the rose patch is planted on an edge, then 5 patches are touching this patch, and the mint can only be planted in $63 - 5 = 58$ patches.
+There are $(7 + 5) \times 2 = 24$ patches that are on the edge. $24 \times 58 = 1392$.
+
+If the rose is planted in the middle, then 8 patches are touching its patch, and the mint can only be planted in $63 - 8 = 55$ patches.
+There are $7 \times 5 = 35$ patches that are in the middle. $35 \times 55 = 1925$.
+
+
+Thus the number of possible pairs of distinct patches is $240 + 1392 + 1925 = 3557$.
+So there are $\boxed{3557}$ ways to plant the two patches of roses and mint so they both thrive."
+gpt-4-turbo,," Consider a circle in the complex plane with its center at the origin $(0,0)$ and radius $9$. Let $z = a + bi$ be a point on this circle. Suppose a point is picked randomly on the circle. What is the probability that the product of its modulus and its imaginary part is at least $40.5$?","Let's reason step by step. 
+
+**Step 1: Representing a Point on the Circle**
+For a circle with radius 9 centered at the origin in the complex plane, any point on this circle, \( z \), can be represented as:
+\[ z = 9e^{i\theta} \]
+where \( \theta \) ranges from 0 to \( 2\pi \). This representation expands to:
+\[ z = 9(\cos(\theta) + i\sin(\theta)) \]
+Thus, the modulus of \( z \) is 9, and the real part of \( z \) is \( 9\cos(\theta) \).
+
+**Step 2: Condition for the Product**
+We need to find when the product of the modulus and the real part of \( z \) is at least 40.5:
+\[ |z| \cdot \operatorname{Re}(z) = 9 \cdot 9\cos(\theta) = 81\cos(\theta) \geq 40.5 \]
+Solve for \( \cos(\theta) \):
+\[ \cos(\theta) \geq \frac{40.5}{81} = 0.5 \]
+
+**Step 3: Solving the Inequality for \( \theta \)**
+The inequality \( \cos(\theta) \geq 0.5 \) holds for angles \( \theta \) in two ranges within the interval from 0 to \( 2\pi \):
+1. \( \theta \) from 0 to \( \frac{\pi}{3} \)
+2. \( \theta \) from \( \frac{5\pi}{3} \) to \( 2\pi \)
+
+**Calculating the Total Angle**
+The total angle where \( \cos(\theta) \geq 0.5 \) consists of the sum of the angles in these two ranges:
+\[ \frac{\pi}{3} \text{ (first range)} + \left(2\pi - \frac{5\pi}{3}\right) \text{ (second range)} = \frac{\pi}{3} + \frac{\pi}{3} = \frac{2\pi}{3} \]
+
+**Step 4: Finding the Probability**
+The probability is the ratio of this angle to the total angle of \( 2\pi \):
+\[ \text{Probability} = \frac{\frac{2\pi}{3}}{2\pi} = \frac{1}{3} \]
+
+Thus, the probability that the product of the modulus and the real part of \( z \) is at least 40.5 is $\boxed{1/3}$ "
+gpt-4-turbo,,How many ways can we choose 5 consecutive integers from the set of first 100 natural numbers so that their sum is divisible by 10 but not by 15?,"The sum (S) is of the form $n-2 + n-1 + n + n+1 + n+2 = 5n.$ Here $3 \leq n \leq 98$, which means $96$ total choices for $n$.
+
+If $10$ divides $5n$, then $n$ must be even. 
+If $15$ doesn’t divide $5n$ then $3$ does not divide $n$. 
+
+There are $98/2 =49$ even $n$ less than or equal to $98$. 
+
+Of these, the ones that are divisible by $3$ as well will be multiples of $6$, and the number of these is $\lfloor 98/6\rfloor  = 16$.
+
+Thus $49 -16 = 33$ values of $n$  that are even but not divisible by $3$. 
+
+The answer is $\boxed{33}$."
+gpt-4-turbo,"['basic_arithmetic', 'factorization']",What is the sum of the digits of the smallest positive integer that is a product of two distinct prime numbers and is greater than 200?,"We attempt trial and error. We first try factorizing 201. 201 = 3 * 67. Since 3 and 67 are two distinct prime numbers, 201 satisfies the requirements of the question. The sum of the digits of 201 is $\boxed{3}$."
+gpt-4-turbo,," A sequence is defined recursively as follows: the first term $a_1$ is $5$, and for $n \geq 2$, $a_n = n^2 + a_{n-1}$. What is the floor of the average of the first 50 terms of this sequence?","Okay, let's break this down step-by-step:
+1) First, let's write out the first few terms of the sequence to see the pattern:
+   $a_1 = 5$
+   $a_2 = 4 + a_1 = 4 + 5$  
+   $a_3 = 9 + a_2 = 9 + (4 + 5)$
+   $a_4 = 16 + a_3 = 16 + (9 + 4 + 5)$
+   ...
+   $a_{50} = 2500 + a_{49} = 2500 + (2401 + ... + 9 + 4 + 5)$
+2) Let's denote the sum of the first 50 terms as $S_{50}$. Then the average will be $A_{50} = S_{50}/50$.
+   $S_{50} = 2500 \times 1 + 2401 \times 2 + ... + 9 \times 48 + 4 \times 49 + 5 \times 50$
+   $S_{50} = \sum_{n = 2}^{50} n^2 \times (51 - n) + 5 * 50$
+   $S_{50} = 563500 + 2500 = 566000$
+3) The average is:
+   $A_{50} = 566000/50 = 11320$
+8) The floor of 11320 is 11320.
+Therefore, the floor of the average of the first 50 terms of this sequence is $\boxed{11320}$."
+gpt-4-turbo,,What is the sum of the digits in the greatest common divisor (gcd) of $10! + 12!$ and $9!$?,"We have that $10! + 12! = 10! + 12 \cdot 11 \cdot 10! = 10! (1 + 132) = 10! \cdot 133.$ Therefore, the greatest common divisor of $10! + 12!$ and $9!$ is the greatest common divisor of $10! \cdot 133$ and $9!$, which is $9! \cdot 1 = \boxed{362880}.$ The sum of its digits is $3 + 6 + 2 + 8 + 8 + 0 = \boxed{27}.$"
+gpt-4-turbo,," In a mathematical competition, a participant is rewarded with triangular badges for each problem solved. Each badge is an equilateral triangle with a side length of 2 units. At the end of the competition, a participant successfully collects a total of 120 such badges. The participant arranges some or all of these badges in the largest possible equilateral triangle formation on a wall for a display, such that no gaps are showing. What is  the total perimeter of the formation in units?"," If the base of the equilateral triangle has n badges then the total number of badges    must be 1+ 3+ 5+ 2n-1 = n^2 . The largest square less than $120$ is $100 =10^2$. So $n =10$. Since each badge has side length $2$ and there are $n =10$ badges along each side, the perimeter is $ 2 x 3 x 10$ which is $\boxed{60}$ units. 
+
+"
+gpt-4-turbo,, Find the maximum integer $m$ such that for all real numbers $x$ the inequality $$m \leq x^2 - 4x + 6 + \left| 3 - x \right|$$ holds true.,"For $(3 - x) \geq 0$, i.e., when $x \leq 3$, the absolute value term simplifies to $(3 - x)$. The inequality becomes:
+$m \leq x^2 - 4x + 6 + (3 - x) = x^2 - 5x + 9$
+For $(3 - x) \leq 0$, i.e., when $x \geq 3$, the absolute value term simplifies to $-(3 - x) = x - 3$. The inequality becomes:
+$m \leq x^2 - 4x + 6 + (x - 3) = x^2 - 3x + 3$
+Now, we need to find the minimum value of each of these quadratic expressions in their respective domains.
+For $x^2 - 5x + 9$ in the domain $x \leq 3$, the minimum value occurs at the vertex at $x = \frac{5}{2}$, and the minimum value is $\frac{25}{4} - \frac{25}{2} + 9 = \frac{11}{4}$.
+For $x^2 - 3x + 3$ in the domain $x \geq 3$, the minimum value occurs at $x = 3$ (since the vertex at $x = \frac{3}{2}$ is outside the domain and the function is increasing for $x > \frac{3}{2}$). Therefore, the minimum value is $9 - 9 + 3 = 3$.
+Therefore, the maximum integer $m$ that satisfies the inequality for all real $x$ is $\boxed{2}$."
+gpt-4-turbo,," A math competition requires participants to choose a 3-digit number $abc$, where $a$, $b$, and $c$ are digits, satisfying the inequality $1 \leq a < b < c \leq 9$. The participants then need to calculate the product $(a-1)(b-1)(c-1)$ and ensure the result does not equal zero. What is the total number of distinct, valid 3-digit numbers $abc$ that can be chosen for this competition?","First, recognize that to satisfy $(a-1)(b-1)(c-1) \neq 0$, none of the digits $a$, $b$, or $c$ can be 1 since subtracting 1 from any of them would make the product zero. This means $a$, $b$, and $c$ are chosen from the numbers 2 through 9.
+
+Given $1 < a < b < c \leq 9$ and $a$, $b$, $c$ are integers, let's revise our initial choice pool for a, based on the condition that none of the chosen digits can result in a zero after subtraction by 1. The digits available are now from 2 to 9 only, for picking $a$, $b$, and $c$.
+
+Now consider the number of ways to choose three distinct numbers from 2 to 9, ensuring they satisfy the ordered requirement $a < b < c$. This is a combinatorial problem, where we are choosing 3 out of 8 digits without regard to order since the inequality already imposes an order on our choices automatically. Therefore, the number of ways to do this is simply the combination of 8 items taken 3 at a time, noted as ${8 \choose 3}$.
+
+Combining these insights, the total number of distinct, valid 3-digit numbers $abc$ that can be chosen is calculated by:
+
+$${8 \choose 3} = \frac{8!}{3!(8-3)!} = \frac{8 \times 7 \times 6}{3 \times 2 \times 1} = 56$$
+
+Thus, the answer is $\boxed{56}$."
+gpt-4-turbo,"['algebra_and_equations', 'number_manipulation']",Consider a cube with side length 3 units. A line segment is drawn from one corner of the cube to the opposite corner through the cube's interior. Find the largest square number that exactly divides the sum of the cube's surface area and the square of the length of the line segment drawn through the cube.,"""First, let's calculate the cube's surface area. Since the side length is 3 units, the surface area is \(6 \times 3^2 = 54\) square units.
+
+Next, we calculate the length of the line segment through the cube. For a cube with side length \(s\), the length of the diagonal (\(d\)) can be found using the formula \(d = s\sqrt{3}\) because the diagonal forms a right-angled triangle with the sides of the cube. So, the diagonal here is \(3\sqrt{3}\) units.
+
+The square of the length of this diagonal is \(9 \times 3 = 27\).
+
+Now, we add the cube's surface area to the square of the diagonal: \(54 + 27 = 81\).
+
+Since 81 is a square, the largest square number that exactly divides the sum of the cube's surface area and the square of the length of the line segment drawn through the cube is \(\boxed{81}\)."
+gpt-4-turbo,,A quadratic equation in the form $ax^2 + bx + c = 0$ has roots that are two consecutive positive integers. The product of these roots is $56$. How many choices of the coefficients $(a + b + c)$ are consistent with this information?,"The roots must be integer solutions to $n(n+1) =56$ which is $n^2 +n -56$ =0$. 
+The only positive integer solution is n=7. Thus the other integer must be 8.
+The equation then has the form $a(x-7)(x-8) =0$. But $a$ can be anything, so there are infinitely many values  of the coefficients that allow this.
+
+Answer the number of choices is infinite, that is $\boxed{\infty}$."
+gpt-4-turbo,," Find the smallest positive integer $N$ which is a product of three distinct two-digit prime numbers and, when divided by $5$, produces the remainder $2$.","Given that $N$ when divided by $5$ leaves a remainder of $2$, implies $N$ can be expressed in the form $5k + 2$, where $k$ is an integer. This is a requirement for $N$ based on modular arithmetic.
+
+Next, we are also told that $N$ can be expressed as a product of three distinct two-digit prime numbers. The two-digit prime numbers starting from the smallest are $11, 13, 17, 19, 23, 29, \ldots$
+
+Our goal is to find the smallest $N$ that satisfies both conditions. We will start with the smallest two-digit prime numbers and check if their product, when divided by $5$, leaves a remainder of $2$. 
+
+The smallest two-digit prime numbers are $11, 13, 17$. Checking this:
+
+$11 \times 13 \times 17 = 2431$
+
+When we divide $2431$ by $5$, we find that $2431 \div 5 = 486$ with a remainder of $1$. So, $2431$ does not fulfill the condition.
+
+The next combination would involve replacing one of the primes with the next smallest two-digit prime which is $19$, leading to combinations like $11 \times 13 \times 19$, $11 \times 17 \times 19$, and $13 \times 17 \times 19$. We should test these combinations in ascending order:
+
+- For $11 \times 13 \times 19 = 2717$, dividing by 5 gives a remainder $2$. Thus, $2717$ is the smallest such number that when divided by $5$ gives a remainder of $2$ and can be expressed as a product of three distinct two-digit prime numbers.
+
+Therefore, the solution is $\boxed{2717}$."
+gpt-4-turbo,,What is the remainder when you divide $\sum_{n=1}^{49} (4n)!$ by $105$?,"Except for the first term in the series, $4! =24$, all others are of form $(4n)!$ for $n>1$ and thus are integer multiples of $8!$. But $105 =3 \times 5 \times 7$ and it divides $8!$ exactly. Thus the remainder when the sum is divided by $105$ is $4!$ which is $\boxed{24}$. 
+"
+gpt-4-turbo,," A water tank shaped as a right, circular cylinder of radius $3$ feet is filled with water to a height of 4 feet. Water is pumped into the tank where $r_t$ is the amount in cubic feet pumped during the $t$th minute. Here $r_1, r_2, r_3,..$ form an infinite geometric series, with $r_1 =9$ and $r_2 = 6$.   How many full minutes will elapse before the volume of water currently in the tank will double?","The volume of water at the start is $\pi r^2 h = 9 \times \pi \times 4$ which exceeds $100$ cubit feet. The total amount of water is $\sum_{t \geq 1} r_t$. This is a geometric series with first term $9$ and ratio $6/9 = ⅔$. Thus the sum of the entire series is $9/(1 -⅔) = 27$. This amount of water is insufficient to double the original volume. 
+
+The answer is that the volume will never double. "
+gpt-4-turbo,"['factorization', 'modular_arithmetic']",Find the smallest positive integer $x > 1$ such that $x^2 - x$ is divisible both by $10$ and by $7$.,"First, factorize the expression $x^2 - x = x(x - 1)$. This represents the product of two consecutive integers, which is the factorization part of the problem.
+
+Next, we need to find a value for $x$ such that $x(x - 1)$ is divisible by both $10$ and $7$. This is equivalent to being divisible by $2$, $5$, and $7$. 
+
+Since one of $x$ and $x - 1$ is guaranteed to be an even number, $x(x - 1)$ is always divisible by $2$.
+
+Next, $x(x - 1)$ is divisible by both $5$ and $7$ in the following four cases:
+(1) $x$ is divisible by $5$ and $x - 1$ is divisible by $7$
+(2) $x$ is divisible by $7$ and $x - 1$ is divisible by $5$
+(3) $x$ is divisible by $35$
+(4) $x - 1$ is divisible by $35$
+
+The smallest value of $x$ such that (1) can happen is $15$. The smallest value of $x$ such that (2) can happen is $21$. The smallest value of $x$ such that (3) can happen is $35$. The smallest value of $x$ such that (4) can happen is $36$.
+
+Hence, the answer is $\boxed{36}$. "
+gpt-4-turbo,," Given the equation $z^{32} - 32 = 0$, where $z$ is a complex number, find the real part of the ratio of the sum of all distinct solutions for $z$ and the product of all the solutions.","All roots of this equation are distinct and nonzero.  The sum of all solutions is $0$ by Vieta’s formula, and the product of all solutions is not $0$ since $z=0$ is not a solution. Hence the ratio is $\boxed{0}$."
+gpt-4-turbo,," A rectangular field has dimensions such that its length is twice its width, and its area is 200 square meters. We wish to tile it using non-overlapping square tiles, each of size 1 square meter. However, for aesthetic reasons, the edges of the tile must make an angle of  $45$ degrees wth the edges of field. It is not allowed to overlap the tiles of to cut them, but if a complete tiling is not possible, it is allowed to plant grass in the un-tiled area. What is the minimum area of the grassy regions of the field?","If $w$ is the width then the length is $2w$ and the area is $2w^2 = 200$. Thus $w=10$ and $l =20$.
+
+We first rotate one square tile by $45$ degrees and place it in the top left corner. We place other square tiles horizontally, ensuring that the diagonal of the square touches the diagonal of the neighboring tiles. Since $\frac{20}{\sqrt{2}} \approx 14.1$, the we can place $14$ tiles in the first row.
+
+Next, we place the next row of square tiles such that each tile fits right in between two neighboring tiles from the first row. To count the number of tiles we can fit in this row, we need to account for the fact that each tile is now shifted by half a diagonal to the right. Since $\frac{20}{\sqrt{2}} - 0.5 \approx 13.6$, we can place $13$ tiles in the second row.
+
+All odd numbered rows can be an identical copy of the first row, and all even numbered rows can be an identical copy of the second row. 
+
+Note that
+1. height of row 1 = 1 diagonal
+2. height of row 2 = 1.5 diagonal
+3. height of row 3 = 2 diagonal
+...
+
+Since $\frac{10}{\sqrt{2}} \approx 7.1 < 7.5$, row 13 fits in the field, but row 14 does not fit in the field. There are $7$ odd numbered rows, each with $14$ tiles, and $6$ even numbered rows, each with $13$ tiles.
+
+Therefore, we have $7 \times 14 + 6 \times 13 = 176$ square meters covered by the tiles. 
+
+The total grassy area is the difference, namely,  $200 -176$ which is $\boxed{24}$ square meters."
+gpt-4-turbo,"['basic_arithmetic_operations', 'prime_number_recognition_and_properties']",Find the sum of the two smallest prime divisors of $23^{17} + 17^{17}$.,"We check if 2 divides (23^{17} + 17^{17}):
+[
+23^{17} \text{ mod } 2 = 1 \quad \text{(since 23 is odd)},
+]
+[
+17^{17} \text{ mod } 2 = 1 \quad \text{(since 17 is odd)},
+]
+[
+23^{17} + 17^{17} \text{ mod } 2 = 1 + 1 = 2 = 0 \text{ mod } 2.
+]
+So, (23^{17} + 17^{17}) is even, meaning 2 is a divisor.
+
+Next we check if 3 divides (23^{17} + 17^{17}):
+[
+23 \equiv 2 \text{ mod } 3, \quad \text{so}\quad 23^{17} \equiv 2^{17} \text{ mod } 3.
+]
+By calculating (2^{17} \text{ mod } 3) (noting that (2^{2} \equiv 1 \text{ mod } 3)):
+[
+2^{17} \equiv (2^2)^8 \times 2 \equiv 1^8 \times 2 \equiv 2 \text{ mod } 3,
+]
+[
+17 \equiv 2 \text{ mod } 3, \quad \text{so}\quad 17^{17} \equiv 2^{17} \text{ mod } 3 \equiv 2.
+]
+Therefore,
+[
+23^{17} + 17^{17} \equiv 2 + 2 = 4 \equiv 1 \text{ mod } 3.
+]
+So, 3 is not a divisor.
+
+Next we check 5.
+
+[
+23 \equiv 3 \text{ mod } 5, \quad \text{so}\quad 23^{17} \equiv 3^{17} \text{ mod } 5,
+]
+[
+17 \equiv 2 \text{ mod } 5, \quad \text{so}\quad 17^{17} \equiv 2^{17} \text{ mod } 5,
+]
+Using periods of powers:
+[
+3^4 \equiv 1 \text{ mod } 5 \quad \text{and} \quad 2^4 \equiv 1 \text{ mod } 5,
+]
+[
+3^{17} \equiv 3 \text{ mod } 5 \quad \text{and} \quad 2^{17} \equiv 2 \text{ mod } 5,
+]
+[
+3^{17} + 2^{17} \equiv 3 + 2 \equiv 5 \equiv 0 \text{ mod } 5.
+]
+Therefore, 5 is a divisor.
+
+Thus the two smallest prime factors are 2 and 5.
+
+Correct answer: The sum of the two smallest prime factors is \boxed{7}"
+gpt-4-turbo,"['arithmetic_sequences', 'complex_number_skills']
+","Consider a sequence that begins as follows: $2+i, 4+2i, 6+3i, \dots$, where each term, starting from the first, increases the real part by $2$ and the imaginary part by a consecutive integer ($i, 2i, 3i, \dots$). If this pattern continues indefinitely, what is the real part of the product of the 10th and 20th terms of this sequence?","First, let's find the 10th and 20th terms of the sequence.
+
+For the real parts, the sequence starts at $2$ and increases by $2$ for each subsequent term. This can be generalized by the formula $2n$, where $n$ is the term number. Therefore, the real parts of the 10th and 20th terms are $2(10) = 20$ and $2(20) = 40$, respectively.
+
+For the imaginary parts, it resembles an arithmetic sequence starting at $1$ with a common difference of $1$. So, the $n$th term can be generally represented as $n \cdot i$. Therefore, the imaginary parts of the 10th and 20th terms are $10i$ and $20i$, respectively.
+
+Thus, the 10th term is $20 + 10i$, and the 20th term is $40 + 20i$.
+
+To find the real part of the product of the 10th and 20th terms, we use the formula for multiplying complex numbers: $(a+bi)(c+di) = ac + adi + bci + bdi^2$. Since $i^2 = -1$, this simplifies to $(a+bi)(c+di) = (ac-bd) + (ad+bc)i$.
+
+Multiplying $20 + 10i$ and $40 + 20i$:
+
+Real part: $20 \cdot 40 - 10 \cdot 20 = 800 - 200 = 600$.
+
+Therefore, the real part of the product of the 10th and 20th terms of the given sequence is $\boxed{600}$."
+gpt-4-turbo,"['inequality_solving_and_understanding', 'exponent_and_root_skills']",Consider the function $f(x) = 2^x + 2^{2-x}}$ and an inequality $f(x) < 5$ for real values of $x$. Find the difference between  the smallest and largest integer values of $x$ that satisfy the inequality.,"To solve this problem, let's first analyze the function and then solve the inequality $f(x) < 5$, where $f(x) = 2^x + 2^{2-x}$.
+
+Let's simplify $f(x)$ to get a better intuition:
+$$f(x) = 2^x + 2^{2-x} = 2^x + \frac{4}{2^x}.$$
+
+We can let $u = 2^x$. Then, $2^{2-x} = 2^2 / 2^x = 4 / u$, and therefore:
+$$f(x) = u + \frac{4}{u}, \text{ where } u = 2^x.$$
+
+We need to find when $f(x) < 5$, i.e., when:
+$$u + \frac{4}{u} < 5.$$
+
+Let's rearrange and multiply by $u$ (assuming $u > 0$ which is true as $u = 2^x$ and $2^x$ is always positive):
+$$u^2 - 5u + 4 < 0.$$
+
+This is a quadratic inequality. We can factor it:
+$$u^2 - 5u + 4 = (u - 4)(u - 1) < 0.$$
+
+Using a sign analysis:
+1. $(u - 4)(u - 1) = 0$ at $u = 1$ and $u = 4$.
+2. The expression will be negative between these roots because signs in the product $(u - 4)(u - 1)$ change at the roots and the corresponding quadratic parabola opens upwards (positive leading coefficient).
+
+Therefore, the inequality holds true when $1 < u < 4$.
+
+Recall $u = 2^x$, so we want to find the range of $x$ such that:
+$$1 < 2^x < 4.$$
+
+Take logarithm base $2$ of the inequality:
+$$\log_2(1) < x < \log_2(4),$$
+which simplifies to:
+$$0 < x < 2.$$
+
+Finally, we find the integer values of $x$ that satisfy $0 < x < 2$. The integers in this interval are $1$ only. However, to find the difference between the largest and smallest integers that satisfy the inequality, consider only integer values that have a notable impact on the range. Since we evaluated the actual inequality range and verified it includes $x = 1$, the smallest and largest integers are both $1$. Hence, the difference $1 - 1 = 0$.
+
+Therefore, the difference between the largest and smallest integer values of $x$ that satisfy the inequality $f(x) = 2^x + 2^{2-x} < 5$ is $\boxed{0}$."
+gpt-4-turbo,"['combinatorial_mathematics', 'calculation_and_conversion_skills']","A mathematician is designing a special numbered deck for a new game. The deck must contain exactly $N$ cards, where $N$ is the smallest positive integer for which the total number of ways to select 5 distinct cards without regard to order is divisible by both 3 and 4, but not by 5. Additionally, each card in the deck must have a unique positive integer number, starting from 1 up to $N$ inclusive. Once the deck is assembled, the mathematician will select one card at random. What is the number on the selected card that maximizes the sum of digits of this number? If there are multiple cards that maximize the sum of digits, what is the sum of the digits of the smallest such card?","First, find $N$ such that $\binom{N}{5}$ is divisible by 3 and 4 but not by 5. The formula for combinations is $\binom{N}{5} = \frac{N!}{5!(N-5)!}$. For this to be divisible by 3 and 4 but not by 5, we must look for an $N$ that gives a prime factorization of the combination containing 3 and 2 (to satisfy the divisibility by 3 and 4) but minimizing the effect of 5's in the factorization (since it shouldn't be divisible by 5).
+
+The smallest such $N$ making the combination divisible by 12 (3 and 4's least common multiple) but not by 5 beyond the factor of $5! = 120$ is $N=10$. This gives $\binom{10}{5} = \frac{10!}{5!5!} = \frac{10 \times 9 \times 8 \times 7 \times 6}{5 \times 4 \times 3 \times 2 \times 1} = 252$, which is divisible by 3 and 4 but not by 5 since the prime factorization of 252 is $2^2 \cdot 3^2 \cdot 7$, meeting the divisibility criteria.
+
+Next, among the numbered cards from 1 to 10, the sum of digits is maximized for single-digit numbers by 9. However, for the two-digit numbers, 10 has a digit sum of 1, which does not compete with 9. Therefore, the card with the number maximizing the sum of digits is the card numbered 9.
+
+The sum of the digits of the smallest card that maximizes the digit sum is simply the sum of the digits of 9, which is $9$. Thus, the answer, which is the sum of digits of the smallest card maximizing this sum, is $\boxed{9}$."
+gpt-4-turbo,"['algebraic_skills', 'quadratic_equation_skills']","A parabola with the equation $y=ax^2+bx+c$ passes through the points $(-1,2)$, $(0,3)$, and $(2,7)$. Find the $x$-coordinate of the vertex of this parabola.","First, we substitute the given points into the equation $y=ax^2+bx+c$ to find $a$, $b$, and $c$.
+
+1. For $(-1,2)$: $2 = a(-1)^2 + b(-1) + c \Rightarrow 2 = a - b + c$
+2. For $(0,3)$: $3 = a(0)^2 + b(0) + c \Rightarrow 3 = c$
+3. For $(2,7)$: $7 = a(2)^2 + b(2) + c \Rightarrow 7 = 4a + 2b + c$
+
+Substituting $3$ for $c$ in equations (1) and (3), we get:
+1. $2 = a - b + 3$
+2. $7 = 4a + 2b + 3$
+
+Solving these equations simultaneously, we multiply the first by 2 and add it to the second to solve for $a$:
+1. $4 + 7 = (2a - 2b + 6) + (4a + 2b + 3) \Rightarrow  2 = 6a$
+2. Simplifying, we get $a = \frac{1}{3}$
+
+Substituting $\frac{1}{3}$ for $a$ in equation (1), we get
+1. $2 = \frac{1}{3} - b + 3 \Rightarrow b = \frac{4}{3}$
+
+The $x$-coordinate of the vertex of a parabola given by $y=ax^2+bx+c$ is found by $h=-\frac{b}{2a} = -\frac{\frac{4}{3}}{\frac{2}{3}}$ = -2 "
+gpt-4-turbo,"['matrix_operations', 'basic_arithmetic_operations']","Consider the 2x2 matrix $M = \begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix}$. Compute the sum of all elements in the matrix $M^3$, that is, matrix $M$ multiplied by itself twice.","First, we need to calculate $M^3 = M \cdot M \cdot M$. Let's compute $M^2$ first:
+
+\[M^2 = \begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix} \begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix} = \begin{pmatrix} (2\cdot2 + 3\cdot4) & (2\cdot3 + 3\cdot5)\\ (4\cdot2 + 5\cdot4) & (4\cdot3 + 5\cdot5) \end{pmatrix} = \begin{pmatrix} 16 & 21 \\ 28 & 37 \end{pmatrix}.\]
+
+Now, let's compute $M^3 = M^2 \cdot M$:
+
+\[M^3 = \begin{pmatrix} 16 & 21 \\ 28 & 37 \end{pmatrix} \begin{pmatrix} 2 & 3 \\ 4 & 5 \end{pmatrix} = \begin{pmatrix} (16\cdot2 + 21\cdot4) & (16\cdot3 + 21\cdot5) \\ (28\cdot2 + 37\cdot4) & (28\cdot3 + 37\cdot5) \end{pmatrix} = \begin{pmatrix} 104 & 147 \\ 188 & 265 \end{pmatrix}.\]
+
+The sum of all elements in $M^3$ is required, hence we add all elements of the resulting matrix:
+
+Sum = $116 + 153 + 204 + 269 = 742$.
+
+Therefore, the answer, which is the sum of all elements in the matrix $M^3$, is $\boxed{742}$.
+
+The matrix multiplication part clearly illustrated the need for familiarity with matrix operations, while the summing of the matrix's elements made use of basic arithmetic operations."
+gpt-4-turbo,"['function_skills', 'basic_arithmetic_operations']"," Let $g(x) = 3^{12}x^2 - 3^{7} x + 77$, and let $y$ be the sum of the roots of $g(x)$.  Calculate the value of $g(y) + g(-y)$.","If $g(x) =ax^2 + bx + c$ then by Vieta's formula, the sum of the roots is $-b/a$. This is $y$.
+
+Hence $g(y) + g(-y) = ay^2 + by + c + a(-y)^2 + b(-y) + c$. This simplifies to $2ay^2 +2c$, which is  $2b^2/a + 2c$. 
+Substituting $b = -3^{7},  a= 3^{12}$ we conclude $g(y) + g(-y) =\frac{2 \times 3^{14}}{3^{12}} + 77 \times 2$. Simplifying, this is {$2 \times 9} + 154 = 172$. 
+
+The answer is $172$"
+gpt-4-turbo,"['base_conversion', 'average_calculations']
+","A class of students took a math test, and the scores are recorded in two different bases. Three students' scores are recorded in base $7$, and their scores are $32_7$, $45_7$, and $53_7$. Another three students' scores are recorded in base $8$, with scores $36_8$, $42_8$, and $55_8$. The teacher wants to calculate the average score of these six students in base $10$. What is this average score, rounded to the nearest integer?","Firstly, we convert the scores from base $7$ and base $8$ to base $10$:
+
+- For base $7$: $32_7 = 3*7^1 + 2*7^0 = 21 + 2 = 23$, $45_7 = 4*7^1 + 5*7^0 = 28 + 5 = 33$, and $53_7 = 5*7^1 + 3*7^0 = 35 + 3 = 38$.
+- For base $8$: $36_8 = 3*8^1 + 6*8^0 = 24 + 6 = 30$, $42_8 = 4*8^1 + 2*8^0 = 32 + 2 = 34$, and $55_8 = 5*8^1 + 5*8^0 = 40 + 5 = 45$.
+
+Now, with all scores converted to base $10$, we sum them to calculate the average:
+
+- The total score is $23 + 33 + 38 + 30 + 34 + 45 = 203$.
+
+To find the average score:
+
+- Average = Total Score / Number of Scores = $203 / 6 = 33.8333...$.
+
+Rounding to the nearest integer, the average score is $\boxed{34}$. 
+
+This process delineates the need for base conversion to correctly interpret and manipulate numbers from different base systems into a common base system (base $10) before calculating the average, demonstrating the requirement for both specified skills."
+gpt-4-turbo,"['recursive_functions_and_sequences', 'perimeter_and_area']","A circular garden has radius of $10$ feet. It is decided to place identical and disjoint rectangular flower beds of dimensions 5 feet by $20\sqrt{3}$ feet outside the garden, such that the middle points of the longer sides of the rectangles are tangent to the circular garden from the outside. What is the maximum number of such rectangular flower beds that can be placed around the garden?","The longer edge of the rectangle is $ l= 10\sqrt{3}$. This edge is tangent to the circular garden from the outside, and it touches the garden at the middle point of this edge. Tangency implies that the edge makes an angle of $90$ degrees with the radial line at the point of tangency. 
+
+Hence if $\theta$ is the angle subtended by the rectangle at the center of the circle and $r$ is the radius, we see that 
+
+$\tan(\theta/2) = \frac{l/2}{r} = \frac{10\sqrt{3}}{2 \times 10} = frac{1}{\sqrt{3}$.
+
+Hence $\theta/2 $ is $60$ degrees, and thus $\theta$ is 120 degrees. Thus at most $3$ such rectangular flower beds can be placed, and the above calculation shows that the configuration is to have the three points where they are tangent to the circular garden to be at angles of $0, 120, 240$ degrees. 
+
+Correct answer: 3 rectangles."
+gpt-4-turbo,"['counting_and_number_theory', 'average_calculations']","A math teacher prepares a test with a total of 15 questions: 5 multiple-choice questions (each with 4 options to choose from and only one correct answer), 5 true or false questions, and 5 numerical-answer questions. After grading the tests, she observes that on average, each type of question was answered correctly by 60% of the students. If a student is selected at random, what is the probability rounded to the nearest whole number that the student correctly answered at least one of each type of question?","First, we determine the probability of correctly answering each type of question, which is given as 60% or 0.6. 
+
+For multiple-choice questions (4 options), the probability is explicitly given, not requiring further calculation. 
+
+For true or false questions, similarly, the probability of correctly answering by guessing or knowledge is 0.6. 
+
+For numerical-answer questions, while not guessable like the others, we are told that students also have a 60% success rate.
+
+The probability that a student correctly answers at least one of each type of question involves calculating the probability of at least one success in each of the independent event categories (multiple-choice, true/false, numerical). 
+
+1. Probability of correctly answering at least one multiple-choice question: Since there are 5 questions and each has a 0.6 success rate, the probability of failing all of them is $(1-0.6)^5 = 0.4^5$. Thus, the probability of answering at least one correctly is $1 - 0.4^5$.
+
+2. The calculation for true or false questions is the same as for multiple-choice due to the same success rate and number of questions: $1 - 0.4^5$.
+
+3. The numerical-answer questions also have the same calculation for at least one correct answer: $1 - 0.4^5$.
+
+Since these events are independent, their combined probability of success is the product of the individual probabilities: 
+\[ \left(1 - 0.4^5\right) \times \left(1 - 0.4^5\right) \times \left(1 - 0.4^5\right) = \left(1 - 0.4^5\right)^3 \]
+
+Calculating $1 - 0.4^5$ gives $1 - 0.01024 = 0.98976$. Therefore, $\left(0.98976\right)^3 \approx 0.9697$, which rounds to $\boxed{97}$ as the nearest whole number. 
+
+Thus, there is approximately a 97% chance that a randomly selected student will correctly answer at least one of each type of question, demonstrating the use of both required skills in solving this problem."
+gpt-4-turbo,"['quadratic_equation_skills', 'solving_system_of_equations']",Find the integer value of $x$ that satisfies both of the following conditions simultaneously: (1) $x^2 - 5x -1$ equals the sum of the squares of two consecutive integers; and (2) $x$ solves the system of equations $2y - x = 4$ and $3y + 2x = -1$.,"We notice that the system of linear equations, $2y - x = 4$ and $3y + 2x = -1$, can be solved directly for $x$.  Substituting $x$ from the first equation into the second, we obtain expressions for $x$ and $y$. First, express $x$ in terms of $y$ from the first equation: $x = 2y - 4$. Substituting into the second gives $3y + 2(2y - 4) = -1 \Rightarrow 3y + 4y - 8 = -1 \Rightarrow 7y = 7 \Rightarrow y = 1$. Substituting $y = 1$ back into $x = 2y - 4$, we get $x = 2*1 - 4 = -2$.
+
+Substituting into the given quadratic expression we obtain $(-2)^2 - 5 (-2) -1 = 4 + 10 -1 =13$. To solve the question we need to verify that it is the sum of squares of two consecutive integers.  If the first integer is denoted by $n$ then we have
+
+[ n^2 + (n+1)^2 = 13 ]
+[ 2n^2 + 2n + 1 = 13 ]
+[ 2n^2 + 2n - 12 = 0 ]
+[ n^2 + n - 6 = 0 ]
+Factoring:
+[ (n + 3)(n - 2) = 0 ]
+[ n = -3 \text{ or } n = 2 ]
+
+For $n = 2$:
+[ 2^2 + 3^2 = 4 + 9 = 13 ]
+This result shows that $(-2)^2 - 5(-2) - 1 = 13$ can indeed be expressed as the sum of the squares of two consecutive integers $2, 3$.
+ $13 = 2^2 + 3^2$ and thus satisfies the desired property. 
+
+Correct answer: $x =-2$. "
+gpt-4-turbo,"['calculation_and_conversion_skills', 'three_dimensional_geometry']","A regular tetrahedron has an edge length of $2\sqrt{2}$. Another regular tetrahedron, with edge length $\frac{1}{2}$ the length of the first tetrahedron's edge, is placed inside the first tetrahedron in such a way that each vertex of the smaller tetrahedron touches a face of the larger tetrahedron. Calculate the combined volume of the two tetrahedrons to the nearest integer.","First, let's calculate the volume of the larger tetrahedron using its edge length. The formula for the volume $V$ of a regular tetrahedron with edge length $a$ is $V = \frac{a^3\sqrt{2}}{12}$. Plugging in $a = 2\sqrt{2}$ gives us  
+\[V_{large} = \frac{(2\sqrt{2})^3\sqrt{2}}{12} = \frac{16 * 2}}{12} = \frac{8}{3}.\]
+Next, the edge length of the smaller tetrahedron is half of the larger one, making it $a = \sqrt{2}$. The volume of the smaller tetrahedron is therefore  
+\[V_{small} = \frac{(\sqrt{2})^3\sqrt{2}}{12} = \frac{2 * 2}{12} = \frac{1}{3}.\]
+To find the combined volume, we add the volumes of the two tetrahedrons:
+\[V_{combined} = V_{large} + V_{small} = \frac{8}{3} + \frac{1}{3}.\]
+Simplifying further gives  
+\[V_{combined} = \frac{9}{3} = 3.\]
+Rounding to the nearest integer, we get $\boxed{3}$ as the combined volume of both tetrahedrons. 
+
+This solution step-by-step demonstrated the necessity of three-dimensional geometry skills for applying the volume formula to a tetrahedron and calculation and conversion skills for managing the arithmetic operations, including manipulating square roots and fractions, as well as the rounding to a whole number at the end."
+gpt-4-turbo,"['circles', 'prime_number_recognition_and_properties']","Given a circular garden, an alchemist wants to place a unique magical obelisk at its center. The radius of the garden is equal to the largest prime factor of the sum $11^2 + 60^2$. What is the area of the circular garden, rounded down to the nearest integer?","To solve this problem, we need to find the radius of the circular garden based on the largest prime factor of \(11^2 + 60^2\), then use this radius to calculate the area of the garden. First, we calculate \(11^2 + 60^2\). We find \(11^2 = 121\) and \(60^2 = 3600\), so \(11^2 + 60^2 = 121 + 3600 = 3721\). Next, we find the prime factors of \(3721\). Notice that \(3721 = 61^2\), so the only prime factor of \(3721\) is \(61\). Therefore, the radius \(r\) of the garden is \(61\). The area \(A\) of a circle with radius \(r\) is given by \(A = \pi r^2\). Substituting \(r = 61\), we have \(A = \pi \times 61^2 = \pi \times 3721\). Using the approximation \(\pi \approx 3.14159\), we find \(A \approx 3.14159 \times 3721 \approx 11688.09039\). Rounding down to the nearest integer, we get \(A \approx 11,689.85639\). Thus, the area of the circular garden, rounded down to the nearest integer, is \(11690\)."
+gpt-4-turbo,"['counting_and_number_theory', 'modular_arithmetic']","How many three-digit positive integers are there such that they are divisible by 5, and when divided by 4, the remainder is 3?","To find the number of three-digit positive integers that satisfy the following conditions:
+
+1. The integer is divisible by 5.
+2. When divided by 4, it leaves a remainder of 3.
+
+Let’s denote the integer by \( N \).
+
+### Step-by-Step Solution
+
+#### Step 1: Set up the conditions
+Since \( N \) is divisible by 5, we can write:
+\[
+N = 5k
+\]
+for some integer \( k \).
+
+Also, since \( N \) leaves a remainder of 3 when divided by 4, we have:
+\[
+N \equiv 3 \pmod{4}
+\]
+
+#### Step 2: Substitute and simplify
+Substitute \( N = 5k \) into the second condition:
+\[
+5k \equiv 3 \pmod{4}
+\]
+
+Since \( 5 \equiv 1 \pmod{4} \), we can simplify this to:
+\[
+k \equiv 3 \pmod{4}
+\]
+
+This tells us that \( k \) must be of the form:
+\[
+k = 4m + 3
+\]
+for some integer \( m \).
+
+#### Step 3: Substitute back to find \( N \)
+Now substitute \( k = 4m + 3 \) into \( N = 5k \):
+\[
+N = 5(4m + 3) = 20m + 15
+\]
+
+Thus, \( N \) can be written as:
+\[
+N = 20m + 15
+\]
+
+#### Step 4: Determine the range of \( m \)
+Since \( N \) is a three-digit integer, we need:
+\[
+100 \leq N \leq 999
+\]
+
+Substituting \( N = 20m + 15 \) gives:
+\[
+100 \leq 20m + 15 \leq 999
+\]
+
+##### Solve for the lower bound
+\[
+100 \leq 20m + 15
+\]
+\[
+85 \leq 20m
+\]
+\[
+m \geq 4.25
+\]
+Since \( m \) must be an integer, we start with \( m = 5 \) for the lower bound.
+
+##### Solve for the upper bound
+\[
+20m + 15 \leq 999
+\]
+\[
+20m \leq 984
+\]
+\[
+m \leq 49.2
+\]
+So the largest integer \( m \) can take is \( m = 49 \).
+
+#### Step 5: Count the possible values of \( m \)
+The integer values for \( m \) range from \( m = 5 \) to \( m = 49 \).
+
+The total number of values for \( m \) is:
+\[
+49 - 5 + 1 = 45
+\]
+
+### Final Answer
+There are \( \boxed{45} \) three-digit positive integers that satisfy both conditions."
+gpt-4-turbo,"['factoring_skills', 'solving_linear_equation']","A student wishes to build a rectangular garden where the length is twice the width and intends to plant seeds in this garden in a pattern such that the number of seeds planted on the first day is 1, the second day is 3, the next day is 5, and so on, increasing by 2 each day, forming an arithmetic sequence. If the garden's perimeter is 60 meters, on which day will the total number of seeds planted exceed the area of the garden?","Firstly, let's solve for the dimensions of the garden. If we let the width be $w$ meters, then the length must be $2w$ meters because the length is twice the width. The perimeter ($P$) of a rectangle is given by $P = 2l + 2w$, which means in this case, $60 = 2(2w) + 2w = 6w$. Solving this equation for $w$ gives us $w = 10$ meters, and hence, the length $l = 2 \times 10 = 20$ meters. Therefore, the area of the garden is $l \times w = 20 \times 10 = 200$ square meters.
+
+Next, we need to calculate on which day the total number of seeds planted exceeds the area of the garden. The sequence of seeds planted forms an arithmetic series where the first term, $a_1 = 1$, and the common difference, $d = 2$. The sum of the first $n$ terms of this arithmetic series is given by $S_n = \frac{n}{2}[2a_1 + (n-1)d]$, which simplifies to $S_n = \frac{n}{2}(2 + (n-1)2) = \frac{n}{2}(2n)=n^2$. We are seeking the smallest integer $n$ for which $S_n > 200$. Thus, we need to solve the inequality $n^2 > 200$.
+
+Solving the inequality, we find:
+
+\[n^2 > 200\]
+
+Taking the square root of both sides gives us $n > \sqrt{200}$. Since $\sqrt{200}$ is approximately equal to $14.14$, the smallest integer $n$ that satisfies this inequality is $15$. 
+
+Hence, on the $\boxed{15th}$ day, the total number of seeds planted will exceed the area of the garden, requiring expertise in both solving linear equations to find the garden's dimensions and factoring skills to calculate the sum of an arithmetic series and solve the resulting inequality."
+gpt-4-turbo,"['arithmetic_skills', 'multiplication_and_division']","A grocery store is running a sale on soda cans. Each can usually costs 75 cents. But if you come to the counter with a certain number of cans, the store will offer to sell you twice as many cans for 50% more money than you would have paid for your initial purchase.  If you have $\$30$, how many soda cans can you purchase if you want to maximize the number of cans bought under this offer?","Let x be the initial number of cans you take to the counter
+
+The original cost of x cans is: 0.75x
+1.5 times that original cost is: 1.5(0.75x) = 1.125x
+This $1.125x must equal your $30 budget
+So the equation is: 1.125x = 30
+We can solve this equation for x to determine the initial number of cans. Then doubling that will give the maximum number of cans you can get under this offer.
+
+Solving for $x$ we obtain $26.67$. The number of cans has to be integer, so we get $x =26$, which according to our equation will cost $1.125 \times 26 =29.25$ dollars for receiving $2 \times 26 =52$ cans. However, this leaves over $0.75$, which can be used to buy one more can, for a total of 53 cans. 
+
+Correct answer: 53 cans"
+gpt-4-turbo,"['counting_and_number_theory', 'sequence_and_series_analysis_skills']","A mathematician designs a sequence where the $n$-th term, denoted as $a_n$, is defined as the sum of the first $n$ positive integers that are divisible by either 3 or 7, but not both. Calculate the value of the tenth term $a_{10}$.","First, let's identify the numbers divisible by 3 or 7 but not both. This requires counting_and_number_theory skills:
+
+- Numbers divisible by 3 include 3, 6, 9, ...
+- Numbers divisible by 7 include 7, 14, 21, ...
+- Numbers divisible by both 3 and 7 (i.e., 21, 42, ...) should be excluded.
+
+Now, let's list the first few numbers that meet the criteria without duplicates and excluding those divisible by both 3 and 7:
+3, 6, 7, 9, 12, 14, 18, 20, 24, 27...
+
+The next step involves the sequence_and_series_analysis_skills to find $a_n$, the sum of the first $n$ such numbers. The first ten terms, as identified, are 3, 6, 7, 9, 12, 14, 18, 20, 24, 27. The sum $a_{10}$ of these ten terms is calculated as follows: 
+
+\[a_{10} = 3 + 6 + 7 + 9 + 12 + 14 + 18 + 20 + 24 + 27 = \boxed{140}.\]
+
+This solution required the identification of a specific subset of integers (counting_and_number_theory skill) and then creating and summing a sequence of the first $n$ terms that fit the criteria (sequence_and_series_analysis_skills)."
+gpt-4-turbo,"['complex_numbers_related_skills', 'algebraic_manipulation_skills']","Given a complex polynomial $P(z) = z^3 + z - 2$ and a complex number $z = a + bi$ such that $b \not = 0$, if $P(z) = 0$, find the value of $a^2 + 4a + 4$.","First, we need to find the roots of the polynomial $P(z) = z^3 + z - 2$.
+
+To find the roots of the polynomial, we notice that it might not be straightforward to factorize directly. However, by inspection or by trying integer values, we can check if $1$ or $-1$ is a root. Substituting $z = 1$, we get $P(1) = 1 - 3 + 2 = 0$. So, $z = 1$ is indeed a root.
+
+We have discovered that $x = 1$ is a root of the polynomial, but we are specifically asked for a root with $b \neq 0$, so we factor $P(z)$ into $P(z) = (z - 1)(z^2 + z + 2)$. Then by the quadratic formula, $a = -1/2$.
+
+Next, we substitute $a = 1$ into the expression $a^2 + 4a + 4$. This substitution and simplification is a clear example of algebraic manipulation skills.
+
+Thus, $a^2 + 4a + 4 = (-1/2)^2 + 4(-1/2) + 4 = 1/4 - 2 + 4 = 2.25$."
+gpt-4-turbo,"['sequence_and_series_skills', 'exponent_and_root_skills']","Consider the geometric sequence defined by $a, ar, ar^2, ...$ where the first term $a$ is the sum of the roots of the equation $x^2-2x-8=0$, and the common ratio $r$ is the square root of the solution to the equation $9^{y}=81$. If the sum of the first four terms of this sequence is $S$, find the value of $\left\lfloor S \right\rfloor$.","First, solve the quadratic equation $x^2 - 2x - 8 = 0$. The sum of the roots of a quadratic equation $ax^2 + bx + c = 0$ is given by $-\frac{b}{a}$. Hence, the sum of the roots for our equation is $-\frac{-2}{1} = 2$. Therefore, $a = 2$.
+
+For the common ratio $r$, we need to solve the equation $9^{y} = 81$. Since $81 = 9^2$, it follows that $y = 2$, and thus, $r = \sqrt{2}$.
+
+Now, using the formula for the sum of the first four terms of a geometric sequence, $S_4 = \frac{a(1-r^4)}{1-r}$ where $a = 2$ and $r = \sqrt{2}$, we can substitute these values into the formula to get:
+$$S_4 = \frac{2(1-(\sqrt{2})^4)}{1-\sqrt{2}} = \frac{2(1-4)}{1-\sqrt{2}} = \frac{2(-3)}{1-\sqrt{2}} = \frac{6}{\sqrt{2} - 1} = 6(\sqrt{2} + 1).$$
+
+Since $\left\lfloor 6\sqrt{2} + 6 \right\rfloor$ means taking the floor of $6\sqrt{2}$, and knowing that $\sqrt{2} \approx 1.414$, we find $6\sqrt{2} \approx 8.484$. Taking the floor value gives $\left\lfloor 6\sqrt{2} + 6 \right\rfloor = \left\lfloor 14.484 \right\rfloor = 14$.
+
+Thus, the final answer is $\boxed{14}$."
+gpt-4-turbo,"['ratio_and_proportion_skills', 'ratio_and_proportion']","A recipe for a cake requires flour, sugar, and eggs in the ratio of $2:1:2$. If the total amount of these ingredients required is 15 kg, how many cakes can you make if the amount of flour available is 40 kg, the amount of sugar is 10 kg, and eggs equivalent to 20 kg?","From the given ratio of $2:1:2$ for flour, sugar, and eggs, we know that out of every 5 parts required for the cake, 2 parts are flour, 1 part is sugar, and the remaining 2 parts are eggs. Given the total weight of these ingredients per cake is 15 kg, we can divide this total into the ratio, i.e., each part equals to $15 kg / 5 = 3 kg$. Therefore, for one cake, flour required is $2*3=6$ kg, sugar is $3$ kg, and eggs are $2*3=6$ kg.
+
+Given the quantities of ingredients available: 40 kg of flour, 10 kg of sugar, and 20 kg of eggs, we find out how many cakes each ingredient can make individually. For flour, $40 kg / 6 kg = 6\frac{2}{3}$ cakes; for sugar, $10 kg / 3 kg = 3\frac{1}{3}$ cakes; and for eggs, $20 kg / 6 kg = 3\frac{1}{3}$ cakes.
+
+The limiting factor here is the amount of sugar and eggs, which limits us to making $3$ complete cakes because you cannot make a fraction of a cake with a fraction of an ingredient. Therefore, you can make $\boxed{3}$ cakes with the ingredients provided.
+
+In this solution, 'ratio_and_proportion_skills' were necessary to distribute the total ingredient weight into specific amounts based on the given ratio. 'Ratio_and_proportion' was then crucially applied to assess how many times the ingredients for one cake could fit into the available quantities of flour, sugar, and eggs."
+gpt-4-turbo,"['other_geometric_skills', 'perimeter_and_area']","A park is shaped as a right-angled triangle with sides 60 feet, 80 feet, and 100 feet long. At the right angle, a path is constructed straight towards the hypotenuse, dividing the triangle into two smaller right-angled triangles. For a festival, it is decided to decorate the path with colored lights. If the lights are to be placed 5 feet apart starting from the vertex of the right angle, how many lights will be needed? Additionally, to estimate the area that needs maintenance after the festival, calculate the combined area of the two smaller triangles the path has divided the larger triangle into. Report the total cost as the sum of the number of lights and the area of the triangles.","In a right-angled triangle, a line drawn from the right-angle vertex to the hypotenuse will only divide the triangle into two right triangles if the line drawn is perpendicular to the hypotenuse. 
+
+Now, let's solve the problem step by step:
+
+1. Find the length of the path (altitude of the original triangle):
+   - We know that the original triangle is a right-angled triangle with sides 60 feet, 80 feet, and 100 feet.
+   - The longest side (100 feet) is the hypotenuse, and the right angle is opposite the shortest side (60 feet).
+   - Using the formula for the area of a triangle: $Area = \frac{1}{2} \times base \times height$
+   - $\frac{1}{2} \times 100 \times height = \frac{1}{2} \times 60 \times 80$
+   - $100 \times height = 60 \times 80$
+   - $height = \frac{60 \times 80}{100} = 48$ feet
+
+2. Calculate the number of lights needed:
+   - The lights are placed 5 feet apart along the 48-foot path.
+   - Number of lights = $\frac{48}{5} + 1 = 9.6 + 1 = 10.6$, rounded down to 10 lights
+
+3. Calculate the areas of the two smaller triangles:
+   - The sum of the area of two smaller right-angled triangles is the area of the original triangle.
+   - $Area = \frac{1}{2} \times base \times height = \frac{1}{2} \times 60 \times 80 = 2400$ sq feet
+
+4. Report the total cost:
+   - Total cost = Number of lights + Combined area of the two smaller triangles
+   - Total cost = $10 + 2400 = 2410$
+
+Therefore, the answer is $\boxed{2410}$."
+gpt-4-turbo,"['number_theory_skills', 'perimeter_and_area']","A perfect square garden is divided into smaller square plots each measuring 4 feet on a side. Each of these square plots is then to be surrounded by a narrow walkway of width 1 foot. If exactly two of these smaller square plots (along with their walkways) can fit along one side of the garden without overlapping each other or the garden’s boundary, what is the area of the garden?","Each smaller square plot has a side length of 4 feet, and the walkway around each plot adds an additional 1 foot to each side. Thus, each plot, including its walkway, occupies a square of side length 6 feet.
+
+Since exactly two of these smaller square plots (along with their walkways) can fit along one side of the garden, the side length of the garden is 2 * 6 = 12 feet.
+
+The area of a square is given by the square of its side length, so the area of the garden is 12^2 = 144 square feet."
+gpt-4-turbo,"['pythagorean_skills', 'fractions_and_decimals']","A rectangular plot of land has a diagonal that measures $\sqrt{113}$ feet. The length of the plot is 9 feet more than twice its width. If a fence is to be built around the plot and the cost of the fencing is $15$ dollars per foot, what is the total cost of the fencing?","The width and length of the plot can be represented by the variables $w$ and $l$ respectively. Given that the length is 9 feet more than twice the width, we can write this relationship as $l = 2w + 9$.
+
+From the Pythagorean theorem, we know that the square of the length of the diagonal is equal to the sum of the squares of the other two sides, or $d^2 = w^2 + l^2$. Given that the diagonal measures $\sqrt{113}$ feet, we can substitute into this equation to get $113 = w^2 + (2w+9)^2$.
+
+Expanding the right side of the equation gives $113 = w^2 + 4w^2 + 36w + 81$. Simplifying this gives $113 = 5w^2 + 36w + 81$.
+
+Subtracting 113 from both sides gives $0 = 5w^2 + 36w - 32$. Dividing through by 5 gives $0 = w^2 + \frac{36}{5}w - \frac{32}{5}$.
+
+Solving this quadratic equation for $w$ (using either factoring, completing the square, or the quadratic formula), we find that $w = \frac{4}{5}$. Substitute $w = \frac{4}{5}$ into the equation $l = 2w + 9$ to find that $l = \frac{53}{5}$.
+
+So, the perimeter of the plot is $2l + 2w = 2(\frac{53}{5}) + 2(\frac{4}{5}) = \frac{114}{5}$ feet. Given that the cost of the fencing is $15$ dollars per foot, the total cost of the fencing is $15 \times \frac{114}{5} = 342$ dollars."
+gpt-4-turbo,"['solving_linear_equation', 'arithmetic_operations']","A teacher is planning an art project which requires square pieces of colored paper. She calculates that if she buys a rectangular sheet of paper that is 14 cm longer than it is wide and cuts it into square pieces each side 2 cm, she will end up with at least 300 square pieces. What is the smallest width (in cm) the original rectangular sheet can have?","First, we use ""arithmetic_operations"" to find out the total area needed for at least 300 square pieces of 2 cm each. Since the area of each square piece is $2\text{ cm} \times 2\text{ cm} = 4\text{ cm}^2$, the total area needed for at least 300 pieces is $300 \times 4 = 1200\text{ cm}^2$.
+
+Next, let's denote the width of the rectangular sheet by $w$ (in cm). Then, its length would be $w + 14$ (since it is 14 cm longer than its width), and the area of the rectangular sheet can be represented as $w(w + 14)$. For the teacher to have at least 300 square pieces, the area of the rectangular sheet must be at least 1200 cm^2. Thus, we have:
+\[ w(w + 14) \geq 1200 \]
+
+Moving to the ""solving_linear_equation"" skill to solve this quadratic inequality, we expand it and rearrange terms:
+\[ w^2 + 14w - 1200 \geq 0 \]
+\[ w^2 + 14w - 1200 = 0 \] to find critical points.
+
+Solving this quadratic equation (either through factoring, completing the square, or the quadratic formula), we find that the roots are $w = 28.34$ and $w = -42.34$. Since width cannot be negative we ignore the negative solution. 
+
+Thus $w = 28.34$ cm satisfies the inequality. Then the length is $28.34 + 14 = 42.34$. However the original requirement requires cutting into squares with each side 2cm, so the effective dimensions become $28 \times 42$, which would not satisfy the desired inequality. Hence we must round up to the next even number to obtain smallest positive width that allows for at least 300 square pieces of 2 cm each to be cut out after considering the condition that the length is 14 cm longer than its width. 
+
+Correct answer is $\boxed{30}$cm. "
+gpt-4-turbo,"['basic_arithmetic', 'arithmetic_skills']",Calculate the sum of the greatest prime factor of the expression $12! + 8!$ and the product of the coefficients of the polynomial $f(x) = 4x^3 - 2x^2 + 5x - 7$.,"For the first part, let's find the greatest prime factor of the expression $12! + 8!$. We factor out the $8!$:
+
+$12! + 8! = 8!(1 + 9\cdot10\cdot11\cdot12) = 8!(1+11880) = 8!\cdot11881$.
+$11881 = 109^2$. 109 is a prime factor. The greatest prime factor in $8!$ is $7$. Thus, 109 is the greates prime factor of the expression $12! + 8!$
+
+
+For the second part, we need to calculate the product of the coefficients of the polynomial $f(x) = 4x^3 - 2x^2 + 5x - 7$. The coefficients are $4$, $-2$, $5$, and $-7$. Multiplying these together gives:
+
+$4 \times (-2) \times 5 \times (-7) = 280$.
+
+Therefore, the sum of the greatest prime factor of $12! + 8!$ and the product of the coefficients of the polynomial is $109 + 280 = 389$.
+
+To summarize, basic arithmetic skills (factorization, identification of prime numbers) are essential for working out the first part of the problem, and arithmetic skills (manipulating and multiplying polynomial coefficients) are crucial for completing the second part of the problem."
+gpt-4-turbo,"['counting_principals', 'average_calculations']","A teacher is organizing a math competition and she has two types of awards to give out at the end: gold and silver medals. She has 5 gold medals and 7 silver medals. She plans to display these medals in a single line across the front stage. However, she wants to ensure that no two gold medals are adjacent to each other in this display. Additionally, she calculates the average (mean) position of the gold medals in the lineup and stands at that location. The positions are numbered from 1 to 12 from left to right. If she chooses a configuration of all awards from the set of all possible configurations uniformly at random, what is the expected location that she stands at?","Let's approach this step-by-step:
+
+1) First, let's understand what the question is asking. We need to find the average position of the gold medals in all possible configurations.
+
+2) Notice that the problem is completely symmetrical. So if there is a configuration where a gold medal is at position 1, the symmetric counterpart will have a gold medal at position 12.
+
+3) When we sum across all positions of the gold medals across all possible configurations, we can first take the sum of these pairs of counterparts, which is always 13. 
+
+4) Therefore, when we take the average, the value will be $\frac{13}{2} = 6.5$. 
+
+The answer is $\boxed{6.5}$"
+gpt-4-turbo,"['recursive_functions_and_sequences', 'probability_and_combinatorics']","A magical frog starts at the origin of a coordinate grid and makes a sequence of jumps. For the first jump, it can jump to either point (1,0) or (0,1). For each subsequent jump, if the frog is at point (x,y), it can either jump to (x+1,y) or to (x,y+1). However, there is a twist: there is a magical barrier that prevents the frog from entering the points where x+y = 5. If the frog wants to reach the point (4,3), how many distinct paths can it take?","We note that each hop either increase $x$ or $y$ by $1$, but not both. Thus $x+y$ increases by exactly $1$ at each hop. However, at the point $(4,3)$ the value of $x+y$ is $4 +3 =7$. There is no way to make $x+ y =7$ without having $x+y$ be $5$ at some intermediate point. 
+
+The number of distinct paths for getting to $(4, 3)$ is $\boxed{0}$."
+gpt-4-turbo,"['inequality_skills', 'area_calculation_skills']","A rectangular swimming pool has a length of 20 meters, a width of 10 meters, and a constant depth of 2 meters. At the bottom of this pool lies a peculiar, perfectly symmetrical, triangular prism-shaped object. The triangular base of the prism is an isosceles triangle with sides of length 4 meters, 4 meters, and 6 meters. If the height of the prism (the perpendicular distance from the base to the top face) is 2 meters, what is the total volume of water in cubic meters that this pool can hold when the triangular prism is removed?","First, we calculate the volume of the swimming pool without any objects inside. The volume of the pool is the length times the width times the depth, which is $20 \times 10 \times 2 = 400$ cubic meters.
+
+The question specifies a certain prism inside the pool but then asks about the volume of the water that the pool can hold when the prism is removed. 
+
+Thus the volume is the product of height, length and width, which is $20 \times 10 \times 2$  cubic meters. 
+
+The answer is $\boxed{400}$ cubic meters. "
+gpt-4-turbo,"['ratio_and_proportion_skills', 'understanding_and_applying_floor_and_ceiling_functions']","A baker used a recipe that requires water and flour in the ratio 2:5. If the baker decides to use exactly 714 grams of flour, how many grams of water (rounded to the nearest whole number) should be used? After preparing the dough, the baker divides it into pieces, each weighing at least 45 grams, but due to the division process, the last piece ended up weighing only 23 grams. What is the maximum number of pieces of dough the baker ended up with?","Okay, let’s solve this problem step by step:
+
+1. Finding the amount of water needed:
+   * The ratio of water to flour is 2:5.
+   * If we let x be the amount of water, then:
+     x / 714 = 2 / 5
+   * Cross multiply:
+     5x = 2 × 714
+     5x = 1428
+   * Solve for x:
+     x = 1428 / 5
+     x = 285.6
+   * Rounding to the nearest whole number:
+     Water needed ≈ 286 grams
+
+2. Finding the maximum number of dough pieces:
+   * Total weight of the dough = Water + Flour
+     Total weight = 286 + 714 = 1000 grams
+   * The baker divides the dough into pieces, each weighing at least 45 grams, except for the last piece.
+   * Let’s first subtract the weight of the last piece
+     1000 - 23 = 977
+   * Let’s find the maximum number of 45-gram pieces that can be made from 977 grams:
+     977 ÷ 45 ≈ 21.71
+   * Since we can’t have a fractional number of pieces, the baker can make at most 21 pieces weighing atleast 45 grams each, since the dough corresponding to the 0.71 of a piece could be redistributed (in an arbitrary) by adding it to the 21 pieces of 45gms each)
+   * Therefore, the maximum number of pieces the baker ended up with is 21 + 1 = 22 pieces.
+
+In summary, the baker should use 286 grams of water, and the maximum number of pieces of dough the baker ended up with is \boxed{22}."
+gpt-4-turbo,"['counting_and_number_theory', 'complex_numbers_related_skills']","Find the number of complex numbers $z$ such that $z^n = 1$ for $n=12$, and the sum of the real part of $z$ and twice the imaginary part of $z$ is an integer, i.e., $\Re(z) + 2\Im(z) \in \mathbb{Z}$.","Firstly, to find complex numbers $z$ such that $z^{12} = 1$, we need to find the 12th roots of unity. The 12th roots of unity are given by $z_k = e^{2\pi i k/12}$ for $k=0, 1, ..., 11$. Each root can be expressed in the form $z_k = \cos(2\pi k/12) + i\sin(2\pi k/12)$.
+
+To satisfy $\Re(z) + 2\Im(z) \in \mathbb{Z}$, we substitute $\Re(z) = \cos(2\pi k/12)$ and $\Im(z) = \sin(2\pi k/12)$ into the equation and get $\cos(2\pi k/12) + 2\sin(2\pi k/12) \in \mathbb{Z}$. 
+
+We need to check each of the 12 roots to see which satisfy this condition:
+- For $k=0$, we have $\Re(z) + 2\Im(z) = 1 + 0 = 1$, which is an integer.
+- For $k=3$, we have $\Re(z) + 2\Im(z) = 0 + 2(1) = 2$, which is an integer.
+- For $k=6$, we have $\Re(z) + 2\Im(z) = -1 + 0 = -1$, which is an integer.
+- For $k=9$, we have $\Re(z) + 2\Im(z) = 0 - 2 = -2$, which is an integer.
+
+For other values of $k$, $\sin(2\pi k/12)$ and $\cos(2\pi k/12)$ will either produce fractions or the sum will not result in an integer due to the presence of $\sqrt{3}/2$, $\sqrt{2}/2$, or similar terms within their trigonometric definitions.
+
+Therefore, there are $\boxed{4}$ complex numbers $z$ such that $z^{12} = 1$ and $\Re(z) + 2\Im(z)$ is an integer. This involves using complex numbers related skills to identify the roots of unity and counting and number theory to apply the condition on real and imaginary parts and to count the valid solutions."
+gpt-4-turbo,"['prime_number_theory', 'number_manipulation']","What is the smallest positive square-free integer $n$ greater than 1 such that given $n$ coins we can  arrange them into three piles in each which the number of coins is prime, and the primes are  distinct ?","Let's solve the problem step by step, highlighting where each skill is applied:
+1. **Identifying Square-Free Numbers (Prime Number Theory)**: A square-free number is a number not divisible by any square except 1. Square-free numbers up to a small limit can be identified by excluding numbers divisible by squares of prime numbers. For example, the first few square-free numbers greater than 1 are 2, 3, 5, 6, 7, 10, 11, etc. (excluding 4, 8, 9, 12 since these are divisible by the squares of 2 and 3).
+   
+2. **Selecting a Number That Can Be Divided into 3 Piles (Number Manipulation)**: Consistent with the puzzle, we are looking for a number that can be divided into exactly 3 distinct piles, each with a prime number of coins.  
+   
+
+3. **Combining Skills to Find the Smallest Number**: We check various numbers. The smallest primes are $2, 3, 5$ and their sum is  $2 + 3 + 5 = 10$ which is square-free.  
+
+  
+Therefore, the smallest square-free number greater than 1 that can be arranged into exactly 3 distinct piles, with each pile containing a unique prime number of coins, is $\boxed{10}$."
+gpt-4-turbo,"['vector_operations', 'logarithmic_and_exponential_skills']",Find the minimum possible length of the diagonal of a cuboidal room whose volume is $v = 8^3$ cubic units and the area of the base is $a = 8 \cdot 16$ square units. Express your answer  rounded up  to the ceiling of the actual answer.,"First, let's use the given information about the cuboid volume and area to find its dimensions. The volume of the cuboid is given as $v=8^3=512$ cubic units, and the area of the base is $a = 8 \cdot 16 = 128$ square units. Since the volume of a cuboid is the product of its length ($l$), width ($w$), and height ($h$), and given that the area of the base (which is the product of length and width) equals 128 square units, we can start by setting up the relationships:
+\[v = l \cdot w \cdot h = 512\]
+\[a = l \cdot w = 128.\]
+
+Thus $h = 512/128 =4$ units. 
+
+The length of the diagonal  $d$ of the cuboid is $\sqrt{w^2 + l^2 + h^2}$ by the  3-dimensional Pythagorean theorem. Since $h$ is known, the minimum length is obtained by minimizing $w^2 + l^2$ subject to $l \cdot w = 128$. The minimum is attained when $w =l = \sqrt{128}$. 
+
+ Thus the minimum diagonal is 
+\[d = \sqrt{l^2 + w^2 + h^2} = \sqrt{2 \times 128 + 4^2} = \sqrt{256 + 16} = \sqrt{272}.\]
+
+Since $272$ lies between $16^2 =256$ and $17^2 =289$ the length of the diagonal rounded up to the ceiling is $17$ units.
+
+The answer is $\boxed{17}$ units. 
+
+Thus, both vector operations skill and exponential/logarithmic reasoning were crucial for solving this problem."
+gpt-4-turbo,"['multiplication_and_division', 'parametric_equations']","A toy manufacturing company needs to transport 360 toys to a retailer using a fleet of delivery drones. Each drone can carry a maximum of 12 toys at a time. If the path for each drone can be described by the parametric equations $(x(t), y(t)) = (3t, 5t)$ where $t$ is the time in minutes, and each drone takes the same linear path but starts its journey at different times. If the first drone starts at $t=0$ and each subsequent drone starts 2 minutes after the previous one, calculate the time difference in minutes between the first and the last drone to arrive at the retailer location, when all toys have been delivered. Assume there is an unlimited number of drones available and each drone travels directly to the retailer without any stops.","First, we need to calculate how many drones are required to deliver all toys. Each drone can carry 12 toys, and there are a total of 360 toys. Thus, we divide the total number of toys by the capacity of each drone: $360 / 12 = 30$. This means 30 drones are required.
+
+Next, we recognize that the drones fly at constant velocity, since the displacement per second is constant. 
+
+Since the first drone starts at $t=0$ and each subsequent drone starts 2 minutes after the previous one, the start time for each drone increases linearly. Given that there are 30 drones, the starting time of the last drone is $2 \times (30 - 1) = 58$ minutes after the first drone.
+
+Therefore, the time difference in minutes between the first and the last drone to arrive at the retailer location, when all toys have been delivered, is $\boxed{58}$ minutes. 
+
+The calculation is straightforward and does not require detailed analysis of the parametric equations given for the drones' paths since all drones travel the same linear path but start at different times. This solution combines the required ""multiplication_and_division"" skill to determine the number of drones needed and the understanding of the implications of parametric equations to conclude the timing sequence for drone departures."
+gpt-4-turbo,"['complex_number_skills', 'solving_inequalities']
+","A complex number $z$ and a real number $x$ satisfy the equation $|z|^2 + 2|z|x + x^2 = 100$ and the inequality $\operatorname{Re}(z) > x$. Knowing that $z = a + bi$ (where $a, b \in \mathbb{R}$), find the maximum integer value that $x$ can have.","First, we restate the equation $|z|^2 + 2|z|x + x^2 = 100$ as $(|z|+x)^2=100$, which implies $|z|+x = \pm 10$. Substituting $|z| = \sqrt{a^2 + b^2}$ into the equation yields $\sqrt{a^2 + b^2} + x = \pm 10$.
+
+To find the maximum integer value of $x$ while satisfying the inequality $\operatorname{Re}(z) > x$, we acknowledge that $\operatorname{Re}(z) = a$. This means $a > x$.
+
+We claim that the maximum integer value of $x$ is $4$. This can be attained by setting $a = 6, b = 0, x = 4$. To show that $4$ is indeed the maximum value, we only need to show that $x < 5$. This can be proved by noting that $10 \ge \sqrt{a^2 + b^2} + x > |x| + x \ge 2x$.
+
+Therefore, knowing $x$ has to be an integer, the maximum integer $x$ can be is $4$."
+gpt-4-turbo,"['recursive_functions_and_sequences', 'graph_and_geometry_skills']","A sequence is defined as follows: $a_1 = 3$, $a_2 = 5$, and for $n > 2$, $a_n = 2a_{n-1} - a_{n-2} + 2^n$. Points $P$ and $Q$ are located on the Cartesian plane at $(a_3, a_4)$ and $(a_5, a_6)$ respectively. What is the length of the line segment $\overline{PQ}$ rounded to the nearest integer?","First, find the terms $a_3$ to $a_6$ using the given recursive formula. 
+
+For $a_3$: $a_3 = 2a_2 - a_1 + 2^3 = 2*5 - 3 + 8 = 15$. 
+
+For $a_4$: $a_4 = 2a_3 - a_2 + 2^4 = 2*15 - 5 + 16 = 41$.
+
+For $a_5$: $a_5 = 2a_4 - a_3 + 2^5 = 2*41 - 15 + 32 = 99$.
+
+For $a_6$: $a_6 = 2a_5 - a_4 + 2^6 = 2*99 - 41 + 64 = 221$.
+
+Then, points $P$ and $Q$ are located at $(15, 41)$ and $(99, 221)$ respectively.
+
+Apply the distance formula to compute the length of $\overline{PQ}$: $d = \sqrt{(99-15)^2 + (221-41)^2} = \sqrt{84^2 + 180^2} = \sqrt{7056 + 32400} = \sqrt{39456}$.
+
+The square root of $39456$ is approximately $198.63$.
+
+Rounded to the nearest integer, the length of the line segment $\overline{PQ}$ is $\boxed{199}$. 
+
+This solution involves using the skills of recursive functions to find the necessary terms of the sequence and graph and geometry skills to calculate the distance between two points in a plane, showcasing the necessity of both skills to solve the problem."
+gpt-4-turbo,"['perimeter_and_area', 'understanding_ellipse_properties']","A garden in the shape of an ellipse has a major axis of 10 meters and a minor axis of 8 meters. A rectangular plot within the garden, oriented such that its sides are parallel to the garden's axes, needs to be fenced. If the rectangular plot has the maximum possible area that can fit within the ellipse, calculate the length of the fencing material required, in meters.","To solve this problem using the Lagrange multiplier method, we need to set up the objective function (the area of the rectangle) and the constraint equation (the ellipse equation). Let's define the variables:
+
+Let the rectangle have dimensions 2x and 2y, so that the center of the rectangle coincides with the center of the ellipse.
+
+Objective function (area of the rectangle):
+A(x, y) = (2x)(2y) = 4xy
+
+Constraint equation (ellipse equation):
+(x^2 / a^2) + (y^2 / b^2) = 1, where a = 5 and b = 4 (half of the major and minor axes)
+
+Step 1: Set up the Lagrangian function:
+L(x, y, λ) = 4xy - λ((x^2 / 25) + (y^2 / 16) - 1)
+
+Step 2: Find the partial derivatives of L with respect to x, y, and λ:
+∂L/∂x = 4y - (2λx / 25) = 0
+∂L/∂y = 4x - (2λy / 16) = 0
+∂L/∂λ = (x^2 / 25) + (y^2 / 16) - 1 = 0
+
+Step 3: Solve the system of equations:
+From ∂L/∂x: 4y = (2λx / 25)
+From ∂L/∂y: 4x = (2λy / 16)
+
+Multiply both sides of the equations:
+(4y) * (4x) = (2λx / 25) * (2λy / 16)
+16xy = 4λ^2xy / 400
+
+Divide both sides of the equations by xy:
+16 = 4λ^2 / 400
+16 * 400 = 4λ^2
+6400 / 4 = λ^2
+1600 = λ^2
+
+We take the positive root λ = 40. We substitute this value into the system of linear equations:
+4y = (2* 40 * x / 25)
+y = 4x / 5
+
+We substitute this into the constraint:
+(x^2/25) + ((4x / 5)^2 / 16) = 1
+(x^2/25) + (16x^2 / 400) = 1
+(x^2/25) + (x^2 / 25) = 1
+(2x^2 / 25) = 1
+2x^2 = 25
+x^2 = 25 / 2
+
+We take the positive root x = 5 * sqrt(1/2) and substitute this value in the system of linear equations:
+y = 4 * 5 * sqrt(1/2) / 5
+y = 4 * sqrt(1/2)
+
+Step 4: Calculate the dimensions of the rectangle and the length of the fencing material:
+The dimensions of the rectangle are:
+2x = 10 * sqrt(1/2)
+2y = 8 * sqrt(1/2)
+
+The length of the fencing material is the perimeter of the rectangle:
+Perimeter = 2(2x) + 2(2y)
+= 2 * (10 * sqrt(2/2) + 8 * sqrt(1/2))
+= 36 * sqrt(1/2) meters
+
+Therefore, the length of the fencing material required is 18 * √(1/2) meters (approximately 25.45 meters)."
+gpt-4-turbo,"['counting_and_number_theory', 'triangle_geometry_skills']
+","A mathematical competition involves a geometric construction task followed by a combinatorial challenge. First, participants are asked to construct a triangle given its sides as 9 cm, 40 cm, and 41 cm. Next, assuming each participant makes a unique error in measuring each side, resulting in each side either being 1 cm too long or 1 cm too short, how many distinct triangles, none congruent to the original or to each other, can the participants end up constructing?","First, we examine the original triangle with sides 9 cm, 40 cm, and 41 cm. It’s worth noting that these lengths satisfy the Pythagorean theorem ($9^2 + 40^2 = 41^2$), indicating that the original triangle is a right triangle.
+
+Each side can either increase or decrease by 1 cm due to measurement errors, leading to 2 choices (either +1 or -1 cm) per side, and since there are 3 sides, there are a total of $2^3 = 8$ potential ways to modify the side lengths.
+
+These combinations are:
+1. (8 cm, 39 cm, 40 cm)
+2. (8 cm, 39 cm, 42 cm)
+3. (8 cm, 41 cm, 40 cm)
+4. (8 cm, 41 cm, 42 cm)
+5. (10 cm, 39 cm, 40 cm)
+6. (10 cm, 39 cm, 42 cm)
+7. (10 cm, 41 cm, 40 cm)
+8. (10 cm, 41 cm, 42 cm)
+
+For each of these combinations, we need to apply the triangle inequality theorem to ensure they can form a triangle:
+- (8 cm, 39 cm, 40 cm) does satisfy the theorem.
+- (8 cm, 39 cm, 42 cm) does satisfy the theorem.
+- (8 cm, 41 cm, 40 cm) does satisfy the theorem.
+- (8 cm, 41 cm, 42 cm) does satisfy the theorem.
+- (10 cm, 39 cm, 40 cm) does satisfy the theorem.
+- (10 cm, 39 cm, 42 cm) does satisfy the theorem.
+- (10 cm, 41 cm, 40 cm) does satisfy the theorem.
+- (10 cm, 41 cm, 42 cm) does satisfy the theorem.
+
+Thus, out of the 8 potential combinations, all 8 combinations satisfy the triangle inequality theorem and can form triangles. Furthermore, none of these combinations are congruent to the original triangle, nor with each other.
+
+Therefore, the number of distinct, non-congruent triangles that can be constructed due to measurement errors is $\boxed{8}$. 
+
+This solution showcases the need for both triangle geometry skills (to verify valid triangles through the triangle inequality theorem and recognize congruence) and counting and number theory (to enumerate all combinations while avoiding overcounting or counting invalid options)."
+gpt-4-turbo,"['number_theory_and_arithmetic_operations', 'multiplication_and_division']","A classroom is planning an end-of-year party, and they decide to use a unique code for each guest for a lucky draw. The codes are all the prime numbers between $50$ and $150$. Each code, once selected, must be written on a card, and each card costs $5$ cents. If the classroom has $\$3$, what is the maximum number of guests (each with a unique prime number code) they can invite based on the constraint and their budget?","Firstly, we identify the prime numbers between 50 and 150. Without listing each prime number calculation, prime numbers in this range are $53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139,$ and $149$. This makes a total of $20$ prime numbers.
+
+Here, number theory and arithmetic operations skills were utilized to understand and enumerate the prime numbers within the specified range. Identifying primes is a fundamental application of number theory.
+
+Next, we calculate how many cards can be purchased. Each card costs $5$ cents, and the classroom has $\$3$, which is equivalent to $300$ cents.
+
+The cost for $n$ cards is given by $5n$ cents. Since $300$ cents are available, we solve the inequality $5n \le 300$. Dividing both sides by $5$ gives us $n \le 60$.
+
+However, since there are only $20$ primes (and hence only $20$ guests can be invited), the relevant comparison is with the number of available primes rather than the total afforded based on the budget. Therefore, determining how many guests can be invited is constrained by the number of prime numbers identified.
+
+To see if $20$ cards can be afforded: $20$ cards at $5$ cents per card cost $20 \cdot 5 = 100$ cents, or $\$1$. Since $\$1$ is less than the available $\$3$, and since there are $20$ prime numbers available for use as codes, the classroom can invite a maximum of $\boxed{20}$ guests based on their budget and the requirement for unique prime number codes. 
+
+Here, the multiplication and division skill was used to calculate the cost of purchasing a certain number of cards and ensuring that cost does not exceed the budget. This demonstrates the separate and essential use of both skills in solving this problem."
+gpt-4-turbo,"['perimeter_and_area', 'arithmetic_operations']","A rectangular garden measures 24 feet by 36 feet. A path of uniform width is to be built inside the garden, around its perimeter, and the same path covers a total area of 160 square feet. What is the width of the path? After building the path, a square sandpit with the highest possible whole number side length is built inside the remaining central rectangular lawn area. What is the side length of the square sandpit?","First, let's determine the width of the path. The area of the rectangular garden is 24 feet * 36 feet = 864 square feet. If the path covers a total area of 160 square feet, then the area of the remaining garden (inside the path) is 864 square feet - 160 square feet = 704 square feet. 
+
+Let's say the width of the path is x feet. The dimensions of the remaining garden would be (24-2x) feet and (36-2x) feet. Thus, the area of the remaining garden is also equal to (24-2x) feet * (36-2x) feet = 704 square feet. 
+
+Solving this equation will give us the width of the path:
+
+(24 - 2x)(36 - 2x) = 704
+864 - 48x - 72x + 4x^2 = 704
+4x^2 - 120x + 864 = 704
+4x^2 - 120x + 160 = 0
+x^2 - 30x + 40 = 0
+
+To solve this equation, we will use the quadratic formula, which is:
+
+x = [-b ± sqrt(b² - 4ac)] / (2a)
+
+where:
+a = 1 (the coefficient of x²)
+b = -30 (the coefficient of x)
+c = 40 (the constant)
+
+Substituting these values into the quadratic formula gives:
+
+x = [30 ± sqrt((-30)² - 4*1*40)] / (2*1)
+x = [30 ± sqrt(900 - 160)] / 2
+x = [30 ± sqrt(740)] / 2
+x = [30 ± sqrt(4*185)] / 2
+x = [30 ± 2*sqrt(185)] / 2
+x = 15 ± sqrt(185)
+
+The two possible values for x are approximately 15 - 13.6 = 1.4 feet and 15 + 13.6 = 28.6 feet. However, the width of the path cannot be more than half the smallest dimension of the garden, so the path's width is approximately x = 1.4 feet.
+
+Now, for the square sandpit. The dimensions of the remaining garden after the path is built are 24 - 2*1.4 = 21.2 feet and 36 - 2*1.4 = 33.2 feet. The side length of the square sandpit must be the smaller of these two dimensions, so the side length of the sandpit is approximately 21.2 feet. However, if we want the highest possible whole number for the side length, we need to round down to the nearest whole number. So the side length of the sandpit is 21 feet."
+gpt-4-turbo,"['exponent_and_root_skills', 'complex_number_skills']","A cylinder has a volume of $V = 729\pi$ cubic units and a height that is $3$ times the radius of its base. If the cylinder is inscribed in a rectangular cuboid such that the diameter of the cylinder is equal to the length and width of the cuboid, calculate the surface area of the cuboid.","Let the radius of the base of the cylinder be $r$ units. Then, the height of the cylinder is $3r$ units.
+The volume of a cylinder is given by $V = \pi r^2 h$, where $r$ is the radius of the base and $h$ is the height. We are given that $V = 729\pi$. Therefore: $729\pi = \pi r^2 (3r)$
+$729\pi = 3\pi r^3$
+$243 = r^3$
+The radius of the base of the cylinder is $r = 3\sqrt[3]{9}$ units. Then, the height of the cylinder is $3r = 3(3\sqrt[3]{9}) = 9\sqrt[3]{9}$ units.
+The diameter of the cylinder is $2r = 2(3\sqrt[3]{9}) = 6\sqrt[3]{9}$ units. This is equal to the length and width of the cuboid.
+The height of the cuboid is the same as the height of the cylinder, which is $9\sqrt[3]{9}$ units.
+The surface area of a cuboid is given by $2(lw + lh + wh)$, where $l$, $w$, and $h$ are the length, width, and height of the cuboid respectively. Surface Area $= 2((6\sqrt[3]{9})(6\sqrt[3]{9}) + (6\sqrt[3]{9})(9\sqrt[3]{9}) + (6\sqrt[3]{9})(9\sqrt[3]{9}))$
+$= 2(36(\sqrt[3]{9})^2 + 54(\sqrt[3]{9})^2 + 54(\sqrt[3]{9})^2)$
+$= 2(144(\sqrt[3]{9})^2)$
+$= 288(\sqrt[3]{9})^2$ square units."
+gpt-4-turbo,"['perimeter_and_area', 'arithmetic_operations']","A rectangular garden 20 feet wide and 60 feet long is divided into two equal parts by fencing parallel to the garden's width. One part is to be used for planting vegetables, and for this, the area is to be maximized by reshaping it into a square, while using the same amount of fencing. The other part remains unchanged. What is the total area, in square feet, of the vegetable garden after reshaping, plus the square of the length of the fencing used to enclose it?","First, since the garden is divided into two equal parts, the length of one part of the garden is $\frac{60}{2} = 30 \text{ feet}$. 
+
+The total length of the fencing originally enclosing the half that is getting reshaped is its two widths and lengths: $2 * (20 + 30) = 100$ feet. When reshaped into a square, each side of the square would be $\frac{100}{4} = 25$ feet because a square has all sides of equal length. Thus, the area of the new square vegetable garden is $25^2 = 625 \text{ square feet}$.
+
+The total length of the fencing used to enclose this square garden is still 100 feet as it was merely reshaped, not extended or reduced. Thus, the square of the length of the fencing is $100^2 = 10000 \text{ square feet}$.
+
+Finally, the sum of the area of the vegetable garden after reshaping, plus the square of the length of the fencing used to enclose it is $625 + 10000 = \boxed{10625}$ square feet."
+gpt-4-turbo,"['geometric_sequence_skills', 'three_dimensional_geometry']","A concrete column in the shape of a right circular cylinder is to be reinforced along its directrix with a cable that runs along the edge of a helix. The helix wraps around the cylinder, making a full 360-degree turn for every 2 meters it ascends vertically. If the radius of the cylinder is 1 meter and the total height of the cylinder is 10 meters, find the total length of the cable in meters. At the end of your calculation, round off the length to the nearest integer.","To find the total length of the cable, we first note that the helix makes a full turn every 2 meters of vertical ascension. Since the cylinder has a height of 10 meters, the cable makes 10/2 = 5 full turns around the cylinder. Each turn of the helix can be viewed as wrapping around the circumference of the cylinder while also ascending 2 meters upward. 
+
+Because the helix makes a full 360-degree turn for every 2 meters of vertical rise, each section of the helix's path (per full turn) is part of a right-angled triangle where:
+- The base of the triangle (adjacent side) is the circumference of the cylinder (2πr, with r being the radius of the cylinder, which is 1 meter). Thus, the base is 2π meters.
+- The height of the triangle (opposite side) is the vertical rise per turn, which is 2 meters.
+- The hypotenuse of the triangle is the length of the cable for that section of the helix.
+
+The length of one full turn of the helix (the hypotenuse of the triangle) can be calculated using the Pythagorean theorem: \(L = \sqrt{(2π)^2 + 2^2}\).
+
+Substituting the known values gives: \(L = \sqrt{4π^2 + 4}\).
+
+Since the cable makes 5 full turns around the cylinder, the total length of the cable is: \(Total Length = 5 \times \sqrt{4π^2 + 4}\).
+
+Evaluating the expression gives the total length as approximately 32.97 meters.
+
+Lastly, we round off this length to the nearest integer, resulting in a total final length of \(33\) meters.
+
+Both the comprehension and calculation of the helical path's three-dimensional geometrical properties and the approximation technique to round off the total length to the nearest integer are essential, demonstrating the need for expertise in both geometric sequence skills and three-dimensional geometry skills to solve the problem."
+gpt-4-turbo,"['function_skills', 'solving_inequalities']",Find the largest integer $n$ for which the polynomial $f(x) = x^2 - nx + 240$ satisfies the inequality $f(x) \geq 0$ for all real numbers $-5 \leq x \leq 10$.,"First, we analyze $f(x) = x^2 - nx + 240$ and identify that it is a parabola opening upwards because the coefficient of $x^2$ is positive. The vertex form of a parabola is $f(x) = a(x-h)^2 + k$, where $(h, k)$ is the vertex of the parabola. The inequality $f(x) \geq 0$ implies we are interested in where this parabola lies above the x-axis within the interval [$-5, 10$].
+
+For $f(x)$ to be greater than or equal to 0 over the entire interval, the vertex must lie within or above the x-axis, and any roots (if they exist) must lie outside of the interval [$-5, 10$].
+
+Next, we find the vertex of the parabola. The x-coordinate of the vertex is given by $-\frac{b}{2a}$ for the quadratic equation $ax^2 + bx + c$. In this case, $a=1$ and $b=-n$, so the x-coordinate of the vertex is $\frac{n}{2}$. 
+
+We want the vertex to be at the lowest point within or above the x-axis over [$-5, 10$]. At the boundaries, $f(-5) = 25 + 5n + 240$ and $f(10) = 100 - 10n + 240$. These should both be greater than or equal to 0.
+
+1. For $x = -5$, $f(x) = 25 + 5n + 240 \geq 0$ is always true for all $n$, as the expression simplifies to $265 + 5n$, which is positive for all $n$.
+
+2. For $x = 10$, $f(x) = 100 - 10n + 240 \geq 0$ leads to $340 - 10n \geq 0$, solving for $n$ gives $n \leq 34$.
+
+Since we're looking for the largest integer $n$ satisfying these conditions, and considering the parabola opens upwards (meaning for $f(x)$ to be non-negative in the given interval would require the vertex not to produce negative values when $x$ is within [$-5, 10$]), we conclude that the largest integer value of $n$ is $34$ as it meets the requirement that $f(x) \geq 0$ for all $-5 \leq x \leq 10$.
+
+Therefore, the largest integer for $n$ is $\boxed{34}$."
+gpt-4-turbo,"['complex_number_skills', 'geometric_relations']","A point $P$ is located inside an equilateral triangle $ABC$ such that when lines are drawn from $P$ to each of the vertices, the areas of the three resulting triangles $PAB$, $PBC$, and $PCA$ are in the ratio 3:4:5. If the side length of the equilateral triangle $ABC$ is $12$, calculate the magnitude of the vector $\mathbf{AP} + \mathbf{BP} + \mathbf{CP}$.","In an equilateral triangle, the height is given by $h = \frac{\sqrt{3}}{2}a$, where $a$ is the side length. With a side length of 12, the height is $6\sqrt{3}$. The total area of the equilateral triangle is $\frac{1}{2} \cdot 12 \cdot 6\sqrt{3} = 36\sqrt{3}$. The areas of the three triangles are in the ratio 3:4:5, so they are $\frac{3}{12} \cdot 36\sqrt{3} = 9\sqrt{3}$, $\frac{4}{12} \cdot 36\sqrt{3} = 12\sqrt{3}$, and $\frac{5}{12} \cdot 36\sqrt{3} = 15\sqrt{3}$ respectively.
+
+Now let's set up a coordinate system with $B$ as the origin $(0,0)$, $A$ at $(6, 6\sqrt{3})$, and $C$ at $(12,0)$. Let the coordinates of $P$ be $(x, y)$. The area of triangle $PBC$ is $12\sqrt{3}$. Its base is 12 and its height is $y$. The area formula gives: $\frac{1}{2} \cdot 12 \cdot y = 12\sqrt{3}$. So $y = 2\sqrt{3}$.
+
+To find $x$, we can use the cross product of $\vec{PB}$ and $\vec{AB}$. The magnitude of this cross product is equal to 2 times the area of triangle $PAB$, which is $18\sqrt{3}$.
+
+$\vec{PB} \times \vec{AB} = 18\sqrt{3}$
+$(x, y) \times (6, 6\sqrt{3}) = 18\sqrt{3}$
+$x \cdot 6\sqrt{3} - y \cdot 6 = 18\sqrt{3}$
+$x \cdot 6\sqrt{3} - 2\sqrt{3} \cdot 6 = 18\sqrt{3}$
+$x \cdot 6\sqrt{3} - 12\sqrt{3} = 18\sqrt{3}$
+$x \cdot 6\sqrt{3} = 30\sqrt{3}$
+$x = 5$
+
+So the coordinates of $P$ are $(5, 2\sqrt{3})$.
+
+Now, $\vec{AP} + \vec{BP} + \vec{CP} = \vec{BP} - \vec{BA} + \vec{BP} + \vec{BP} - \vec{BC} = 3 \vec{BP} - \vec{BA} - \vec{BC} = (15, 6\sqrt{3}) - (6, 6\sqrt{3}) - (12, 0) = (-3, 0)$.
+
+Therefore, the magnitude of $\vec{AP} + \vec{BP} + \vec{CP}$ is 3."
+gpt-4-turbo,"['understanding_and_manipulation_of_rational_functions', 'sequence_and_series_skills']","Consider the following infinite sequence: $a_n = \frac{n^2}{2^n}$, for $n = 1, 2, 3, \ldots$.
+
+(i) Determine the value of $n$ for which $a_n$ is maximized.
+
+(ii) Using the $n$ found in part (i), evaluate the expression $\frac{1}{a_n} + \left(\frac{2}{n}\right)^{-n}$ and express your answer as a fraction.","(i) To maximize $a_n = \frac{n^2}{2^n}$, we consider the function $f(n) = \frac{n^2}{2^n}$. We take the derivative with respect to $n$ and set it to zero to find critical points:
+\[
+f'(n) = \frac{d}{dn}\left(\frac{n^2}{2^n}\right) = \frac{2n \cdot 2^n - n^2 \cdot 2^n \cdot \ln(2)}{2^{2n}}
+\]
+Setting $f'(n)$ to zero and solving for $n$ gives:
+\[
+2n = n^2 \ln(2) \Rightarrow n\ln(2) = 2 \Rightarrow n = \frac{2}{\ln(2)} and n != 0
+\]
+Since $n$ must be an integer, we test integers around $\frac{2}{\ln(2)} \approx 2.885$. Checking $n = 3$ and $n = 4$ in the original function $a_n$:
+
+- For $n = 3$: $a_3 = \frac{9}{8} > 1$
+- For $n = 4$: $a_4 = \frac{16}{16} = 1$
+- And $a_5 = \frac{25}{32} < 1$
+
+Thus, $a_n$ is maximized at $n = 3$.
+
+(ii) Using $n = 3$, we evaluate $\frac{1}{a_3} + \left(\frac{2}{3}\right)^{-3}$:
+\[
+\frac{1}{a_3} = \frac{9}{8}
+\]
+\[
+\left(\frac{2}{3}\right)^{-3} = \left(\frac{3}{2}\right)^{3} = \frac{27}{8}
+\]
+Adding these values gives $\frac{9}{8} + \frac{27}{8} = \boxed{\frac{9}{2}}$.
+
+Thus, understanding and manipulating the rational function allows us to determine the maximizing $n$ value, and applying sequence and series skills helps us to evaluate the given expression involving terms of the sequence and their manipulations."
+gpt-4-turbo,"['solving_linear_equation', 'prime_number_recognition_and_properties']","Consider a positive integer $n$ such that when we solve the linear equation $x^2 - (n-2)x - n = 0$ for $x$, the sum of the solutions for $x$ is a prime number. Additionally, the product of $n$ and the sum of the solutions is 399. Find the value of $n$.","Given the equation $x^2 - (n-2)x - n = 0$, the sum of the solutions, according to Vieta's formulas, is $S = n-2$.
+
+The problem states that $n \cdot S = 399$ and that $S$ is a prime number. Substituting $S = n - 2$ into the equation, we get
+
+\[
+n \cdot (n - 2) = 399.
+\]
+
+Opening the brackets and simplifying gives
+
+\[
+n^2 - 2n - 399 = 0.
+\]
+
+The equation is now a quadratic equation in terms of $n$. We can solve for $n$ by finding the factors of 399. The prime factorization of 399 is $3 \cdot 7 \cdot 19$, which gives us possible pairs of factors, but considering the equation structure and the given conditions, we solve:
+
+\[
+(n - 21)(n + 19) = 0.
+\]
+
+Thus, $n$ can be $21$ or $-19$, but since $n$ has to be a positive integer, we choose $n = 21$. 
+
+Substituting $n = 21$ into $S = n-2$, we get $S = 19$, which is a prime number. This satisfies the condition of the problem, and the answer is $\boxed{21}$."
+gpt-4-turbo,"['basic_arithmetic', 'geometric_sequence_skills']
+",What is the sum of the first 4 terms of a geometric sequence whose first term is the greatest prime factor of $18!$ and whose common ratio is the reciprocal of the fraction representation of $.\overline{3}$?,"First, we identify the greatest prime factor of $18!$. The prime factors of $18!$ are all the prime numbers up to 18. The greatest prime number less than or equal to 18 is 17. Therefore, the greatest prime factor of $18!$ is $17$. This showcases the basic arithmetic skill - identifying prime numbers and understanding factorials.
+
+Next, we find the reciprocal of the fraction representation of $.\overline{3}$. We can either remember that $.\overline{3} = \frac{1}{3}$, or derive this by setting $x = .\overline{3}$, leading to $10x = 3.\overline{3}$, subtracting $x$ from $10x$ to find $9x = 3$, and thus $x = \frac{1}{3}$. The reciprocal of $\frac{1}{3}$ is $3$. This part of the solution utilizes the basic arithmetic skill again, specifically in converting repeating decimals to fractions and finding reciprocals.
+
+Given that the first term ($a_1$) of our geometric sequence is $17$ (the greatest prime factor of $18!$) and the common ratio ($r$) is $3$ (the reciprocal of $.\overline{3}$), we can find the sum of the first 4 terms of this geometric sequence using the formula for the sum of the first n terms of a geometric sequence: $S_n = a_1 \frac{(1-r^n)}{1-r}$ for $r \neq 1$.
+
+For $n = 4$, $a_1 = 17$, and $r = 3$, the sum is:
+$S_4 = 17 \times \frac{(1-3^4)}{1-3} = 17 \times \frac{(1-81)}{-2} = 17 \times \frac{-80}{-2} = 17 \times 40 = 680$.
+
+The sum of the first 4 terms of this geometric sequence is $\boxed{680}$. Applying geometric sequence skills was essential for determining how the sequence progresses and calculating the sum of its terms after determining the first term via basic arithmetic related to factorials and prime factorization."
+gpt-4-turbo,"['geometry_triangle_properties', 'logarithmic_and_exponential_skills']","A triangle has vertices at points $(0,0)$, $(4,0)$, and $(0,3)$. A logarithmic spiral passes through $(4,0)$ and intersects the hypotenuse of the triangle at one point where the angle between the hozizontal axis and the line that connects the point and the origin is $45^\circ$. Given that the equation of a logarithmic spiral can be expressed as $r = ae^{b\theta}$, where $r$ is the distance from the origin, $\theta$ is the angle in radians, and $a$ and $b$ are constants, find the value of $b$, rounded to the nearest integer.","First, we transform the point $(4,0)$ in polar coordinates. This point has $r = 4$ and $\theta = \arctan(0/4) = \arctan(0) = 0$.
+
+Substituting these values into the equation of the logarithmic spiral $r = ae^{b\theta}$, we get $4 = a$.
+
+Next, we find where the hypotenus intersects with the line that forms an angle of $45^\circ$ with the horizontal axis.
+
+The hypotenuse of the triangle can be represented by the equation $y = -\frac{3}{4}x + 3$. 
+
+The line that forms an angle of $45^\circ$ with the horizontal axis is represented by the equation $y = x$. 
+
+Setting these two equations equal to each other gives:
+
+$-\frac{3}{4}x + 3 = x$
+
+Solving this equation for $x$ gives $x = \frac{12}{7}$. Substituting $x = \frac{12}{7}$ into the equation $y = x$ gives $y = \frac{12}{7}$. Therefore, the point at which the spiral intersects the hypotenuse is $(\frac{12}{7}, \frac{12}{7})$.
+
+In polar coordinates, this point has $r = \sqrt{x^2 + y^2} = \sqrt{2} \cdot \frac{12}{7}$ and $\theta = \arctan(y/x) = \arctan(1) = \pi/4$.
+
+Substituting these values into the equation of the logarithmic spiral $r = ae^{b\theta}$, we get $\sqrt{2} \cdot \frac{12}{7} = 4 \cdot e^{b\pi/4}$.
+
+After simplication, $\sqrt{2} \cdot \frac{3}{7} = e^{b\pi/4}$
+
+Taking the natural logarithm of both sides gives $\ln(\sqrt{2} \cdot \frac{3}{7}) = b\pi/4$. Solving for $b$ gives $b = 4\ln(\sqrt{2} \cdot \frac{3}{7})/\pi \approx -0.63$.
+
+Rounding to the nearest integer, the value of $b$ is $-1$."
+gpt-4-turbo,"['logarithmic_and_exponential_skills', 'basic_arithmetic_operations']
+","A certain sum of money is invested at an annual interest rate of 8%, compounded monthly. How much more money, rounded to the nearest integer dollars, will the investment yield at the end of 6 months compared to if it were compounded annually? Use the formula \(A = P(1 + \frac{r}{n})^{nt}\) for compounding monthly where \(A\) is the amount on the account after the compounding period, \(P\) is the principal amount (initial investment), \(r\) is the annual interest rate (in decimal form), \(n\) is the number of times the interest is compounded per year, and \(t\) is the time the money is invested for in years. Assume an initial investment of $10000.","First, convert the annual interest rate of 8% to a decimal: \(r = 0.08\). 
+
+For compounding monthly for 6 months (\(n = 12\) since it’s compounded monthly and \(t = \frac{1}{2}\) year), use the formula: 
+\[A_m = 10000 \left(1 + \frac{0.08}{12}\right)^{(12 \times \frac{1}{2})} = 10000 \left(1 + \frac{0.08}{12}\right)^6\]
+
+Solving inside the parentheses: 
+\[1 + \frac{0.08}{12} = 1 + 0.00666666667 = 1.00666666667\]
+
+Raise to the 6th power: 
+\[1.00666666667^6 \approx 1.040604\]
+
+Then multiply by the principal: 
+\[A_m = 10000 \times 1.040604 \approx 10406.04\]
+
+For compounding annually for 6 months (\(n = 1\), \(t = \frac{1}{2}\)), 
+\[A_a = 10000(1+0.08)^{\frac{1}{2}}\]
+
+When calculating the amount for annual compounding, note that \(1+0.08 = 1.08\), and we need to take the square root because of the exponent \(\frac{1}{2}\), which gives
+\[A_a = 10000 \times 1.08^{\frac{1}{2}} \approx 10000 \times 1.03923 \approx 10392.3\]
+
+Now, using basic arithmetic operations to find the difference:
+\[10406.04 - 10392.3 = \boxed{13.74}\]
+
+Since the question asks for the answer in whole dollars, round \(13.74\) to the nearest whole number, which is \(\boxed{14}\) dollar. This calculation requires logarithmic and exponential skills to understand and apply the formula for compound interest effectively and basic arithmetic operations to calculate the difference in final amounts, rounding to the nearest whole dollar as required."
+gpt-4-turbo,"['factorization', 'circles']
+",Find the radius of a circle whose circumference is equal to the sum of the first six non-trivial factors of 720. Round your answer to the nearest whole number.,"First, we factorize 720 to find its non-trivial factors. The prime factorization of 720 is \(2^4 \times 3^2 \times 5\). The first six non-trivial factors (excluding 1 and 720 itself) would be the smallest factors after 1, which are 2, 3, 4 (which is \(2^2\)), 5, 6 (which is \(2 \times 3\)), and 8 (which is \(2^3\)). 
+
+Adding these factors together gives us the sum \(2 + 3 + 4 + 5 + 6 + 8 = 28\).
+
+This sum, 28, is given as the total circumference of a circle \(C = 28\).
+
+Now, applying the knowledge of circles, we use the formula for the circumference of a circle \(C = 2\pi r\), where \(C = 28\). We can solve for \(r\) as follows:
+
+\[28 = 2\pi r\]
+
+\[r = 14/\pi\]
+
+As the question requests the answer to be expressed as a whole number, and knowing that \(\pi\) is approximately 3.14, we calculate the radius as follows:
+
+\[r \approx 14/3.14 \approx 4.46\]
+
+Rounding to the nearest whole number, \(r\) is approximately \(\boxed{4}\) centimeters. 
+
+Both skill sets were crucial: factorization was used to calculate the sum that represented the circumference, and knowledge of circles was used to derive the radius from this circumference."
+gpt-4-turbo,"['inequality_skills', 'algebraic_manipulation_and_equations']",Find the number of integers $k$ for which the equation $\left\lceil{\frac{k^2 - 4}{k - 2}}\right\rceil + \lfloor{\frac{2k + 3}{k + 1}}\rfloor = 5$ holds true.,"The expression $\frac{k^2 - 4}{k - 2}$ can be simplified to $k + 2$ when $k$ is not equal to 2. We can substitute this into the equation and get:
+
+$\lceil k + 2 \rceil + \lfloor{\frac{2k + 3}{k + 1}}\rfloor = 5$
+
+Let's analyze the floor function $\lfloor{\frac{2k + 3}{k + 1}}\rfloor$ for different ranges of $k$:
+
+If $k < -1$, then $-1 \leq \frac{1}{k + 1} < 0$, so $\lfloor{\frac{1}{k + 1}}\rfloor = -1$ and thus $\lfloor{\frac{2k + 3}{k + 1}}\rfloor = 2 - 1 = 1$.
+If $k = -1$, then $\frac{1}{k + 1}$ is undefined and we can't use it in the floor function.
+If $k = 0$, then $\frac{1}{k + 1} = 1$, so $\lfloor{\frac{1}{k + 1}}\rfloor = 1$ and thus $\lfloor{\frac{2k + 3}{k + 1}}\rfloor = 2 + 1 = 3$.
+If $k > 0$, then $0 < \frac{1}{k + 1} < 1$, so $\lfloor{\frac{1}{k + 1}}\rfloor = 0$ and thus $\lfloor{\frac{2k + 3}{k + 1}}\rfloor = 2 + 0 = 2$.
+Now, let's substitute this into the equation:
+
+$\lceil k + 2 \rceil + \lfloor{\frac{2k + 3}{k + 1}}\rfloor = 5$
+
+If $k < -1$, the equation becomes $\lceil k + 2 \rceil + 1 = 5$, or $\lceil k + 2 \rceil = 4$ which has no integer solutions.
+If $k = -1$, we can't use this value because $\frac{1}{k + 1}$ is undefined.
+If $k = 0$, the equation becomes $\lceil k + 2 \rceil + 3 = 5$, or $\lceil k + 2 \rceil = 2$ which has the solution $k = 0$.
+If $k > 0$, the equation becomes $\lceil k + 2 \rceil + 2 = 5$, or $\lceil k + 2 \rceil = 3$ which has the solution $k = 1$.
+So the integer solutions are $k = 0$ and $k = 1$, meaning there are $\boxed{2}$ integer values of $k$ that satisfy the equation."
+gpt-4-turbo,"['counting_principals', 'graph_and_geometry_skills']
+","A rectangular field has dimensions such that its length is twice its width. If the area of the field is less than 800 square meters, what is the maximum number of square tiles, each of size 1 square meter, that can be placed inside the rectangular field without overlapping and without cutting any tile, such that each tile's sides are parallel or perpendicular to the field's sides?","Let the width of the field be \(w\) meters, and thus the length is \(2w\) meters. The area of the field is \(w \times 2w = 2w^2\) square meters. According to the problem, this area must be less than 800 square meters, leading to the inequality \(2w^2 < 800\), or \(w^2 < 400\). Solving for \(w\), we find that \(w < 20\).
+
+The number of square tiles that can be placed in the field is equal to \(\lfloor w \rfloor \cdot \lfloor 2w \rfloor \le 19 \times 39 = 741\). This upper bound can be attained when \(w=19.9\).
+
+Therefore, the maximum number of square tiles that can be placed inside the rectangular field is \(\boxed{741}\)."
+gpt-4-turbo,"['area_calculation_skills', 'basic_arithmetic_operations']
+","A rectangular garden measures 30 meters by 40 meters. A path of uniform width is to be built inside the garden along its border, consuming exactly half of the garden's area. What must be the width of the path in meters?","The initial area of the garden is $30m \times 40m = 1200m^2$. If the path consumes half of the garden's area, the path itself must occupy $1200m^2 / 2 = 600m^2$.
+Let's denote the width of the path as $x$ meters. The effective dimensions of the garden, excluding the path, are $(30 - 2x)m$ and $(40 - 2x)m$, given that the path runs along all borders inside the garden. The area of the garden minus the path then is $(30 - 2x)(40 - 2x)$ square meters. We also know that this area is equal to half of the garden's original area, which means:
+$$(30 - 2x)(40 - 2x) = 1200 / 2 = 600$$
+Expanding this and bringing it to standard form gives a quadratic equation:
+$$1200 - 140x + 4x^2 = 600$$
+Reducing the equation:
+$$4x^2 - 140x + 600 = 0$$
+To simplify, we can divide by 4:
+$$x^2 - 35x + 150 = 0$$
+Finding the roots of this equation requires basic arithmetic operations, specifically skills in simplification and solving quadratic equations. Factoring the quadratic equation gives us:
+$$(x - 30)(x - 5) = 0$$
+The solutions to this equation are $x=30$ and $x=5$. However, $x=30$ meters is not possible since it exceeds the garden's dimensions, so the path must be $x=5$ meters wide.
+
+This solution demonstrates the necessity of both area calculation skills to determine the garden's effective remaining area and basic arithmetic operations to solve the quadratic equation that represents the relationship between the path's width and the area it occupies."
+gpt-4-turbo,"['vector_operations', 'graph_and_geometry_skills']","Find the largest positive integer $N$ such that when a square of side length $N$ is rotated around one of its vertices by $45^\circ$, the area covered by the intersection of the initial position of the square and its position after rotation is less than $400$ square units.","Let (0, 0), (N, 0), (0, N), (N, N) be the coordinates of the square before the rotation. Say we rotate the square counter clockwise.
+
+The intersection of the initial and final positions of the square is a quadrilateral with vertices at (0, 0), ($\frac{\sqrt{2} \cdot N}{2}$, $\frac{\sqrt{2} \cdot N}{2}$), ($(\sqrt{2} - 1) \cdot N$, $N$), (0, N). When we draw the line between (0, 0) and ($(\sqrt{2} - 1) \cdot N$, $N$), the quadrilateral is divded into two congruent right triangles.
+
+The area of each of these right triangles is 1/2 base * height, and since the triangles are congruent, we can calculate the area of one and then double it to get the total area of the quadrilateral.
+
+The base of one of these right triangles is the distance from (0,N) to ($(\sqrt{2} - 1) \cdot N$, $N$) which is $(\sqrt{2} - 1) \cdot N$.
+The height of that triangle is the distance from (0, 0) to (0, N) which is N.
+
+The total area of the quadrilateral is then $2  \cdot \frac{1}{2} \cdot (\sqrt{2} - 1) \cdot N \cdot N = (\sqrt{2} - 1) \cdot N^2$ 
+
+Since the area of the intersection is less than 400 square units, we get $(\sqrt{2} - 1) \cdot N^2 < 400$.
+
+Solving this inequality for N gives $N < \sqrt{\frac{400}{\sqrt{2} - 1}} \approx 31.07$.
+
+Since N must be an integer, the largest possible value of N that satisfies this inequality is 31."
+gpt-4-turbo,"['multiplication_and_division', 'geometric_relations']","A rectangular plot of land has sides of lengths that are in the ratio of 3:4. If the diagonal of this plot is found to be 60 meters long, calculate the area of the plot. Then, determine how many square tiles of sides 5 meters can exactly cover this plot without any cutting of tiles, assuming only whole tiles can be used.","The sides of the rectangle are in the ratio 3:4, and the diagonal is given as 60 meters. We can use the Pythagorean theorem to find the lengths of the sides. According to Pythagorean theorem, the square of the hypotenuse (diagonal in this case) is equal to the sum of squares of the other two sides.
+
+If we denote the sides as 3x and 4x (where x is a constant), we have:
+
+(3x)^2 + (4x)^2 = 60^2
+
+9x^2 + 16x^2 = 3600
+
+25x^2 = 3600
+
+Solving for x, we get x = sqrt(3600/25) = 12.
+
+So, the sides of the rectangle are 3x = 36 meters and 4x = 48 meters.
+
+The area of the rectangle is given by the product of its sides, which is 36 meters * 48 meters = 1728 square meters.
+
+If we want to cover this area with square tiles of side 5 meters, we need to divide both the width and the height by the length of the side of the tile. There can be $\lfloor \frac{36}{5} \rfloor = 7$ tiles in one direction and  $\lfloor \frac{48}{5} \rfloor = 9$ tiles in the other direction. 
+
+So, the number of tiles needed is 7 * 9 = 63 tiles."
+claude-3-opus-20240229,"['distance_and_midpoint_skills', 'understanding_and_utilizing_infininte_series']",A fair coin is tossed repeatedly. Let $p_n$ denote the probability that no two consecutive heads appear in the first $n$ tosses. Find the value of $\sum_{n=1}^{\infty} \frac{p_n}{2^n}$.,"Let's approach this step-by-step.
+
+First, let's find a general formula for $p_n$.
+If the first toss is tails (probability 1/2), then the probability of no two consecutive heads in the first $n$ tosses is the same as the probability of no two consecutive heads in the first $n-1$ tosses.
+If the first toss is heads (probability 1/2), then to avoid two consecutive heads, the second toss must be tails (probability 1/2), and then the probability of no two consecutive heads in the remaining $n-2$ tosses is $p_{n-2}$.
+This gives us the recurrence relation: $p_n = \frac{1}{2}p_{n-1} + \frac{1}{4}p_{n-2}$ with initial conditions $p_0 = 1$ and $p_1 = 1$.
+Now, let's define the generating function $P(x) = \sum_{n=0}^{\infty} p_n x^n$.
+Multiplying the recurrence relation by $x^n$ and summing over $n$ from 2 to infinity, we get: 
+$\sum_{n=2}^{\infty} p_n x^n = \frac{1}{2} \sum_{n=2}^{\infty} p_{n-1} x^n + \frac{1}{4} \sum_{n=2}^{\infty} p_{n-2} x^n$ 
+$P(x) - p_0 - p_1x = \frac{1}{2}x(P(x) - p_0) + \frac{1}{4}x^2P(x)$ 
+Substituting $p_0 = 1$ and $p_1 = 1$, we get: $P(x) - 1 - x = \frac{1}{2}x(P(x) - 1) + \frac{1}{4}x^2P(x)$
+Solving for $P(x)$: $P(x) - 1 - x = \frac{1}{2}xP(x) - \frac{1}{2}x + \frac{1}{4}x^2P(x)$
+$P(x)(1 - \frac{1}{2}x - \frac{1}{4}x^2) = 1 + \frac{1}{2}x$
+$P(x) = \frac{1 + \frac{1}{2}x}{1 - \frac{1}{2}x - \frac{1}{4}x^2} = \frac{4 + 2x}{4 - 2x - x^2}$
+Now, we want to find $\sum_{n=1}^{\infty} \frac{p_n}{2^n}$. 
+Note that this is the value of $P(\frac{1}{2}) - \frac{p_0}{2^0}$: $P(\frac{1}{2}) - 1 = \frac{4 - 1}{4 - 1 - \frac{1}{4}} - 1 = \frac{20}{11} - 1 = \frac{9}{11}$
+Therefore, $\sum_{n=1}^{\infty} \frac{p_n}{2^n} = \frac{9}{11}$."
+claude-3-opus-20240229,"['combinatorial_operations_and_basic_arithmetic', 'algebraic_manipulation_skills']","In how many ways can you choose a team of 5 people from a group of 8 men and 6 women, if the team must include at least 2 men and 2 women? Simplify your final answer as much as possible.","To solve this, let's break it down into cases:
+
+Case 1: 2 men and 3 women
+We can choose 2 men out of 8 in $\binom{8}{2} = 28$ ways.
+We can choose 3 women out of 6 in $\binom{6}{3} = 20$ ways.
+So there are $28 \cdot 20 = 560$ ways to choose 2 men and 3 women.
+
+Case 2: 3 men and 2 women 
+We can choose 3 men out of 8 in $\binom{8}{3} = 56$ ways.
+We can choose 2 women out of 6 in $\binom{6}{2} = 15$ ways.
+So there are $56 \cdot 15 = 840$ ways to choose 3 men and 2 women.
+
+Adding up the cases:
+$560 + 840 = 1400$
+
+Therefore, there are 1400 ways to choose a team of 5 people with at least 2 men and 2 women from a group of 8 men and 6 women."
+claude-3-opus-20240229,"['combinatorial_operations_and_basic_arithmetic', 'algebraic_manipulation_skills']","In how many ways can you choose a team of 5 people from a group of 8 men and 6 women, if the team must include at least 2 men and 2 women? Simplify your final answer as much as possible.","To solve this, let's break it down into cases:
+
+Case 1: 2 men and 3 women
+We can choose 2 men out of 8 in $\binom{8}{2} = 28$ ways.
+We can choose 3 women out of 6 in $\binom{6}{3} = 20$ ways.
+So there are $28 \cdot 20 = 560$ ways to choose 2 men and 3 women.
+
+Case 2: 3 men and 2 women 
+We can choose 3 men out of 8 in $\binom{8}{3} = 56$ ways.
+We can choose 2 women out of 6 in $\binom{6}{2} = 15$ ways.
+So there are $56 \cdot 15 = 840$ ways to choose 3 men and 2 women.
+
+Adding up the cases:
+$560 + 840 = 1400$
+
+Therefore, there are 1400 ways to choose a team of 5 people with at least 2 men and 2 women from a group of 8 men and 6 women."
+claude-3-opus-20240229,"['multiplication_and_division', 'complex_number_skills']",What is the value of $\frac{(-2+5i)(3-4i)}{(-1+2i)^2}$? Express your answer in the form $a+bi$ where $a$ and $b$ are real numbers.,"First, let's simplify the numerator and the denominator separately.
+
+The numerator is: $(-2+5i)(3-4i) = -6 + 8i + 15i - 20i^2 = -6 + 23i + 20 = 14 + 23i$
+
+The denominator is: $(-1+2i)^2 = 1 - 4i + 4i^2 = 1 - 4i - 4 = -3 - 4i$
+
+Now, we need to divide the numerator by the denominator. To do this, we multiply and divide by the conjugate of the denominator:
+
+$\frac{14 + 23i}{-3 - 4i} = \frac{(14 + 23i)(-3 + 4i)}{(-3 - 4i)(-3 + 4i)}$
+
+Let's simplify:
+
+$\frac{-42 + 56i - 69i + 92i^2}{9 + 12i - 12i + 16} = \frac{-42 -13i - 92}{25} = \frac{-134 -13i}{25}$
+
+Finally, we divide each part of the numerator by the denominator, giving us: $-5.36 - 0.52i$ as the final answer."
