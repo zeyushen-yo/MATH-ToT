@@ -46,7 +46,7 @@ def parse_args():
     args.add_argument('--backend', type=str, choices=['o1-mini', 'gpt-4o', 'Llama3.1-8B-Instruct'], default='Llama3.1-8B-Instruct')
     args.add_argument('--temperature', type=float, default=0.7)
 
-    args.add_argument('--task', type=str, required=True, choices=['MATH'])
+    args.add_argument('--task', type=str, required=True, choices=['MATH', "MATH2"])
     args.add_argument('--task_start_index', type=int, default=900)
     args.add_argument('--task_end_index', type=int, default=1000)
 

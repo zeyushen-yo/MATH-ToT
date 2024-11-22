@@ -8,7 +8,7 @@ from tot.prompts.MATH2 import *
 from tot.aggregated_skills import aggregated_skills
 from tot.models import get_output
 
-class MathTask(Task):
+class Math2Task(Task):
     def __init__(self):
         super().__init__()
         self.data = []
@@ -59,7 +59,7 @@ class MathTask(Task):
             correct_solution=correct_solution,
             model_solution=model_solution
         )
-        response = get_output(prompt)[0]
+        response = get_output(prompt, model=args.backend)[0]
         judgement = self.extract_from_text(response, ['Judgement:'])
         if judgement:
             judgement = judgement.strip().lower()
@@ -77,10 +77,10 @@ class MathTask(Task):
                 return match.group(1).strip()
         return ''
 
-    def propose_prompt_wrap(self, problem: str, previous_step: str = '') -> str:
+    def propose_prompt_wrap(self, problem: str, model: str, previous_step: str = '') -> str:
         if previous_step.strip():
             skill_prompt = skill_identification_prompt.format(problem=problem, aggregated_skills=self.aggregated_skills, previous_step = previous_step)
-            skill_response = get_output(skill_prompt)[0]
+            skill_response = get_output(skill_prompt, model=model)[0]
             skill = self.extract_from_text(skill_response, ['Skill:']).strip()
 
             in_context_example = self.get_in_context_example(skill)
@@ -93,7 +93,7 @@ class MathTask(Task):
         else:
             # No previous steps; use starting prompt
             skill_prompt = skill_identification_prompt_start.format(problem=problem, aggregated_skills=self.aggregated_skills)
-            skill_response = get_output(skill_prompt)[0]
+            skill_response = get_output(skill_prompt, model=model)[0]
             skill = self.extract_from_text(skill_response, ['Skill:']).strip()
 
             in_context_example = self.get_in_context_example(skill)

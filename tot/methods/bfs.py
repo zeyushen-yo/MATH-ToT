@@ -7,7 +7,7 @@ def get_value(task, x, y, n_evaluate_sample, cache_value=True):
     value_prompt = task.value_prompt_wrap(x, y)
     if cache_value and value_prompt in task.value_cache:
         return task.value_cache[value_prompt]
-    value_outputs = get_output(value_prompt, n=n_evaluate_sample, stop=None)
+    value_outputs = get_output(value_prompt, n=n_evaluate_sample, model=args.backend, stop=None)
     value = task.value_outputs_unwrap(x, y, value_outputs)
     if cache_value:
         task.value_cache[value_prompt] = value
@@ -25,9 +25,9 @@ def get_values(task, x, ys, n_evaluate_sample, cache_value=True):
         values.append(value)
     return values
 
-def get_proposals(task, x, y, n_generate_sample): 
-    propose_prompt = task.propose_prompt_wrap(x, y)
-    proposals = get_output(propose_prompt, n=n_generate_sample, stop=None)
+def get_proposals(task, x, y, n_generate_sample, model): 
+    propose_prompt = task.propose_prompt_wrap(x, model, y)
+    proposals = get_output(propose_prompt, n=n_generate_sample, model=args.backend, stop=None)
     print(proposals)
     return proposals
 
@@ -41,7 +41,7 @@ def solve(args, task, idx, to_print=True):
     ids = []
     for step in range(task.steps):
         # generation
-        new_ys = [get_proposals(task, x, y, args.n_generate_sample) for y in ys]
+        new_ys = [get_proposals(task, x, y, args.n_generate_sample, args.backend) for y in ys]
         new_ys = list(itertools.chain(*new_ys))
         ids = list(range(len(new_ys)))
         # evaluation
@@ -77,5 +77,5 @@ def naive_solve(args, task, idx, to_print=True):
     get_output = partial(get_output, model=args.backend, temperature=args.temperature)
     x = task.get_input(idx)  # input
     naive_prompt = task.naive_prompt_wrap(x, '')
-    ys = get_output(naive_prompt, n=args.n_generate_sample, stop=None)
+    ys = get_output(naive_prompt, n=args.n_generate_sample, model=args.backend, stop=None)
     return ys, {}
