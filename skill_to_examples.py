@@ -12,7 +12,7 @@ topics = ["algebra", "counting_and_probability", "geometry", "intermediate_algeb
 
 aggregated_skills = aggregated_skills
 
-with open("math_train_with_skill.csv", "w") as f:
+with open("skill_examples/math_train_with_skill.csv", "w") as f:
     writer = csv.writer(f)
     writer.writerow(['problem', 'solution', 'skill'])
     for topic in topics:
@@ -25,7 +25,7 @@ with open("math_train_with_skill.csv", "w") as f:
                 problem = data["problem"]
                 solution = data["solution"]
                 prompt = f"Here is a list of skills:\n {aggregated_skills} \n for solving mathematical problems."
-                prompt += f"Consider this problem from {topic}. Label this problem with a mathematical skill from this list. Your must name the skill in exactly the same way as it appears in the list.\n"
+                prompt += f"Consider this problem from {topic}. Label this problem with a mathematical skill from this list. You must name the skill in exactly the same way as it appears in the list.\n"
                 prompt += "problem: " + problem + "\n\n Your answer should be as follows: \n <name of the skill> \n"
                 
                 completion = client.chat.completions.create(
@@ -62,7 +62,7 @@ for s in skills_to_example:
         if s in aggregated_skills[agg_s]:
             in_list = True
     if in_list:
-        with open(f"math_train_{s}_with_examples.jsonl", "w", encoding="utf-8") as file:
+        with open(f"skill_examples/math_train_{s}_with_examples.jsonl", "w", encoding="utf-8") as file:
             for i in range(len(skills_to_example[s])):
                 problem = skills_to_example[s][i][0]
                 solution = skills_to_example[s][i][1]
