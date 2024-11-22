@@ -13,4 +13,4 @@
 module purge
 module load anaconda3/2024.2
 conda activate Math_ToT
-sh scripts/MATH/bfs.sh
+sh scripts/MATH2/skill_to_examples.sh
