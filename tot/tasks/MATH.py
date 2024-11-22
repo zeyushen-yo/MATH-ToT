@@ -12,8 +12,6 @@ class MathTask(Task):
         self.value_cache = {}
 
         path = os.path.join(DATA_PATH, 'MATH', 'test')
-        # a small subset of test dataset
-        # path = os.path.join(DATA_PATH, 'MATH', 'example')
 
         for root, dirs, files in os.walk(path):
             for file in files:
