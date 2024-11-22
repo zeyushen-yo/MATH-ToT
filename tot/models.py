@@ -1,12 +1,17 @@
 import os
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
 import openai
+
+import torch
+torch.cuda.empty_cache()
+
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
 #chatgpt
 completion_tokens = prompt_tokens = 0
 
-api_key = os.environ["OPENAI_API_KEY"]
+api_key = os.getenv("OPENAI_API_KEY", "")
+hf_access_token = os.getenv("HF_ACCESS_TOKEN", "")
+
 if api_key != "":
     openai.api_key = api_key
 else:
@@ -23,9 +28,17 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 def completions_Llama(messages, temperature=0.7, max_tokens=1000, n=1, stop=None):
     global tokenizer, model
     if tokenizer is None or model is None:
-        tokenizer = AutoTokenizer.from_pretrained('meta-llama/Llama-3.1-8B-Instruct')
-        model = AutoModelForCausalLM.from_pretrained('meta-llama/Llama-3.1-8B-Instruct')
-        model.to(device)
+
+        bnb_config = BitsAndBytesConfig(
+            load_in_4bit=True,  # Set to True for 4-bit quantization
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_quant_type='nf4',
+            bnb_4bit_compute_dtype=torch.float16  # You can also try torch.bfloat16
+        )
+
+        tokenizer = AutoTokenizer.from_pretrained('meta-llama/Llama-3.1-8B-Instruct', token=hf_access_token)
+        model = AutoModelForCausalLM.from_pretrained('meta-llama/Llama-3.1-8B-Instruct', quantization_config=bnb_config, token=hf_access_token, device_map='auto')
+        #model.to(device)
         
     prompt = ''
     for message in messages:
