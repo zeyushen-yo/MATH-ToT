@@ -1,0 +1,2 @@
+{"problem": "Evaluate $\\left\\lceil3\\left(6-\\frac12\\right)\\right\\rceil$.", "solution": "Firstly, $3\\left(6-\\frac12\\right)=18-1-\\frac12=17-\\frac12$.  Because $0\\le\\frac12<1$, we have $\\left\\lceil17-\\frac12\\right\\rceil=\\boxed{17}$."}
+{"problem": "Compute\n\n$3(1+3(1+3(1+3(1+3(1+3(1+3(1+3(1+3(1+3)))))))))$", "solution": "Not to be tricked by the excess of parentheses, we rewrite the expression as a geometric series: \\[3+3^2+3^3+\\cdots +3^9 +3^{10}.\\]Now the sum can be computed as $\\frac{3^{11}-3}{3-1}=\\boxed{88572}.$"}

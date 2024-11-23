@@ -1,0 +1,3 @@
+{"problem": "Evaluate $99\\times 99$ in your head.", "solution": "We could do the multiplication, but that would be tedious. Instead, note that $99\\times 99 = (100 - 1)^2 = 100^2 - 2\\cdot 1\\cdot 100 + 1 = 10000 - 200 + 1 = \\boxed{9801}$."}
+{"problem": "Compute: $98 \\times 102$.", "solution": "Notice that $98 = 100-2$ and $102 = 100+2$. Their product is thus $(100-2)(100+2)$, which is the same as $100^2 - 2^2$. This is easily computable as $10000 - 4 = \\boxed{9996}$."}
+{"problem": "Compute $54 \\times 46$ in your head.", "solution": "We can rewrite this expression as $(50 + 4)\\times (50 - 4)$. This is a difference of squares: $(50 + 4)(50 - 4) = 50^2 - 4^2 = 2500 - 16 = \\boxed{2484}$."}
