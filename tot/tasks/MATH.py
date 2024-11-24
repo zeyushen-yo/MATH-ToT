@@ -30,7 +30,7 @@ class MathTask(Task):
     def get_input(self, idx: int) -> str:
         return self.data[idx]['problem']
 
-    def test_output(self, idx: int, output: str):
+    def test_output(self, idx: int, output: str, model: str):
         solution = self.data[idx]['solution']
         correct_answer = self.extract_answer(solution)
         model_answer = self.extract_answer(output)

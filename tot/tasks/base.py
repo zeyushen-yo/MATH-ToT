@@ -11,5 +11,5 @@ class Task:
     def get_input(self, idx: int) -> str:
         pass
 
-    def test_output(self, idx: int, output: str):
+    def test_output(self, idx: int, output: str, model: str):
         pass

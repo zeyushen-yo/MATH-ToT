@@ -53,23 +53,23 @@ class Math2Task(Task):
                 return match.group(1).strip()
         return ''
 
-    def test_output(self, idx: int, output: str):
+    def test_output(self, idx: int, output: str, model: str):
         problem = self.data[idx]['problem']
         correct_solution = self.data[idx]['solution']
-        model_solution = self.extract_from_text(text, ['Answer:'])
+        model_solution = self.extract_from_text(output, ['Answer:'])
 
         # Use LLM-as-a-judge to judge correctness
-        is_correct = self.llm_judge(problem, correct_solution, model_solution)
+        is_correct = self.llm_judge(problem, correct_solution, model_solution, model)
         print("Correctness judged by LLM: ", is_correct)
         return {'r': int(is_correct)}
 
-    def llm_judge(self, problem: str, correct_solution: str, model_solution: str) -> bool:
+    def llm_judge(self, problem: str, correct_solution: str, model_solution: str, model: str) -> bool:
         prompt = judge_prompt.format(
             problem=problem,
             correct_solution=correct_solution,
             model_solution=model_solution
         )
-        response = get_output(prompt, model=args.backend)[0]
+        response = get_output(prompt, model=model)[0]
         judgement = self.extract_from_text(response, ['Judgement:'])
         if judgement:
             judgement = judgement.strip().lower()
@@ -104,11 +104,15 @@ class Math2Task(Task):
             )
         return prompt
 
-    def value_prompt_wrap(self, problem: str, current_step: str) -> str:
-        prompt = value_prompt.format(
-            problem=problem,
-            current_step=current_step
-        )
+    def value_prompt_wrap(self, x: str, y: str) -> str:
+        answer = self.extract_from_text(y, ['Answer:'])
+        if answer:
+            prompt = value_last_step_prompt.format(problem=x, answer=answer)
+        else:
+            step = self.extract_from_text(y, ['First step:', 'Possible next step:'])
+            if not step:
+                step = y.strip()
+            prompt = value_prompt.format(problem=x, current_step=step)
         return prompt
 
     def value_outputs_unwrap(self, value_outputs: list) -> float:

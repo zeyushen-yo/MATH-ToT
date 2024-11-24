@@ -23,7 +23,7 @@ def run(args):
             ys, info = solve(args, task, i)
 
         # log
-        infos = [task.test_output(i, y) for y in ys]
+        infos = [task.test_output(i, y, args.backend) for y in ys]
         info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend)})
         logs.append(info)
         with open(file, 'w') as f:

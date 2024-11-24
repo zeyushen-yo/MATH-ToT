@@ -69,6 +69,19 @@ First, provide reasoning about the step's validity and potential to lead to a so
 Provide your evaluation in the following format: "Evaluation: [Your evaluation]".
 '''
 
+value_last_step_prompt = '''Evaluate the likelihood of the following answer in being the correct answer to the problem.
+
+Input: 
+{problem}
+
+Answer: 
+{answer}
+
+First, explicitly go through some sanity checks on the answer. Then, provide an overall evaluation in one word from the following options: impossible, possible, sure.
+
+Provide your evaluation in the following format: "Evaluation: [Your evaluation]".
+'''
+
 judge_prompt = '''Given the following problem and two solutions, determine whether the second solution is correct with respect to the problem.
 
 Problem:
