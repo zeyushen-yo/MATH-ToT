@@ -95,5 +95,5 @@ Correct Solution:
 Model's Solution:
 {model_solution}
 
-Provide your judgement in the following format: "Judgement: [Correct/Incorrect]".
+Provide your judgement in the following format: "Judgement: [Correct/Wrong]".
 '''

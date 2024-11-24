@@ -66,10 +66,20 @@ def solve(args, task, idx, to_print=True):
     if to_print: 
         print(ys)
     
-    final_values = [values[idx] for idx in select_ids]
-    # only take ys with "Answer: " in it and whose corresponding value is reasonably large
-    ys_with_values = zip(ys, final_values)
+    ys_with_values = list(zip(ys, final_values))
     ys_filtered = [y for y, v in ys_with_values if "Answer: " in y and v >= 20]
+
+    if not ys_filtered:
+        # if no y with "Answer: " in it has value >= 20, then take the y with "Answer: " in it with the largest value
+        ys_with_answer = [(y, v) for y, v in ys_with_values if "Answer: " in y]
+        if ys_with_answer:
+            y_max = max(ys_with_answer, key=lambda x: x[1])[0]
+            ys_filtered = [y_max]
+        else:
+            # If no y contains "Answer: ", take the y with the largest value
+            y_max = max(ys_with_values, key=lambda x: x[1])[0]
+            ys_filtered = [y_max]
+
     return ys_filtered, {'steps': infos}
 
 def naive_solve(args, task, idx, to_print=True):
