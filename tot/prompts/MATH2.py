@@ -40,7 +40,7 @@ Example problem applying the identified skill:
 Provide your proposal in the following format: "First step: [Your first step]".
 '''
 
-propose_with_skill_prompt = '''Using the identified skill "{skill}", provide the most likely next step to solve the problem given your current step. You can refer to the example problem and its solution for guidance.
+propose_with_skill_prompt = '''Using the identified skill "{skill}", provide the most likely next step to solve the problem given your current step. You can refer to the example problem and its solution for guidance. If the current step leads to an answer, provide the answer. If the current step already contains an answer, simply output the current step as it is.
 
 Problem:
 {problem}
@@ -52,6 +52,8 @@ Example problem applying the identified skill:
 {in_context_example}
 
 Provide your next step in the following format: "Possible next step: [Your possible next step]".
+
+If you have found the answer, provide your answer in the following format: "Answer: [Your answer]".
 '''
 
 value_prompt = '''Evaluate the usefulness and correctness of the following step in solving the problem.
@@ -62,7 +64,7 @@ Problem:
 Current Step:
 {current_step}
 
-First, provide reasoning about the step's validity and potential to lead to a solution. Then, provide an overall evaluation in one word from the following options: impossible, unlikely, possible, likely, sure.
+First, provide reasoning about the step's validity and potential to lead to a solution. Then, provide an overall evaluation in one word from the following options: impossible, possible, sure.
 
 Provide your evaluation in the following format: "Evaluation: [Your evaluation]".
 '''

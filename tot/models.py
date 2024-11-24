@@ -79,7 +79,6 @@ def completions_Llama(messages, temperature=0.7, max_tokens=1000, n=1, stop=None
     return outputs
 
 def get_output(prompt, model, temperature=0.7, max_tokens=1000, n=1, stop=None) -> list:
-    
     if model == "gpt-4o" or model == "o1-mini":
         messages = [{"role": "user", "content": prompt}]
         global completion_tokens, prompt_tokens

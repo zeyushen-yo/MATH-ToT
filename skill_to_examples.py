@@ -45,7 +45,7 @@ with open("skill_examples/math_train_with_skill.csv", "w") as f:
                 f.flush()
 
 skills_to_example = {}
-df = pd.read_csv("math_train_with_skill.csv")
+df = pd.read_csv("skill_examples/math_train_with_skill.csv")
 
 for i in range(len(df)):
     if ":" in df.loc[i, "skill"]:

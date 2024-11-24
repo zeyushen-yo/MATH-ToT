@@ -94,7 +94,7 @@ class MathTask(Task):
         return naive_prompt.format(input_problem=x) + y
     
     @staticmethod
-    def propose_prompt_wrap(x: str, y: str = '') -> str:
+    def propose_prompt_wrap(x: str, model: str, y: str = '') -> str:
         if y.strip():
             step = MathTask.extract_from_text(y, ['First step:', 'Possible next step:'])
             if not step:
@@ -118,7 +118,7 @@ class MathTask(Task):
         return prompt
     
     @staticmethod
-    def value_outputs_unwrap(x: str, y: str, value_outputs: list) -> float:
+    def value_outputs_unwrap(value_outputs: list) -> float:
         value_names = []
         for output in value_outputs:
             evaluation = MathTask.extract_from_text(output, ['Evaluation:', 'Judgement:'])

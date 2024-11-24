@@ -3,31 +3,31 @@ import numpy as np
 from functools import partial
 from tot.models import get_output
 
-def get_value(task, x, y, n_evaluate_sample, cache_value=True):
+def get_value(task, x, y, n_evaluate_sample, model, cache_value=True):
     value_prompt = task.value_prompt_wrap(x, y)
     if cache_value and value_prompt in task.value_cache:
         return task.value_cache[value_prompt]
-    value_outputs = get_output(value_prompt, n=n_evaluate_sample, model=args.backend, stop=None)
-    value = task.value_outputs_unwrap(x, y, value_outputs)
+    value_outputs = get_output(value_prompt, n=n_evaluate_sample, model=model, stop=None)
+    value = task.value_outputs_unwrap(value_outputs)
     if cache_value:
         task.value_cache[value_prompt] = value
     return value
 
-def get_values(task, x, ys, n_evaluate_sample, cache_value=True):
+def get_values(task, x, ys, n_evaluate_sample, model, cache_value=True):
     values = []
     local_value_cache = {}
     for y in ys:  # each partial output
         if y in local_value_cache:  # avoid duplicate candidates
             value = 0
         else:    
-            value = get_value(task, x, y, n_evaluate_sample, cache_value=cache_value)
+            value = get_value(task, x, y, n_evaluate_sample, model=model, cache_value=cache_value)
             local_value_cache[y] = value
         values.append(value)
     return values
 
 def get_proposals(task, x, y, n_generate_sample, model): 
     propose_prompt = task.propose_prompt_wrap(x, model, y)
-    proposals = get_output(propose_prompt, n=n_generate_sample, model=args.backend, stop=None)
+    proposals = get_output(propose_prompt, n=n_generate_sample, model=model, stop=None)
     print(proposals)
     return proposals
 
@@ -45,7 +45,7 @@ def solve(args, task, idx, to_print=True):
         new_ys = list(itertools.chain(*new_ys))
         ids = list(range(len(new_ys)))
         # evaluation
-        values = get_values(task, x, new_ys, args.n_evaluate_sample)
+        values = get_values(task, x, new_ys, args.n_evaluate_sample, args.backend, args.n_evaluate_sample)
 
         # selection
         if args.method_select == 'sample':

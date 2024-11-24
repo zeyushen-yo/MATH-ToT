@@ -43,10 +43,20 @@ class Math2Task(Task):
     def get_input(self, idx: int) -> str:
         return self.data[idx]['problem']
 
+    @staticmethod
+    def extract_from_text(text: str, prefixes: list) -> str:
+        # Searches the text for the first occurrence of any of the prefixes and returns the content after it
+        for prefix in prefixes:
+            pattern = re.escape(prefix) + r'\s*(.*)'
+            match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
+            if match:
+                return match.group(1).strip()
+        return ''
+
     def test_output(self, idx: int, output: str):
         problem = self.data[idx]['problem']
         correct_solution = self.data[idx]['solution']
-        model_solution = output
+        model_solution = self.extract_from_text(text, ['Answer:'])
 
         # Use LLM-as-a-judge to judge correctness
         is_correct = self.llm_judge(problem, correct_solution, model_solution)
@@ -66,16 +76,6 @@ class Math2Task(Task):
             return 'correct' in judgement
         else:
             return False
-
-    @staticmethod
-    def extract_from_text(text: str, prefixes: list) -> str:
-        # Searches the text for the first occurrence of any of the prefixes and returns the content after it
-        for prefix in prefixes:
-            pattern = re.escape(prefix) + r'\s*(.*)'
-            match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
-            if match:
-                return match.group(1).strip()
-        return ''
 
     def propose_prompt_wrap(self, problem: str, model: str, previous_step: str = '') -> str:
         if previous_step.strip():
