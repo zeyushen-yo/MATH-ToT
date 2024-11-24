@@ -61,7 +61,7 @@ class Math2Task(Task):
             model_solution = output
 
         # Use LLM-as-a-judge to judge correctness
-        is_correct = self.llm_judge(problem, correct_solution, model_solution, model) # open models can give unreasonable judgements. Is there a way to resolve this issue?
+        is_correct = self.llm_judge(problem, correct_solution, model_solution, model)
         print("Correctness judged by LLM: ", is_correct)
         return {'r': int(is_correct)}
 
