@@ -25,8 +25,8 @@ def get_values(task, x, ys, n_evaluate_sample, model, cache_value=True):
         values.append(value)
     return values
 
-def get_proposals(task, x, y, n_generate_sample, model): 
-    propose_prompt = task.propose_prompt_wrap(x, model, y)
+def get_proposals(task, x, y, apply_skills, n_generate_sample, model): 
+    propose_prompt = task.propose_prompt_wrap(apply_skills, x, model, y)
     proposals = get_output(propose_prompt, n=n_generate_sample, model=model, stop=None)
     print(proposals)
     return proposals
@@ -41,7 +41,7 @@ def solve(args, task, idx, to_print=True):
     ids = []
     for step in range(task.steps):
         # generation
-        new_ys = [get_proposals(task, x, y, args.n_generate_sample, args.backend) for y in ys]
+        new_ys = [get_proposals(task, x, y, args.apply_skills, args.n_generate_sample, args.backend) for y in ys]
         new_ys = list(itertools.chain(*new_ys))
         ids = list(range(len(new_ys)))
         # evaluation

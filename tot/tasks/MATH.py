@@ -4,6 +4,8 @@ import json
 from tot.tasks.base import Task, DATA_PATH
 from tot.prompts.MATH import *
 from tot.data.MATH.math_equivalence import is_equiv
+from tot.aggregated_skills import aggregated_skills
+from tot.models import get_output
 
 class MathTask(Task):
     def __init__(self):
@@ -12,6 +14,7 @@ class MathTask(Task):
         self.value_cache = {}
 
         path = os.path.join(DATA_PATH, 'MATH', 'test')
+        self.aggregated_skills = aggregated_skills
 
         for root, dirs, files in os.walk(path):
             for file in files:
@@ -20,6 +23,15 @@ class MathTask(Task):
                     with open(file_path, 'r') as f:
                         problem_data = json.load(f)
                         self.data.append(problem_data)
+
+        self.skill_examples = {}
+        skill_examples_path = os.path.join(DATA_PATH, 'skill_examples')
+        for skill in self.aggregated_skills.values():
+            skill_file = os.path.join(skill_examples_path, f'math_train_{skill}_with_examples.jsonl')
+            if os.path.exists(skill_file):
+                with open(skill_file, 'r', encoding='utf-8') as f:
+                    examples = [json.loads(line) for line in f]
+                    self.skill_examples[skill] = examples
 
         self.steps = 5  # set heuristically
         self.stops = ['\n'] * self.steps
@@ -87,43 +99,79 @@ class MathTask(Task):
 
     @staticmethod
     def starting_prompt_wrap(x: str, y:str='') -> str:
-        return starting_prompt.format(input_problem=x) + y
+        return starting_prompt.format(problem=x) + y
 
     @staticmethod
     def naive_prompt_wrap(x: str, y:str='') -> str:
-        return naive_prompt.format(input_problem=x) + y
+        return naive_prompt.format(problem=x) + y
     
-    @staticmethod
-    def propose_prompt_wrap(x: str, model: str, y: str = '') -> str:
-        if y.strip():
-            step = MathTask.extract_from_text(y, ['First step:', 'Possible next step:'])
-            if not step:
-                step = y.strip()
-            prompt = propose_prompt.format(input_problem=x, input_step=step)
+    def propose_prompt_wrap(self, apply_skills: bool, problem: str, model: str, previous_step: str = '') -> str:
+        if previous_step.strip():
+            if apply_skills:
+                skill_prompt = skill_identification_prompt.format(problem=problem, aggregated_skills=self.aggregated_skills, previous_step = previous_step)
+                skill_response = get_output(skill_prompt, model=model)[0]
+                skill = self.extract_from_text(skill_response, ['Skill:']).strip()
+
+                in_context_example = self.get_in_context_example(skill)
+                prompt = propose_with_skill_prompt.format(
+                    problem=problem,
+                    previous_step=previous_step,
+                    skill=skill,
+                    in_context_example=in_context_example
+                )
+            else:
+                prompt = propose_without_skill_prompt.format(
+                    problem=problem,
+                    previous_step=previous_step
+                )
         else:
-            # No previous steps; use the starting prompt
-            prompt = starting_prompt.format(input_problem=x)
+            # No previous steps; use starting prompt
+            if apply_skills:
+                skill_prompt = skill_identification_prompt_start.format(problem=problem, aggregated_skills=self.aggregated_skills)
+                skill_response = get_output(skill_prompt, model=model)[0]
+                skill = self.extract_from_text(skill_response, ['Skill:']).strip()
+
+                in_context_example = self.get_in_context_example(skill)
+                prompt = start_with_skill_prompt.format(
+                    problem=problem,
+                    skill=skill,
+                    in_context_example=in_context_example
+                )
+            else:
+                prompt = propose_without_skill_prompt.format(
+                    problem=problem,
+                    previous_step=previous_step
+                )
         return prompt
-    
-    @staticmethod
-    def value_prompt_wrap(x: str, y: str) -> str:
-        answer = MathTask.extract_from_text(y, ['Answer:'])
+
+    def value_prompt_wrap(self, x: str, y: str) -> str:
+        answer = self.extract_from_text(y, ['Answer:'])
         if answer:
-            prompt = value_last_step_prompt.format(input_problem=x, answer=answer)
+            prompt = value_last_step_prompt.format(problem=x, answer=answer)
         else:
-            step = MathTask.extract_from_text(y, ['First step:', 'Possible next step:'])
+            step = self.extract_from_text(y, ['First step:', 'Possible next step:'])
             if not step:
                 step = y.strip()
-            prompt = value_prompt.format(input_problem=x, input_step=step)
+            prompt = value_prompt.format(problem=x, current_step=step)
         return prompt
-    
-    @staticmethod
-    def value_outputs_unwrap(value_outputs: list) -> float:
+
+    def value_outputs_unwrap(self, value_outputs: list) -> float:
         value_names = []
         for output in value_outputs:
-            evaluation = MathTask.extract_from_text(output, ['Evaluation:', 'Judgement:'])
+            evaluation = self.extract_from_text(output, ['Evaluation:', 'Judgement:'])
             if evaluation:
                 value_names.append(evaluation.strip().lower())
         value_map = {'impossible': 0.001, 'likely': 1, 'sure': 20}
         value = sum(value_map.get(name, 0) for name in value_names)
         return value
+
+    def get_in_context_example(self, skill: str) -> str:
+        examples = self.skill_examples.get(skill, [])
+        if examples:
+            example = random.choice(examples)
+            example_problem = example['problem']
+            example_solution = example['solution']
+            in_context_example = f"Example Problem:\n{example_problem}\n\nExample Solution:\n{example_solution}\n"
+        else:
+            in_context_example = ''
+        return in_context_example

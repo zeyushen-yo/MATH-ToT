@@ -79,31 +79,43 @@ class Math2Task(Task):
         else:
             return False
 
-    def propose_prompt_wrap(self, problem: str, model: str, previous_step: str = '') -> str:
+    def propose_prompt_wrap(self, apply_skills: bool, problem: str, model: str, previous_step: str = '') -> str:
         if previous_step.strip():
-            skill_prompt = skill_identification_prompt.format(problem=problem, aggregated_skills=self.aggregated_skills, previous_step = previous_step)
-            skill_response = get_output(skill_prompt, model=model)[0]
-            skill = self.extract_from_text(skill_response, ['Skill:']).strip()
+            if apply_skills:
+                skill_prompt = skill_identification_prompt.format(problem=problem, aggregated_skills=self.aggregated_skills, previous_step = previous_step)
+                skill_response = get_output(skill_prompt, model=model)[0]
+                skill = self.extract_from_text(skill_response, ['Skill:']).strip()
 
-            in_context_example = self.get_in_context_example(skill)
-            prompt = propose_with_skill_prompt.format(
-                problem=problem,
-                previous_step=previous_step,
-                skill=skill,
-                in_context_example=in_context_example
-            )
+                in_context_example = self.get_in_context_example(skill)
+                prompt = propose_with_skill_prompt.format(
+                    problem=problem,
+                    previous_step=previous_step,
+                    skill=skill,
+                    in_context_example=in_context_example
+                )
+            else:
+                prompt = propose_without_skill_prompt.format(
+                    problem=problem,
+                    previous_step=previous_step
+                )
         else:
             # No previous steps; use starting prompt
-            skill_prompt = skill_identification_prompt_start.format(problem=problem, aggregated_skills=self.aggregated_skills)
-            skill_response = get_output(skill_prompt, model=model)[0]
-            skill = self.extract_from_text(skill_response, ['Skill:']).strip()
+            if apply_skills:
+                skill_prompt = skill_identification_prompt_start.format(problem=problem, aggregated_skills=self.aggregated_skills)
+                skill_response = get_output(skill_prompt, model=model)[0]
+                skill = self.extract_from_text(skill_response, ['Skill:']).strip()
 
-            in_context_example = self.get_in_context_example(skill)
-            prompt = start_with_skill_prompt.format(
-                problem=problem,
-                skill=skill,
-                in_context_example=in_context_example
-            )
+                in_context_example = self.get_in_context_example(skill)
+                prompt = start_with_skill_prompt.format(
+                    problem=problem,
+                    skill=skill,
+                    in_context_example=in_context_example
+                )
+            else:
+                prompt = propose_without_skill_prompt.format(
+                    problem=problem,
+                    previous_step=previous_step
+                )
         return prompt
 
     def value_prompt_wrap(self, x: str, y: str) -> str:

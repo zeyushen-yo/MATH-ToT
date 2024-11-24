@@ -58,6 +58,21 @@ If you have found the answer, provide your answer in the following format: "Answ
 Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
 '''
 
+propose_without_skill_prompt = '''Provide the most likely next step to solve the problem given your current step.
+
+If the current step leads to an answer / already contains an answer, provide the answer in the required format.
+
+Problem:
+{problem}
+
+Your current step:
+{previous_step}
+
+If you have found the answer, provide your answer in the following format: "Answer: [Your answer]".
+
+Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
+'''
+
 value_prompt = '''Evaluate the usefulness and correctness of the following step in solving the problem.
 
 Problem:
