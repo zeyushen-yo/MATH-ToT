@@ -34,7 +34,7 @@ class Math2Task(Task):
                     examples = [json.loads(line) for line in f]
                     self.skill_examples[skill] = examples
 
-        self.steps = 5  # Set heuristically
+        self.steps = 8  # Set heuristically
         self.stops = ['\n'] * self.steps
 
     def __len__(self) -> int:

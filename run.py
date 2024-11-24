@@ -24,10 +24,6 @@ def run(args):
 
         # log
         infos = [task.test_output(i, y, args.backend) for y in ys]
-        info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend)})
-        logs.append(info)
-        with open(file, 'w') as f:
-            json.dump(logs, f, indent=4)
         
         # log main metric
         accs = [info['r'] for info in infos]
@@ -35,7 +31,12 @@ def run(args):
         # should we take the mode here (instead of requiring at least half of the answers to be correct)?
         if sum(accs) * 2 >= len(accs):
             cnt_correct += 1
-        print('current accuracy: ', cnt_correct / (i - args.task_start_index + 1))
+        cur_acc = cnt_correct / (i - args.task_start_index + 1)
+        print('current accuracy: ', cur_acc)
+        info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
+        logs.append(info)
+        with open(file, 'w') as f:
+            json.dump(logs, f, indent=4)
     
     n = args.task_end_index - args.task_start_index
     print(cnt_correct / n)
