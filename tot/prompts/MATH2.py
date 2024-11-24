@@ -3,7 +3,7 @@ naive_prompt = '''Solve the following problem.
 Problem: 
 {input_problem}
 
-Provide your answer in terms of a single expression in the following format: "Answer: [Your answer]".
+Provide your answer in the following format: "Answer: [Your answer]".
 '''
 
 skill_identification_prompt_start = '''Here is a list of skills:\n {aggregated_skills} \n for solving mathematical problems.
@@ -40,7 +40,9 @@ Example problem applying the identified skill:
 Provide your proposal in the following format: "First step: [Your first step]".
 '''
 
-propose_with_skill_prompt = '''Using the identified skill "{skill}", provide the most likely next step to solve the problem given your current step. You can refer to the example problem and its solution for guidance. If the current step leads to an answer, provide the answer. If the current step already contains an answer, simply output the current step as it is.
+propose_with_skill_prompt = '''Using the identified skill "{skill}", provide the most likely next step to solve the problem given your current step. You can refer to the example problem and its solution for guidance. 
+
+If the current step leads to an answer / already contains an answer, provide the answer in the required format.
 
 Problem:
 {problem}
@@ -51,9 +53,9 @@ Your current step:
 Example problem applying the identified skill:
 {in_context_example}
 
-Provide your next step in the following format: "Possible next step: [Your possible next step]".
-
 If you have found the answer, provide your answer in the following format: "Answer: [Your answer]".
+
+Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
 '''
 
 value_prompt = '''Evaluate the usefulness and correctness of the following step in solving the problem.
