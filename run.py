@@ -33,18 +33,22 @@ def run(args):
             cnt_correct += 1
         cur_acc = cnt_correct / (i - args.task_start_index + 1)
         print('current accuracy: ', cur_acc)
-        info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
+        if args.backend() == 'o1-mini' or args.backend() == 'gpt-4o':
+            info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
+        else:
+            info.update({'idx': i, 'ys': ys, 'infos': infos, 'current accuracy': cur_acc})
         logs.append(info)
         with open(file, 'w') as f:
             json.dump(logs, f, indent=4)
     
     n = args.task_end_index - args.task_start_index
     print(cnt_correct / n)
-    print('usage_so_far', usage(args.backend))
+    if args.backend() == 'o1-mini' or args.backend() == 'gpt-4o':
+        print('usage_so_far', usage(args.backend))
 
 def parse_args():
     args = argparse.ArgumentParser()
-    args.add_argument('--backend', type=str, choices=['o1-mini', 'gpt-4o', 'Llama3.1-8B-Instruct'], default='Llama3.1-8B-Instruct')
+    args.add_argument('--backend', type=str, choices=['o1-mini', 'gpt-4o', 'Llama-3.1-8B-Instruct', 'Llama-3.2-3B-Instruct', 'Qwen2.5-1.5B-Instruct'], default='Qwen2.5-1.5B-Instruct')
     args.add_argument('--temperature', type=float, default=0.7)
 
     args.add_argument('--task', type=str, required=True, choices=['MATH', "MATH2"])

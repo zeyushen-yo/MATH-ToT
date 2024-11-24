@@ -17,18 +17,16 @@ if api_key != "":
 else:
     print("Warning: OPENAI_API_KEY is not set")
 
-def completions_gpt(**kwargs):
-    return openai.chat.completions.create(**kwargs)
-
-#llama
 tokenizer = None
 model = None
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-def completions_Llama(messages, temperature=0.7, max_tokens=1000, n=1, stop=None):
+def completions_gpt(**kwargs):
+    return openai.chat.completions.create(**kwargs)
+
+def completions_Llama(model_name, messages, temperature=0.7, max_tokens=1000, n=1, stop=None):
     global tokenizer, model
     if tokenizer is None or model is None:
-
         bnb_config = BitsAndBytesConfig(
             load_in_4bit=True,  # Set to True for 4-bit quantization
             bnb_4bit_use_double_quant=True,
@@ -36,71 +34,110 @@ def completions_Llama(messages, temperature=0.7, max_tokens=1000, n=1, stop=None
             bnb_4bit_compute_dtype=torch.float16  # You can also try torch.bfloat16
         )
 
-        tokenizer = AutoTokenizer.from_pretrained('meta-llama/Llama-3.1-8B-Instruct', token=hf_access_token)
-        model = AutoModelForCausalLM.from_pretrained('meta-llama/Llama-3.1-8B-Instruct', quantization_config=bnb_config, token=hf_access_token)
-        
-    prompt = ''
-    for message in messages:
-        if message['role'] == 'system':
-            prompt += f"{message['content']}\n"
-        elif message['role'] == 'user':
-            prompt += f"User: {message['content']}\n"
-        elif message['role'] == 'assistant':
-            prompt += f"Assistant: {message['content']}\n"
+        if model_name == "Llama-3.1-8B-Instruct":
+            tokenizer = AutoTokenizer.from_pretrained(f'meta-llama/{model_name}', token=hf_access_token)
+            model = AutoModelForCausalLM.from_pretrained(f'meta-llama/{model_name}', quantization_config=bnb_config, token=hf_access_token)
+        elif model_name == "Llama-3.2-3B-Instruct":
+            tokenizer = AutoTokenizer.from_pretrained('/home/zs7353/Llama-3.2-3B-Instruct_tokenizer', local_files_only=True)
+            model = AutoModelForCausalLM.from_pretrained('/home/zs7353/Llama-3.2-3B-Instruct_model', local_files_only=True).to(device)
 
     outputs = []
+    prompt = messages[0]['content']
     input_ids = tokenizer.encode(prompt, return_tensors='pt').to(device)
 
-    for _ in range(n):
-        output_ids = model.generate(
-            input_ids=input_ids,
-            max_length=input_ids.shape[1] + max_tokens,
-            temperature=temperature,
-            num_return_sequences=1,
-            pad_token_id=tokenizer.eos_token_id,
-            eos_token_id=tokenizer.eos_token_id,
-            do_sample=True,
-            top_p=0.95,
-            top_k=50
-        )
-
-        output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
-        generated_text = output_text[len(prompt):].strip()
-
+    generated_ids = model.generate(
+        input_ids=model_inputs.input_ids,
+        attention_mask=model_inputs.attention_mask,
+        do_sample=True,
+        num_return_sequences=n,
+        max_new_tokens=max_tokens,
+        temperature=temperature,
+        pad_token_id=tokenizer.eos_token_id
+    )
+    
+    generated_ids = [output_ids[input_length:] for output_ids in generated_ids]
+    
+    responses = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+    
+    outputs = []
+    for response in responses:
+        response = response.strip()
         if stop:
             for stop_seq in stop:
-                idx = generated_text.find(stop_seq)
+                idx = response.find(stop_seq)
                 if idx != -1:
-                    generated_text = generated_text[:idx]
+                    response = response[:idx]
                     break
-
-        outputs.append(generated_text)
-
+        outputs.append(response)
+    
     return outputs
 
+def completions_qwen(messages, temperature=0.7, max_tokens=1000, n=1, stop=None):
+    global tokenizer, model
+    if tokenizer is None or model is None:
+        tokenizer = AutoTokenizer.from_pretrained("/home/zs7353/Qwen2.5-1.5B-Instruct_tokenizer", local_files_only=True)
+        model = AutoModelForCausalLM.from_pretrained("/home/zs7353/Qwen2.5-1.5B-Instruct_model", local_files_only=True).to(device)
+    
+    text = tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=True
+    )
+    
+    model_inputs = tokenizer([text], return_tensors="pt").to(device)
+    
+    input_ids = model_inputs.input_ids[0]
+    input_length = len(input_ids)
+    
+    generated_ids = model.generate(
+        input_ids=model_inputs.input_ids,
+        attention_mask=model_inputs.attention_mask,
+        do_sample=True,
+        num_return_sequences=n,
+        max_new_tokens=max_tokens,
+        temperature=temperature,
+        pad_token_id=tokenizer.eos_token_id
+    )
+    
+    generated_ids = [output_ids[input_length:] for output_ids in generated_ids]
+    
+    responses = tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+    
+    outputs = []
+    for response in responses:
+        response = response.strip()
+        if stop:
+            for stop_seq in stop:
+                idx = response.find(stop_seq)
+                if idx != -1:
+                    response = response[:idx]
+                    break
+        outputs.append(response)
+    
+    return outputs
+
+
 def get_output(prompt, model, temperature=0.7, max_tokens=1000, n=1, stop=None) -> list:
-    if model == "gpt-4o" or model == "o1-mini":
-        messages = [{"role": "user", "content": prompt}]
-        global completion_tokens, prompt_tokens
-        outputs = []
-        while n > 0:
-            cnt = min(n, 20)
-            n -= cnt
+    messages = [{"role": "user", "content": prompt}]
+    outputs = []
+    while n > 0:
+        cnt = min(n, 20)
+        n -= cnt
+        if model == "gpt-4o" or model == "o1-mini":
+            global completion_tokens, prompt_tokens
             res = completions_gpt(model=model, messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt, stop=stop)
             outputs.extend([choice.message.content for choice in res.choices])
             completion_tokens += res.usage.completion_tokens
             prompt_tokens += res.usage.prompt_tokens
-        return outputs
-    
-    elif model == "Llama3.1-8B-Instruct":
-        messages = [{"role": "user", "content": prompt}]
-        outputs = []
-        while n > 0:
-            cnt = min(n, 20)
-            n -= cnt
-            res = completions_Llama(messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt, stop=stop)
+        elif model == "Llama-3.1-8B-Instruct" or model == 'Llama-3.2-3B-Instruct':
+            res = completions_Llama(model_name=model, messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt, stop=stop)
             outputs.extend(res)
-        return outputs
+        elif model == "Qwen2.5-1.5B-Instruct":
+            res = completions_qwen(messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt, stop=stop)
+            outputs.extend(res)            
+        else:
+            raise ValueError(f"Unimplemented model: {model}")
+    return outputs
     
 def usage(backend):
     global completion_tokens, prompt_tokens
@@ -108,6 +145,6 @@ def usage(backend):
         cost = completion_tokens / 1000 * 0.012 + prompt_tokens / 1000 * 0.003
     elif backend == "gpt-4o":
         cost = completion_tokens / 1000 * 0.01 + prompt_tokens / 1000 * 0.0025
-    elif backend == "Llama3.1-8B-Instruct":
+    else:
         cost = 0
     return {"completion_tokens": completion_tokens, "prompt_tokens": prompt_tokens, "cost": cost}
