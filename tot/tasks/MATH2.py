@@ -116,23 +116,14 @@ class Math2Task(Task):
         return prompt
 
     def value_outputs_unwrap(self, value_outputs: list) -> float:
-        value_scores = []
+        value_names = []
         for output in value_outputs:
-            evaluation = self.extract_from_text(output, ['Evaluation:'])
+            evaluation = self.extract_from_text(output, ['Evaluation:', 'Judgement:'])
             if evaluation:
-                evaluation = evaluation.strip().lower()
-                value_score = self.map_evaluation_to_score(evaluation)
-                value_scores.append(value_score)
-        # Average the scores
-        if value_scores:
-            return sum(value_scores) / len(value_scores)
-        else:
-            return 0.0
-
-    @staticmethod
-    def map_evaluation_to_score(evaluation: str) -> float:
+                value_names.append(evaluation.strip().lower())
         value_map = {'impossible': 0.001, 'likely': 1, 'sure': 20}
-        return value_map.get(evaluation, 0.0)
+        value = sum(value_map.get(name, 0) for name in value_names)
+        return value
 
     def get_in_context_example(self, skill: str) -> str:
         examples = self.skill_examples.get(skill, [])
