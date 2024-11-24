@@ -66,6 +66,7 @@ def solve(args, task, idx, to_print=True):
     if to_print: 
         print(ys)
     
+    final_values = [values[idx] for idx in select_ids]
     ys_with_values = list(zip(ys, final_values))
     ys_filtered = [y for y, v in ys_with_values if "Answer: " in y and v >= 20]
 
