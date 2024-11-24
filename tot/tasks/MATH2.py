@@ -57,6 +57,8 @@ class Math2Task(Task):
         problem = self.data[idx]['problem']
         correct_solution = self.data[idx]['solution']
         model_solution = self.extract_from_text(output, ['Answer:'])
+        if not model_solution:
+            model_solution = output
 
         # Use LLM-as-a-judge to judge correctness
         is_correct = self.llm_judge(problem, correct_solution, model_solution, model) # open models can give unreasonable judgements. Is there a way to resolve this issue?

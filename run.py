@@ -33,7 +33,7 @@ def run(args):
             cnt_correct += 1
         cur_acc = cnt_correct / (i - args.task_start_index + 1)
         print('current accuracy: ', cur_acc)
-        if args.backend() == 'o1-mini' or args.backend() == 'gpt-4o':
+        if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
             info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
         else:
             info.update({'idx': i, 'ys': ys, 'infos': infos, 'current accuracy': cur_acc})
@@ -43,7 +43,7 @@ def run(args):
     
     n = args.task_end_index - args.task_start_index
     print(cnt_correct / n)
-    if args.backend() == 'o1-mini' or args.backend() == 'gpt-4o':
+    if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
         print('usage_so_far', usage(args.backend))
 
 def parse_args():

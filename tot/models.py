@@ -43,11 +43,12 @@ def completions_Llama(model_name, messages, temperature=0.7, max_tokens=1000, n=
 
     outputs = []
     prompt = messages[0]['content']
+
     input_ids = tokenizer.encode(prompt, return_tensors='pt').to(device)
+    input_length = len(input_ids)
 
     generated_ids = model.generate(
-        input_ids=model_inputs.input_ids,
-        attention_mask=model_inputs.attention_mask,
+        input_ids=input_ids,
         do_sample=True,
         num_return_sequences=n,
         max_new_tokens=max_tokens,
