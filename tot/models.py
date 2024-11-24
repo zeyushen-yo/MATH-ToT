@@ -37,7 +37,7 @@ def completions_Llama(messages, temperature=0.7, max_tokens=1000, n=1, stop=None
         )
 
         tokenizer = AutoTokenizer.from_pretrained('meta-llama/Llama-3.1-8B-Instruct', token=hf_access_token)
-        model = AutoModelForCausalLM.from_pretrained('meta-llama/Llama-3.1-8B-Instruct', quantization_config=bnb_config, token=hf_access_token, device_map='auto')
+        model = AutoModelForCausalLM.from_pretrained('meta-llama/Llama-3.1-8B-Instruct', quantization_config=bnb_config, token=hf_access_token)
         
     prompt = ''
     for message in messages:
