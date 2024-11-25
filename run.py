@@ -12,7 +12,7 @@ def run(args):
     if args.naive_run:
         file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_{args.prompt_sample}_sample_{args.n_generate_sample}_start{args.task_start_index}_end{args.task_end_index}.json'
     else:
-        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.apply_skills}_{args.n_select_sample}_start{args.task_start_index}_end{args.task_end_index}.json'
+        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.n_select_sample}_{args.apply_skills}_start{args.task_start_index}_end{args.task_end_index}.json'
     os.makedirs(os.path.dirname(file), exist_ok=True)
 
     for i in range(args.task_start_index, args.task_end_index):
