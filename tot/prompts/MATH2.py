@@ -37,7 +37,7 @@ Your current step:
 Provide your answer in the following format: "Skill: [Your identified skill]".
 '''
 
-start_with_skill_prompt = '''Using the identified skill "{skill}", propose a possible first step to solve the following problem. You can refer to the example problem and its solution for guidance.
+start_with_skill_prompt = '''Using the identified skill "{skill}", propose a possible first step to solve the following problem. You can refer to the example problem and its solution for guidance. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you also need to show how you can do it.
 
 Problem: 
 {problem}
@@ -48,7 +48,15 @@ Example problem applying the identified skill:
 Provide your proposal in the following format: "First step: [Your first step]".
 '''
 
-propose_with_skill_prompt = '''Using the identified skill "{skill}", provide the most likely next step to solve the problem given your current step. You can refer to the example problem and its solution for guidance. 
+start_without_skill_prompt = '''Propose a possible first step to solve the following problem. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you also need to show how you can do it.
+
+Problem: 
+{problem}
+
+Provide your proposal in the following format: "First step: [Your first step]".
+'''
+
+propose_with_skill_prompt = '''Using the identified skill "{skill}", provide the most likely next step to solve the problem given your current step. You can refer to the example problem and its solution for guidance. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you also need to show how you can do it.
 
 If the current step leads to an answer / already contains an answer, provide the answer in the required format.
 
@@ -66,7 +74,7 @@ If you have found the answer, provide your answer in the following format: "Answ
 Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
 '''
 
-propose_without_skill_prompt = '''Provide the most likely next step to solve the problem given your current step.
+propose_without_skill_prompt = '''Provide the most likely next step to solve the problem given your current step. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you also need to show how you can do it.
 
 If the current step leads to an answer / already contains an answer, provide the answer in the required format.
 

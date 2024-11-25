@@ -130,9 +130,8 @@ class Math2Task(Task):
                     in_context_example=in_context_example
                 )
             else:
-                prompt = propose_without_skill_prompt.format(
-                    problem=problem,
-                    previous_step=previous_step
+                prompt = start_without_skill_prompt.format(
+                    problem=problem
                 )
         return prompt
 
