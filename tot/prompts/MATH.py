@@ -89,9 +89,9 @@ Problem:
 Current Step:
 {current_step}
 
-First, provide reasoning about the step's validity and potential to lead to a solution. Then, provide an overall evaluation in one word from the following options: impossible, possible, sure.
+First, provide reasoning about the step's validity and potential to lead to a solution. Then, provide an overall evaluation in one word from the following options: impossible, likely, sure.
 
-Provide your evaluation in the following format: "Evaluation: [Your evaluation]".
+Provide your evaluation in the following format: "Evaluation: [impossible/likely/sure]".
 '''
 
 value_last_step_prompt = '''Evaluate the likelihood of the following answer in being the correct answer to the problem.
@@ -102,7 +102,7 @@ Input:
 Answer: 
 {answer}
 
-First, explicitly go through some sanity checks on the answer. Then, provide an overall evaluation in one word from the following options: impossible, possible, sure.
+First, explicitly go through some sanity checks on the answer. Then, provide an overall evaluation in one word from the following options: impossible, likely, sure.
 
-Provide your evaluation in the following format: "Evaluation: [Your evaluation]".
+Provide your evaluation in the following format: "Evaluation: [impossible/likely/sure]".
 '''

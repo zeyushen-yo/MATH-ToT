@@ -102,6 +102,7 @@ def completions_qwen(messages, temperature=0.7, max_tokens=1000, n=1):
     for response in responses:
         response = response.strip()
         outputs.append(response)
+    
     return outputs
 
 

@@ -64,6 +64,15 @@ class MathTask(Task):
                 return match.group(1).strip()
         return ''
 
+    @staticmethod
+    def extract_one_word_after_pattern(text: str, prefixes: list) -> str:
+        for prefix in prefixes:
+            pattern = re.escape(prefix) + r'\s*\W*(\w+)'
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                return match.group(1).strip()
+        return ''
+
     # GPT might add punctuations after "Answer: "; make sure to remove such things
     @staticmethod
     def extract_number_or_expression(text):
@@ -158,7 +167,7 @@ class MathTask(Task):
     def value_outputs_unwrap(self, value_outputs: list) -> float:
         value_names = []
         for output in value_outputs:
-            evaluation = self.extract_from_text(output, ['Evaluation:', 'Judgement:'])
+            evaluation = self.extract_one_word_after_pattern(output, ['Evaluation:', 'Judgement:'])
             if evaluation:
                 value_names.append(evaluation.strip().lower())
         value_map = {'impossible': 0.001, 'likely': 1, 'sure': 20}

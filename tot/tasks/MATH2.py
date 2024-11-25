@@ -53,6 +53,15 @@ class Math2Task(Task):
                 return match.group(1).strip()
         return ''
 
+    @staticmethod
+    def extract_one_word_after_pattern(text: str, prefixes: list) -> str:
+        for prefix in prefixes:
+            pattern = re.escape(prefix) + r'\s*\W*(\w+)'
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                return match.group(1).strip()
+        return ''
+
     def extract_correct_answer(self, text):
         match = re.search(r'\\boxed\{(.+?)\}', text)
         if not match:
@@ -70,7 +79,7 @@ class Math2Task(Task):
         print(model_solution)
         print(correct_solution)
         # Use LLM-as-a-judge to judge correctness
-        is_correct = self.llm_judge(problem, correct_solution, model_solution, "o1-mini")
+        is_correct = self.llm_judge(problem, correct_solution, model_solution, model)
         print("Correctness judged by LLM: ", is_correct)
         return {'r': int(is_correct)}
 
@@ -80,7 +89,7 @@ class Math2Task(Task):
             correct_solution=correct_solution,
             model_solution=model_solution
         )
-        response = get_output(prompt, model=model, temperature=0)[0]
+        response = get_output(prompt, model=model, temperature=1e-9)[0]
         judgement = self.extract_from_text(response, ['Judgement:'])
         if judgement:
             judgement = judgement.strip().lower()
@@ -141,7 +150,7 @@ class Math2Task(Task):
     def value_outputs_unwrap(self, value_outputs: list) -> float:
         value_names = []
         for output in value_outputs:
-            evaluation = self.extract_from_text(output, ['Evaluation:', 'Judgement:'])
+            evaluation = self.extract_one_word_after_pattern(output, ['Evaluation:', 'Judgement:'])
             if evaluation:
                 value_names.append(evaluation.strip().lower())
         value_map = {'impossible': 0.001, 'likely': 1, 'sure': 20}

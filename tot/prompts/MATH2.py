@@ -89,9 +89,9 @@ Problem:
 Current Step:
 {current_step}
 
-First, provide reasoning about the step's validity and potential to lead to a solution. Then, provide an overall evaluation in one word from the following options: impossible, possible, sure.
+First, provide reasoning about the step's validity and potential to lead to a solution. Then, provide an overall evaluation in one word from the following options: impossible, likely, sure.
 
-Provide your evaluation in the following format: "Evaluation: [Your evaluation]".
+Provide your evaluation in the following format: "Evaluation: [impossible/likely/sure]".
 '''
 
 value_last_step_prompt = '''Evaluate the likelihood of the following answer in being the correct answer to the problem.
@@ -102,9 +102,9 @@ Input:
 Answer: 
 {answer}
 
-First, explicitly go through some sanity checks on the answer. Then, provide an overall evaluation in one word from the following options: impossible, possible, sure.
+First, explicitly go through some sanity checks on the answer. Then, provide an overall evaluation in one word from the following options: impossible, likely, sure.
 
-Provide your evaluation in the following format: "Evaluation: [Your evaluation]".
+Provide your evaluation in the following format: "Evaluation: [impossible/likely/sure]".
 '''
 
 judge_prompt = '''Given the following problem and two solutions, determine whether the second solution is correct with respect to the problem.
@@ -121,5 +121,5 @@ Model's Solution:
 As long as the model's solution contains an answer that is mathematically equivalent to the correct solution, it should be judged as correct. There might be irrevalent characters around the model's solution, and you should disregard them.
 However, the model's solution does have to explicit contain such an answer in order to be judged as correct. It cannot be an intermediate step without a real solution.
 
-Provide your judgement in the following format: "Judgement: [Correct/Wrong]".
+Provide your judgement in the following format: "Judgement: [correct/wrong]".
 '''
