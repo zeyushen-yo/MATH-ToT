@@ -55,7 +55,10 @@ class Math2Task(Task):
 
     def extract_correct_answer(self, text):
         match = re.search(r'\\boxed\{(.+?)\}', text)
-        return match.group(1).strip()
+        if not match:
+            return text
+        else:
+            return match.group(1).strip()
 
     def test_output(self, idx: int, output: str, model: str):
         problem = self.data[idx]['problem']
@@ -64,8 +67,8 @@ class Math2Task(Task):
         if not model_solution:
             model_solution = output
 
-        print(correct_solution)
         print(model_solution)
+        print(correct_solution)
         # Use LLM-as-a-judge to judge correctness
         is_correct = self.llm_judge(problem, correct_solution, model_solution, "o1-mini")
         print("Correctness judged by LLM: ", is_correct)
@@ -77,7 +80,7 @@ class Math2Task(Task):
             correct_solution=correct_solution,
             model_solution=model_solution
         )
-        response = get_output(prompt, model=model)[0]
+        response = get_output(prompt, model=model, temperature=0)[0]
         judgement = self.extract_from_text(response, ['Judgement:'])
         if judgement:
             judgement = judgement.strip().lower()

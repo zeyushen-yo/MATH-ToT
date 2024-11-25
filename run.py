@@ -59,7 +59,7 @@ def parse_args():
     args.add_argument('--prompt_sample', type=str, choices=['standard', 'cot'])  # only used when method_generate = sample, or naive_run
 
     args.add_argument('--method_select', type=str, choices=['sample', 'greedy'], default='greedy')
-    args.add_argument('--apply_skills', type=bool, default=False)
+    args.add_argument('--apply_skills', action='store_true')
     args.add_argument('--n_generate_sample', type=int, default=1) 
     args.add_argument('--n_evaluate_sample', type=int, default=1)
     args.add_argument('--n_select_sample', type=int, default=1)

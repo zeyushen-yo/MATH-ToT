@@ -118,7 +118,8 @@ Correct Solution:
 Model's Solution:
 {model_solution}
 
-Note that the model's solution has to explicitly contain an answer that is mathematically equivalent as the correct solution in order to be judged as correct.
+As long as the model's solution contains an answer that is mathematically equivalent to the correct solution, it should be judged as correct. There might be irrevalent characters around the model's solution, and you should disregard them.
+However, the model's solution does have to explicit contain such an answer in order to be judged as correct. It cannot be an intermediate step without a real solution.
 
 Provide your judgement in the following format: "Judgement: [Correct/Wrong]".
 '''

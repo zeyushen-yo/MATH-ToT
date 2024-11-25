@@ -175,7 +175,7 @@ gpt-4-turbo,"[function_composition_skills, number_theory_skills]"," If $f(x) = \
      x = 3^2 + 2 = 11 \text{ (integer)}
      \]
 
-Thus, the smallest integer \( x \) for which \( f(g(x)) \) is an integer is  $boxed{ x = 11} $."
+Thus, the smallest integer \( x \) for which \( f(g(x)) \) is an integer is  $\boxed{ x = 11} $."
 gpt-4-turbo,"[solving_linear_equation, number_theory_skills]",Making $a$ units of good A requires $(a-5)/3$ units of good C. Making $b$ units of good B requires $(2b-3)/5$ units of good D. The factory's supply chain only supplies integer units of goods C and D and requires using equal amounts of goods C and D. What is the minimum production of goods A and B so that no inventory is left?,"To find the minimum production of goods A and B that uses equal amounts of goods C and D, and leaves no inventory, we need to ensure the requirements for goods C and D, derived from A and B respectively, match. Given the expressions for how much of goods C and D are required:
 
 1. Units of good C needed for \(a\) units of good A: \( \frac{a-5}{3} \)
