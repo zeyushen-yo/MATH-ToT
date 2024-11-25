@@ -18,25 +18,22 @@ def run(args):
     for i in range(args.task_start_index, args.task_end_index):
         # solve
         if args.naive_run:
-            ys, info = naive_solve(args, task, i) 
+            y, info = naive_solve(args, task, i) 
         else:
-            ys, info = solve(args, task, i)
+            y, info = solve(args, task, i)
 
         # log
-        infos = [task.test_output(i, y, args.backend) for y in ys]
+        res = task.test_output(i, y, args.backend)
         
         # log main metric
-        accs = [info['r'] for info in infos]
-        # if more than half of the answers are correct, we declare that the ultimate answer is correct
-        # should we take the mode here (instead of requiring at least half of the answers to be correct)?
-        if sum(accs) * 2 >= len(accs):
-            cnt_correct += 1
+        acc = res['r']
+        cnt_correct += acc
         cur_acc = cnt_correct / (i - args.task_start_index + 1)
         print('current accuracy: ', cur_acc)
         if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
-            info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
+            info.update({'idx': i, 'y': y, 'infos': res, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
         else:
-            info.update({'idx': i, 'ys': ys, 'infos': infos, 'current accuracy': cur_acc})
+            info.update({'idx': i, 'y': y, 'infos': res, 'current accuracy': cur_acc})
         logs.append(info)
         with open(file, 'w') as f:
             json.dump(logs, f, indent=4)

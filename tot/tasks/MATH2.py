@@ -35,7 +35,6 @@ class Math2Task(Task):
                     self.skill_examples[skill] = examples
 
         self.steps = 8  # Set heuristically
-        self.stops = ['\n'] * self.steps
 
     def __len__(self) -> int:
         return len(self.data)

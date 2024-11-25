@@ -78,24 +78,19 @@ def solve(args, task, idx, to_print=True):
     
     final_values = [values[idx] for idx in select_ids]
     ys_with_values = list(zip(ys, final_values))
-    ys_filtered = [y for y, v in ys_with_values if "Answer: " in y and v >= 20]
+    # take the y with "Answer: " in it with the largest value
+    ys_with_answer = [(y, v) for y, v in ys_with_values if "Answer: " in y]
+    if ys_with_answer:
+        y_max = max(ys_with_answer, key=lambda x: x[1])[0]
+    else:
+        # If no y contains "Answer: ", take the y with the largest value
+        y_max = max(ys_with_values, key=lambda x: x[1])[0]
 
-    if not ys_filtered:
-        # if no y with "Answer: " in it has value >= 20, then take the y with "Answer: " in it with the largest value
-        ys_with_answer = [(y, v) for y, v in ys_with_values if "Answer: " in y]
-        if ys_with_answer:
-            y_max = max(ys_with_answer, key=lambda x: x[1])[0]
-            ys_filtered = [y_max]
-        else:
-            # If no y contains "Answer: ", take the y with the largest value
-            y_max = max(ys_with_values, key=lambda x: x[1])[0]
-            ys_filtered = [y_max]
-
-    return ys_filtered, {'steps': infos}
+    return y_max, {'steps': infos}
 
 def naive_solve(args, task, idx, to_print=True):
     global get_output
     get_output = partial(get_output, model=args.backend, temperature=args.temperature)
     x = task.get_input(idx)  # input
-    ys = get_samples(task, x, '', args.n_generate_sample, args.prompt_sample, stop=None)
-    return ys, {}
+    y = get_samples(task, x, '', args.n_generate_sample, args.prompt_sample, stop=None)[0]
+    return y, {}
