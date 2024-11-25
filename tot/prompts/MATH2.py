@@ -1,7 +1,15 @@
-naive_prompt = '''Solve the following problem.
+standard_prompt = '''Solve the following problem.
 
 Problem: 
-{input_problem}
+{problem}
+
+Provide your answer in the following format: "Answer: [Your answer]".
+'''
+
+cot_prompt = '''Solve the following problem by thinking step by step.
+
+Problem: 
+{problem}
 
 Provide your answer in the following format: "Answer: [Your answer]".
 '''
@@ -109,6 +117,8 @@ Correct Solution:
 
 Model's Solution:
 {model_solution}
+
+Note that the model's solution has to explicitly contain an answer that is mathematically equivalent as the correct solution in order to be judged as correct.
 
 Provide your judgement in the following format: "Judgement: [Correct/Wrong]".
 '''

@@ -10,7 +10,7 @@ def run(args):
     task = get_task(args.task)
     logs, cnt_correct = [], 0
     if args.naive_run:
-        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_{args.prompt_sample}_sample_{args.n_generate_sample}_start{args.task_start_index}_end{args.task_end_index}.json'
+        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_sample_{args.prompt_sample}_{args.n_generate_sample}_start{args.task_start_index}_end{args.task_end_index}.json'
     else:
         file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.n_select_sample}_{args.apply_skills}_start{args.task_start_index}_end{args.task_end_index}.json'
     os.makedirs(os.path.dirname(file), exist_ok=True)
@@ -56,6 +56,7 @@ def parse_args():
     args.add_argument('--task_end_index', type=int, default=100)
 
     args.add_argument('--naive_run', action='store_true')
+    args.add_argument('--prompt_sample', type=str, choices=['standard', 'cot'])  # only used when method_generate = sample, or naive_run
 
     args.add_argument('--method_select', type=str, choices=['sample', 'greedy'], default='greedy')
     args.add_argument('--apply_skills', type=bool, default=False)

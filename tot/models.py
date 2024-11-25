@@ -24,7 +24,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 def completions_gpt(**kwargs):
     return openai.chat.completions.create(**kwargs)
 
-def completions_Llama(model_name, messages, temperature=0.7, max_tokens=1000, n=1, stop=None):
+def completions_Llama(model_name, messages, temperature=0.7, max_tokens=1000, n=1):
     global tokenizer, model
     if tokenizer is None or model is None:
         bnb_config = BitsAndBytesConfig(
@@ -63,17 +63,11 @@ def completions_Llama(model_name, messages, temperature=0.7, max_tokens=1000, n=
     outputs = []
     for response in responses:
         response = response.strip()
-        if stop:
-            for stop_seq in stop:
-                idx = response.find(stop_seq)
-                if idx != -1:
-                    response = response[:idx]
-                    break
         outputs.append(response)
     
     return outputs
 
-def completions_qwen(messages, temperature=0.7, max_tokens=1000, n=1, stop=None):
+def completions_qwen(messages, temperature=0.7, max_tokens=1000, n=1):
     global tokenizer, model
     if tokenizer is None or model is None:
         tokenizer = AutoTokenizer.from_pretrained("/home/zs7353/Qwen2.5-1.5B-Instruct_tokenizer", local_files_only=True)
@@ -107,18 +101,11 @@ def completions_qwen(messages, temperature=0.7, max_tokens=1000, n=1, stop=None)
     outputs = []
     for response in responses:
         response = response.strip()
-        if stop:
-            for stop_seq in stop:
-                idx = response.find(stop_seq)
-                if idx != -1:
-                    response = response[:idx]
-                    break
         outputs.append(response)
-    print(outputs)
     return outputs
 
 
-def get_output(prompt, model, temperature=0.7, max_tokens=1000, n=1, stop=None) -> list:
+def get_output(prompt, model, temperature=0.7, max_tokens=1000, n=1) -> list:
     messages = [{"role": "user", "content": prompt}]
     outputs = []
     while n > 0:
@@ -126,15 +113,18 @@ def get_output(prompt, model, temperature=0.7, max_tokens=1000, n=1, stop=None) 
         n -= cnt
         if model == "gpt-4o" or model == "o1-mini":
             global completion_tokens, prompt_tokens
-            res = completions_gpt(model=model, messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt, stop=stop)
+            if model == "gpt-4o":
+                res = completions_gpt(model=model, messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt)
+            elif model == "o1-mini":
+                res = completions_gpt(model=model, messages=messages, n=cnt)
             outputs.extend([choice.message.content for choice in res.choices])
             completion_tokens += res.usage.completion_tokens
             prompt_tokens += res.usage.prompt_tokens
         elif model == "Llama-3.1-8B-Instruct" or model == 'Llama-3.2-3B-Instruct':
-            res = completions_Llama(model_name=model, messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt, stop=stop)
+            res = completions_Llama(model_name=model, messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt)
             outputs.extend(res)
         elif model == "Qwen2.5-1.5B-Instruct":
-            res = completions_qwen(messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt, stop=stop)
+            res = completions_qwen(messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt)
             outputs.extend(res)            
         else:
             raise ValueError(f"Unimplemented model: {model}")

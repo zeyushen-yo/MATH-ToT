@@ -7,7 +7,7 @@ def get_value(task, x, y, n_evaluate_sample, model, cache_value=True):
     value_prompt = task.value_prompt_wrap(x, y)
     if cache_value and value_prompt in task.value_cache:
         return task.value_cache[value_prompt]
-    value_outputs = get_output(value_prompt, n=n_evaluate_sample, model=model, stop=None)
+    value_outputs = get_output(value_prompt, n=n_evaluate_sample, model=model)
     value = task.value_outputs_unwrap(value_outputs)
     if cache_value:
         task.value_cache[value_prompt] = value
@@ -27,9 +27,19 @@ def get_values(task, x, ys, n_evaluate_sample, model, cache_value=True):
 
 def get_proposals(task, x, y, apply_skills, n_generate_sample, model): 
     propose_prompt = task.propose_prompt_wrap(apply_skills, x, model, y)
-    proposals = get_output(propose_prompt, n=n_generate_sample, model=model, stop=None)
+    proposals = get_output(propose_prompt, n=n_generate_sample, model=model)
     print(proposals)
     return proposals
+
+def get_samples(task, x, y, n_generate_sample, prompt_sample, stop):
+    if prompt_sample == 'standard':
+        prompt = task.standard_prompt_wrap(x, y)
+    elif prompt_sample == 'cot':
+        prompt = task.cot_prompt_wrap(x, y)
+    else:
+        raise ValueError(f'prompt_sample {prompt_sample} not recognized')
+    samples = get_output(prompt, n=n_generate_sample)
+    return [y + _ for _ in samples]
 
 def solve(args, task, idx, to_print=True):
     global get_output
@@ -87,6 +97,5 @@ def naive_solve(args, task, idx, to_print=True):
     global get_output
     get_output = partial(get_output, model=args.backend, temperature=args.temperature)
     x = task.get_input(idx)  # input
-    naive_prompt = task.naive_prompt_wrap(x, '')
-    ys = get_output(naive_prompt, n=args.n_generate_sample, model=args.backend, stop=None)
+    ys = get_samples(task, x, '', args.n_generate_sample, args.prompt_sample, stop=None)
     return ys, {}

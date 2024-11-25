@@ -175,3 +175,9 @@ class MathTask(Task):
         else:
             in_context_example = ''
         return in_context_example
+
+    def standard_prompt_wrap(self, x: str, y:str='') -> str:
+        return standard_prompt.format(problem=x) + y
+
+    def cot_prompt_wrap(self, x: str, y:str='') -> str:
+        return cot_prompt.format(problem=x) + y

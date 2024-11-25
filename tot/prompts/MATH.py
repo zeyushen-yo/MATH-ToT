@@ -1,9 +1,17 @@
-naive_prompt = '''Solve the following problem.
+standard_prompt = '''Solve the following problem.
 
 Problem: 
-{input_problem}
+{problem}
 
-Provide your answer in terms of a single expression or number in the following format: "Answer: [Your answer]".
+Provide your answer in the following format: "Answer: [Your answer]".
+'''
+
+cot_prompt = '''Solve the following problem by thinking step by step.
+
+Problem: 
+{problem}
+
+Provide your answer in the following format: "Answer: [Your answer]".
 '''
 
 skill_identification_prompt_start = '''Here is a list of skills:\n {aggregated_skills} \n for solving mathematical problems.
