@@ -10,7 +10,7 @@ def run(args):
     task = get_task(args.task)
     logs, cnt_correct = [], 0
     if args.naive_run:
-        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_sample_{args.prompt_sample}_{args.n_generate_sample}_start{args.task_start_index}_end{args.task_end_index}.json'
+        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_sample_{args.prompt_sample}_{args.n_generate_sample}_{args.apply_skills}_start{args.task_start_index}_end{args.task_end_index}.json'
     else:
         file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.n_select_sample}_{args.apply_skills}_start{args.task_start_index}_end{args.task_end_index}.json'
     os.makedirs(os.path.dirname(file), exist_ok=True)
@@ -18,22 +18,24 @@ def run(args):
     for i in range(args.task_start_index, args.task_end_index):
         # solve
         if args.naive_run:
-            y, info = naive_solve(args, task, i) 
+            ys, info = naive_solve(args, task, i) 
         else:
-            y, info = solve(args, task, i)
+            ys, info = solve(args, task, i)
 
         # log
-        res = task.test_output(i, y, args.backend)
+        infos = [task.test_output(i, y, args.backend) for y in ys]
+
+        # log main metric
+        accs = [_['r'] for _ in infos]
         
         # log main metric
-        acc = res['r']
-        cnt_correct += acc
+        cnt_correct += sum(accs) / len(accs)
         cur_acc = cnt_correct / (i - args.task_start_index + 1)
         print('current accuracy: ', cur_acc)
         if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
-            info.update({'idx': i, 'y': y, 'infos': res, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
+            info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
         else:
-            info.update({'idx': i, 'y': y, 'infos': res, 'current accuracy': cur_acc})
+            info.update({'idx': i, 'ys': ys, 'infos': infos, 'current accuracy': cur_acc})
         logs.append(info)
         with open(file, 'w') as f:
             json.dump(logs, f, indent=4)

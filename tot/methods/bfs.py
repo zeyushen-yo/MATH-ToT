@@ -31,11 +31,11 @@ def get_proposals(task, x, y, apply_skills, n_generate_sample, model):
     print(proposals)
     return proposals
 
-def get_samples(task, x, y, n_generate_sample, prompt_sample, stop):
+def get_samples(task, x, y, n_generate_sample, prompt_sample, apply_skills, model):
     if prompt_sample == 'standard':
-        prompt = task.standard_prompt_wrap(x, y)
+        prompt = task.standard_prompt_wrap(x, y, apply_skills, model)
     elif prompt_sample == 'cot':
-        prompt = task.cot_prompt_wrap(x, y)
+        prompt = task.cot_prompt_wrap(x, y, apply_skills, model)
     else:
         raise ValueError(f'prompt_sample {prompt_sample} not recognized')
     samples = get_output(prompt, n=n_generate_sample)
@@ -86,11 +86,11 @@ def solve(args, task, idx, to_print=True):
         # If no y contains "Answer: ", take the y with the largest value
         y_max = max(ys_with_values, key=lambda x: x[1])[0]
 
-    return y_max, {'steps': infos}
+    return [y_max], {'steps': infos}
 
 def naive_solve(args, task, idx, to_print=True):
     global get_output
     get_output = partial(get_output, model=args.backend, temperature=args.temperature)
     x = task.get_input(idx)  # input
-    y = get_samples(task, x, '', args.n_generate_sample, args.prompt_sample, stop=None)[0]
-    return y, {}
+    ys = get_samples(task, x, '', args.n_generate_sample, args.prompt_sample, args.apply_skills, args.backend)
+    return ys, {}

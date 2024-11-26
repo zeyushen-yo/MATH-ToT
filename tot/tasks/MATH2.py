@@ -78,7 +78,7 @@ class Math2Task(Task):
         print(model_solution)
         print(correct_solution)
         # Use LLM-as-a-judge to judge correctness
-        is_correct = self.llm_judge(problem, correct_solution, model_solution, model)
+        is_correct = self.llm_judge(problem, correct_solution, model_solution, "o1-mini")
         print("Correctness judged by LLM: ", is_correct)
         return {'r': int(is_correct)}
 
@@ -166,8 +166,24 @@ class Math2Task(Task):
             in_context_example = ''
         return in_context_example
 
-    def standard_prompt_wrap(self, x: str, y:str='') -> str:
-        return standard_prompt.format(problem=x) + y
+    def standard_prompt_wrap(self, x: str, y:str, apply_skills:bool, model:str) -> str:
+        if apply_skills:
+            skill_prompt = skill_identification_prompt_start.format(problem=x, aggregated_skills=self.aggregated_skills)
+            skill_response = get_output(skill_prompt, model=model)[0]
+            skill = self.extract_from_text(skill_response, ['Skill:']).strip()
 
-    def cot_prompt_wrap(self, x: str, y:str='') -> str:
-        return cot_prompt.format(problem=x) + y
+            in_context_example = self.get_in_context_example(skill)
+            return standard_with_skill_prompt.format(problem=x, skill=skill, in_context_example=in_context_example) + y
+        else:
+            return standard_prompt.format(problem=x) + y
+
+    def cot_prompt_wrap(self, x: str, y:str, apply_skills:bool, model:str) -> str:
+        if apply_skills:
+            skill_prompt = skill_identification_prompt_start.format(problem=x, aggregated_skills=self.aggregated_skills)
+            skill_response = get_output(skill_prompt, model=model)[0]
+            skill = self.extract_from_text(skill_response, ['Skill:']).strip()
+
+            in_context_example = self.get_in_context_example(skill)
+            return cot_with_skill_prompt.format(problem=x, skill=skill, in_context_example=in_context_example) + y
+        else:
+            return cot_prompt.format(problem=x) + y

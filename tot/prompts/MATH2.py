@@ -14,6 +14,28 @@ Problem:
 Provide your answer in the following format: "Answer: [Your answer]".
 '''
 
+standard_with_skill_prompt = '''Using the identified skill "{skill}", solve the following problem. You can refer to the example problem and its solution for guidance. 
+
+Problem: 
+{problem}
+
+Example problem applying the identified skill:
+{in_context_example}
+
+Provide your answer in the following format: "Answer: [Your answer]".
+'''
+
+cot_with_skill_prompt = '''Using the identified skill "{skill}", solve the following problem by thinking step by step. You can refer to the example problem and its solution for guidance.
+
+Problem: 
+{problem}
+
+Example problem applying the identified skill:
+{in_context_example}
+
+Provide your answer in the following format: "Answer: [Your answer]".
+'''
+
 skill_identification_prompt_start = '''Here is a list of skills:\n {aggregated_skills} \n for solving mathematical problems.
 
 Identify the most relevant mathematical skill from the list that can be used to solve the following problem. You must name the skill in exactly the same way as it appears in the list
