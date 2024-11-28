@@ -10,7 +10,7 @@ def run(args):
     task = get_task(args.task)
     logs, cnt_correct = [], 0
     if args.naive_run:
-        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_sample_{args.prompt_sample}_{args.n_generate_sample}_{args.apply_skills}_start{args.task_start_index}_end{args.task_end_index}.json'
+        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_sample_{args.prompt_sample}_{args.n_generate_sample}_apply_skills_{args.apply_skills}_decompose_problem_{args.decompose_problem}_start{args.task_start_index}_end{args.task_end_index}.json'
     else:
         file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.n_select_sample}_apply_skills_{args.apply_skills}_decompose_problem_{args.decompose_problem}_start{args.task_start_index}_end{args.task_end_index}.json'
     os.makedirs(os.path.dirname(file), exist_ok=True)
@@ -47,8 +47,8 @@ def run(args):
 
 def parse_args():
     args = argparse.ArgumentParser()
-    args.add_argument('--backend', type=str, choices=['o1-mini', 'gpt-4o', 'Llama-3.1-8B-Instruct', 'Llama-3.2-3B-Instruct', 'Qwen2.5-1.5B-Instruct', 'gpt-4-turbo'], default='Qwen2.5-1.5B-Instruct')
-    args.add_argument('--temperature', type=float, default=0.7) # only used for proposal; for value prompt, temperature is set as 1e-9
+    args.add_argument('--backend', type=str, choices=['o1-mini', 'gpt-4o', 'Llama-3.1-8B-Instruct', 'Llama-3.2-3B-Instruct', 'Qwen2.5-1.5B-Instruct', 'gpt-4o-mini'], default='gpt-4o-mini')
+    args.add_argument('--temperature', type=float, default=0.7) # only used for proposal; for value prompt, temperature is set as 0.1
 
     args.add_argument('--task', type=str, required=True, choices=['MATH', "MATH2"])
     args.add_argument('--task_start_index', type=int, default=0)

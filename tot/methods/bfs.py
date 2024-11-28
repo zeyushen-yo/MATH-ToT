@@ -31,11 +31,11 @@ def get_proposals(task, x, y, apply_skills, decompose_problem, n_generate_sample
     print(proposals)
     return proposals
 
-def get_samples(task, x, y, n_generate_sample, prompt_sample, apply_skills, model):
+def get_samples(task, x, y, n_generate_sample, prompt_sample, apply_skills, decompose_problem, model):
     if prompt_sample == 'standard':
-        prompt = task.standard_prompt_wrap(x, y, apply_skills, model)
+        prompt = task.standard_prompt_wrap(x, y, apply_skills, decompose_problem, model)
     elif prompt_sample == 'cot':
-        prompt = task.cot_prompt_wrap(x, y, apply_skills, model)
+        prompt = task.cot_prompt_wrap(x, y, apply_skills, decompose_problem, model)
     else:
         raise ValueError(f'prompt_sample {prompt_sample} not recognized')
     samples = get_output(prompt, n=n_generate_sample)
@@ -111,5 +111,5 @@ def naive_solve(args, task, idx, to_print=True):
     global get_output
     get_output = partial(get_output, model=args.backend, temperature=args.temperature)
     x = task.get_input(idx)  # input
-    ys = get_samples(task, x, '', args.n_generate_sample, args.prompt_sample, args.apply_skills, args.backend)
+    ys = get_samples(task, x, '', args.n_generate_sample, args.prompt_sample, args.apply_skills, args.decompose_problem, args.backend)
     return ys, {}

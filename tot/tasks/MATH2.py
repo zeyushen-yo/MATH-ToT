@@ -205,7 +205,7 @@ class Math2Task(Task):
             in_context_example = ''
         return in_context_example
 
-    def standard_prompt_wrap(self, x: str, y:str, apply_skills:bool, model:str) -> str:
+    def standard_prompt_wrap(self, x: str, y:str, apply_skills:bool, decompose_problem:bool, model:str) -> str:
         if apply_skills:
             skill_prompt = skill_identification_prompt_start.format(problem=x, aggregated_skills=self.aggregated_skills)
             skill_response = get_output(skill_prompt, model=model)[0]
@@ -213,10 +213,15 @@ class Math2Task(Task):
 
             in_context_example = self.get_in_context_example(skill)
             return standard_with_skill_prompt.format(problem=x, skill=skill, in_context_example=in_context_example) + y
+        elif decompose_problem:
+            simplified_problem = self.simplify_problem(x, '', model)
+            simplified_solution = self.solve_simplified_problem(simplified_problem, model)
+            in_context_example = f"Simplified Problem:\n{simplified_problem}\n\n Solution to Simplified Problem:\n{simplified_solution}\n"  
+            return standard_with_simplified_prompt.format(problem=x, in_context_example=in_context_example) + y          
         else:
             return standard_prompt.format(problem=x) + y
 
-    def cot_prompt_wrap(self, x: str, y:str, apply_skills:bool, model:str) -> str:
+    def cot_prompt_wrap(self, x: str, y:str, apply_skills:bool, decompose_problem:bool, model:str) -> str:
         if apply_skills:
             skill_prompt = skill_identification_prompt_start.format(problem=x, aggregated_skills=self.aggregated_skills)
             skill_response = get_output(skill_prompt, model=model)[0]
@@ -224,5 +229,10 @@ class Math2Task(Task):
 
             in_context_example = self.get_in_context_example(skill)
             return cot_with_skill_prompt.format(problem=x, skill=skill, in_context_example=in_context_example) + y
+        elif decompose_problem:
+            simplified_problem = self.simplify_problem(x, '', model)
+            simplified_solution = self.solve_simplified_problem(simplified_problem, model)
+            in_context_example = f"Simplified Problem:\n{simplified_problem}\n\n Solution to Simplified Problem:\n{simplified_solution}\n"  
+            return cot_with_simplified_prompt.format(problem=x, in_context_example=in_context_example) + y              
         else:
             return cot_prompt.format(problem=x) + y
