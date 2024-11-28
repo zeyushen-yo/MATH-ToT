@@ -133,7 +133,7 @@ If you have found the answer, provide your answer in the following format: "Answ
 Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
 '''
 
-simplify_problem_prompt = '''Simplify the following problem to make it easier to solve, while retaining its essential structure.
+simplify_problem_prompt = '''Simplify the following problem to make it easier to solve.
 
 Problem:
 {problem}
@@ -141,7 +141,7 @@ Problem:
 Provide the simplified problem in the following format: "Simplified Problem: [Your simplified problem]".
 '''
 
-simplify_problem_with_step_prompt = '''Given your current step in solving the problem, simplify the following problem to make it easier to solve, while retaining its essential structure.
+simplify_problem_with_step_prompt = '''Given your current step in solving the problem, simplify the following problem to make it easier to solve.
 
 Problem:
 {problem}
@@ -152,12 +152,10 @@ Your current step:
 Provide the simplified problem in the following format: "Simplified Problem: [Your simplified problem]".
 '''
 
-solve_simplified_problem_prompt = '''Solve the following simplified problem.
+solve_simplified_problem_prompt = '''Solve the following simplified problem. Your solution will be used for solving a harder version of this problem, so you should present your critical reasoning steps accurately and clearly.
 
 Simplified Problem:
 {simplified_problem}
-
-Provide the solution in the following format: "Solution: [Your solution]".
 '''
 
 propose_with_simplified_prompt = '''Using the simplified problem and its solution as an example, provide the most likely next step to solve the original problem given your current step.  Your step needs to be concrete. In other words, you not only need to propose what you can do, but you should actually do it.

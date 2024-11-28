@@ -115,7 +115,6 @@ class Math2Task(Task):
             simplified_problem=simplified_problem
         )
         simplified_solution = get_output(prompt, model=model)[0]
-        simplified_solution = self.extract_from_text(simplified_solution, ['Solution:']).strip()
         return simplified_solution
 
     def propose_prompt_wrap(self, apply_skills: bool, decompose_problem: bool, problem: str, model: str, previous_step: str = '') -> str:
