@@ -3,31 +3,31 @@ import numpy as np
 from functools import partial
 from tot.models import get_output
 
-def get_value(task, x, y, n_evaluate_sample, model, cache_value=True):
+def get_value(task, x, y, n_evaluate_sample, model, temperature, cache_value=True):
     value_prompt = task.value_prompt_wrap(x, y)
     if cache_value and value_prompt in task.value_cache:
         return task.value_cache[value_prompt]
-    value_outputs = get_output(value_prompt, n=n_evaluate_sample, model=model)
+    value_outputs = get_output(value_prompt, n=n_evaluate_sample, model=model, temperature=temperature)
     value = task.value_outputs_unwrap(value_outputs)
     if cache_value:
         task.value_cache[value_prompt] = value
     return value
 
-def get_values(task, x, ys, n_evaluate_sample, model, cache_value=True):
+def get_values(task, x, ys, n_evaluate_sample, model, temperature, cache_value=True):
     values = []
     local_value_cache = {}
     for y in ys:  # each partial output
         if y in local_value_cache:  # avoid duplicate candidates
             value = 0
         else:    
-            value = get_value(task, x, y, n_evaluate_sample, model=model, cache_value=cache_value)
+            value = get_value(task, x, y, n_evaluate_sample, model, temperature, cache_value=cache_value)
             local_value_cache[y] = value
         values.append(value)
     return values
 
-def get_proposals(task, x, y, apply_skills, n_generate_sample, model): 
+def get_proposals(task, x, y, apply_skills, n_generate_sample, model, temperature): 
     propose_prompt = task.propose_prompt_wrap(apply_skills, x, model, y)
-    proposals = get_output(propose_prompt, n=n_generate_sample, model=model)
+    proposals = get_output(propose_prompt, n=n_generate_sample, model=model, temperature=temperature)
     print(proposals)
     return proposals
 
@@ -43,7 +43,7 @@ def get_samples(task, x, y, n_generate_sample, prompt_sample, apply_skills, mode
 
 def solve(args, task, idx, to_print=True):
     global get_output
-    get_output = partial(get_output, model=args.backend, temperature=args.temperature)
+    get_output = partial(get_output, model=args.backend)
     x = task.get_input(idx)  # input
     ys = ['']  # current output candidates
     values = []
@@ -51,13 +51,13 @@ def solve(args, task, idx, to_print=True):
     ids = []
     for step in range(task.steps):
         # generation
-        new_ys = [get_proposals(task, x, y, args.apply_skills, args.n_generate_sample, args.backend) for y in ys]
+        new_ys = [get_proposals(task, x, y, args.apply_skills, args.n_generate_sample, args.backend, temperature=args.temperature) for y in ys]
         new_ys = list(itertools.chain(*new_ys))
         ids = list(range(len(new_ys)))
         # evaluation
-        values = get_values(task, x, new_ys, args.n_evaluate_sample, args.backend, args.n_evaluate_sample)
+        values = get_values(task, x, new_ys, args.n_evaluate_sample, args.backend, 1e-9)
 
-        selected_ids = [y for y in ids if values[y] >= 1]
+        selected_ids = [idx for idx in ids if values[idx] >= 1]
 
         if args.method_select == 'sample':
             if len(selected_ids) > args.n_select_sample:
@@ -79,10 +79,18 @@ def solve(args, task, idx, to_print=True):
             print(f'-- new_ys --: {sorted_new_ys}\n-- sol values --: {sorted_values}\n-- choices --: {select_new_ys}\n')
         
         infos.append({'step': step, 'x': x, 'ys': ys, 'new_ys': new_ys, 'values': values, 'select_new_ys': select_new_ys})
-        ys = select_new_ys
-    
-    if to_print: 
-        print(ys)
+        if select_new_ys:
+            ys = select_new_ys
+        else:
+            ys = ['']
+
+        # if the model is already sure about an answer, just output it
+        cur_values = [values[idx] for idx in select_ids]
+        ys_with_values = list(zip(ys, cur_values))
+        ys_with_answer_sure = [(y, v) for y, v in ys_with_values if "Answer: " in y and v >= 20]
+        if ys_with_answer_sure:
+            y_max = max(ys_with_answer_sure, key=lambda x: x[1])[0]
+            return [y_max], {'steps': infos}
     
     final_values = [values[idx] for idx in select_ids]
     ys_with_values = list(zip(ys, final_values))
