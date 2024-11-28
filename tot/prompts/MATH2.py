@@ -119,7 +119,7 @@ Problem:
 Current Step:
 {current_step}
 
-First, provide reasoning about the step's validity and potential to lead to a solution. Then, provide an overall evaluation in one word from the following options: impossible, likely, sure.
+First, explicitly check whether the computation and logic in this step are correct. Then, provide an overall evaluation in one word from the following options: impossible, likely, sure.
 
 Provide your evaluation in the following format: "Evaluation: [impossible/likely/sure]".
 '''

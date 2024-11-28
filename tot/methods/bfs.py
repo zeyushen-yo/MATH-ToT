@@ -57,12 +57,20 @@ def solve(args, task, idx, to_print=True):
         # evaluation
         values = get_values(task, x, new_ys, args.n_evaluate_sample, args.backend, args.n_evaluate_sample)
 
-        # selection
+        selected_ids = [y for y in ids if values[y] >= 1]
+
         if args.method_select == 'sample':
-            ps = np.array(values) / sum(values)
-            select_ids = np.random.choice(ids, size=args.n_select_sample, p=ps).tolist()
+            if len(selected_ids) > args.n_select_sample:
+                select_ids = np.random.choice(
+                    selected_ids, size=args.n_select_sample, replace=False
+                ).tolist()
+            else:
+                select_ids = selected_ids
         elif args.method_select == 'greedy':
-            select_ids = sorted(ids, key=lambda x: values[x], reverse=True)[:args.n_select_sample]
+            select_ids = sorted(
+                selected_ids, key=lambda x: values[x], reverse=True
+            )[:args.n_select_sample]
+
         select_new_ys = [new_ys[select_id] for select_id in select_ids]
 
         # log
