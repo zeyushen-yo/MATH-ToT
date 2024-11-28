@@ -59,7 +59,7 @@ Your current step:
 Provide your answer in the following format: "Skill: [Your identified skill]".
 '''
 
-start_with_skill_prompt = '''Using the identified skill "{skill}", propose a possible first step to solve the following problem. You can refer to the example problem and its solution for guidance. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you also need to show how you can do it.
+start_with_skill_prompt = '''Using the identified skill "{skill}", propose a possible first step to solve the following problem. You can refer to the example problem and its solution for guidance. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you should actually do it.
 
 Problem: 
 {problem}
@@ -70,7 +70,7 @@ Example problem applying the identified skill:
 Provide your proposal in the following format: "First step: [Your first step]".
 '''
 
-start_without_skill_prompt = '''Propose a possible first step to solve the following problem. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you also need to show how you can do it.
+start_without_skill_prompt = '''Propose a possible first step to solve the following problem. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you should actually do it.
 
 Problem: 
 {problem}
@@ -78,7 +78,7 @@ Problem:
 Provide your proposal in the following format: "First step: [Your first step]".
 '''
 
-propose_with_skill_prompt = '''Using the identified skill "{skill}", provide the most likely next step to solve the problem given your current step. You can refer to the example problem and its solution for guidance. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you also need to show how you can do it.
+propose_with_skill_prompt = '''Using the identified skill "{skill}", provide the most likely next step to solve the problem given your current step. You can refer to the example problem and its solution for guidance. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you should actually do it.
 
 If the current step leads to an answer / already contains an answer, provide the answer in the required format.
 

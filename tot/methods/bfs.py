@@ -49,7 +49,9 @@ def solve(args, task, idx, to_print=True):
     values = []
     infos = []
     ids = []
-    for step in range(task.steps):
+    step = 0
+    all_ys_with_answers = []
+    while True:
         # generation
         new_ys = [get_proposals(task, x, y, args.apply_skills, args.decompose_problem, args.n_generate_sample, args.backend, temperature=args.temperature) for y in ys]
         new_ys = list(itertools.chain(*new_ys))
@@ -83,26 +85,27 @@ def solve(args, task, idx, to_print=True):
         # if the model is already sure about an answer, just output it
         cur_values = [values[idx] for idx in select_ids]
         ys_with_values = list(zip(select_new_ys, cur_values))
-        ys_with_answer_sure = [(y, v) for y, v in ys_with_values if "Answer: " in y and v >= 20]
-        if ys_with_answer_sure:
+        ys_with_answer = [(y, v) for y, v in ys_with_values if "Answer:" in y]
+        all_ys_with_answers.extend(ys_with_answer)
+        ys_with_answer_sure = [(y, v) for y, v in ys_with_answer if v >= 20]
+        if ys_with_answer_sure and step <= task.steps:
             y_max = max(ys_with_answer_sure, key=lambda x: x[1])[0]
             return [y_max], {'steps': infos}
+
+        # exceed maximum number of steps
+        if step > task.steps:
+            if all_ys_with_answers:
+                y_max = max(all_ys_with_answers, key=lambda x: x[1])[0]
+                return [y_max], {'steps': infos}
+            else:
+                return [''], {'steps': infos}
 
         ys = select_new_ys
         if len(ys) < args.n_select_sample:
             ys.append('')
-    
-    final_values = [values[idx] for idx in select_ids]
-    ys_with_values = list(zip(ys, final_values))
-    # take the y with "Answer: " in it with the largest value
-    ys_with_answer = [(y, v) for y, v in ys_with_values if "Answer: " in y]
-    if ys_with_answer:
-        y_max = max(ys_with_answer, key=lambda x: x[1])[0]
-    else:
-        # If no y contains "Answer: ", take the y with the largest value
-        y_max = max(ys_with_values, key=lambda x: x[1])[0]
 
-    return [y_max], {'steps': infos}
+        step += 1
+
 
 def naive_solve(args, task, idx, to_print=True):
     global get_output
