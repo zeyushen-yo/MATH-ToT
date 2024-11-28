@@ -112,9 +112,9 @@ def get_output(prompt, model, temperature=0.7, max_tokens=1000, n=1) -> list:
     while n > 0:
         cnt = min(n, 20)
         n -= cnt
-        if model == "gpt-4o" or model == "o1-mini":
+        if model == "gpt-4o" or model == "o1-mini" or model == "gpt-4-turbo":
             global completion_tokens, prompt_tokens
-            if model == "gpt-4o":
+            if model == "gpt-4o" or model == "gpt-4-turbo":
                 res = completions_gpt(model=model, messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt)
             elif model == "o1-mini":
                 res = completions_gpt(model=model, messages=messages, n=cnt)

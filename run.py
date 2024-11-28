@@ -47,7 +47,7 @@ def run(args):
 
 def parse_args():
     args = argparse.ArgumentParser()
-    args.add_argument('--backend', type=str, choices=['o1-mini', 'gpt-4o', 'Llama-3.1-8B-Instruct', 'Llama-3.2-3B-Instruct', 'Qwen2.5-1.5B-Instruct'], default='Qwen2.5-1.5B-Instruct')
+    args.add_argument('--backend', type=str, choices=['o1-mini', 'gpt-4o', 'Llama-3.1-8B-Instruct', 'Llama-3.2-3B-Instruct', 'Qwen2.5-1.5B-Instruct', 'gpt-4-turbo'], default='Qwen2.5-1.5B-Instruct')
     args.add_argument('--temperature', type=float, default=0.7) # only used for proposal; for value prompt, temperature is set as 1e-9
 
     args.add_argument('--task', type=str, required=True, choices=['MATH', "MATH2"])
