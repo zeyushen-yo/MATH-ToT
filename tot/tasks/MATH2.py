@@ -96,7 +96,29 @@ class Math2Task(Task):
         else:
             return False
 
-    def propose_prompt_wrap(self, apply_skills: bool, problem: str, model: str, previous_step: str = '') -> str:
+    def simplify_problem(self, problem: str, previous_step: str, model: str) -> str:
+        if previous_step.strip():
+            prompt = simplify_problem_with_step_prompt.format(
+                problem=problem,
+                previous_step=previous_step
+            )
+        else:
+            prompt = simplify_problem_prompt.format(
+                problem=problem
+            )
+        simplified_problem = get_output(prompt, model=model)[0]
+        simplified_problem = self.extract_from_text(simplified_problem, ['Simplified Problem:']).strip()
+        return simplified_problem
+
+    def solve_simplified_problem(self, simplified_problem: str, model: str) -> str:
+        prompt = solve_simplified_problem_prompt.format(
+            simplified_problem=simplified_problem
+        )
+        simplified_solution = get_output(prompt, model=model)[0]
+        simplified_solution = self.extract_from_text(simplified_solution, ['Solution:']).strip()
+        return simplified_solution
+
+    def propose_prompt_wrap(self, apply_skills: bool, decompose_problem: bool, problem: str, model: str, previous_step: str = '') -> str:
         if previous_step.strip():
             if apply_skills:
                 skill_prompt = skill_identification_prompt.format(problem=problem, aggregated_skills=self.aggregated_skills, previous_step = previous_step)
@@ -108,6 +130,15 @@ class Math2Task(Task):
                     problem=problem,
                     previous_step=previous_step,
                     skill=skill,
+                    in_context_example=in_context_example
+                )
+            elif decompose_problem:
+                simplified_problem = self.simplify_problem(problem, previous_step, model)
+                simplified_solution = self.solve_simplified_problem(simplified_problem, model)
+                in_context_example = f"Simplified Problem:\n{simplified_problem}\n\n Solution to Simplified Problem:\n{simplified_solution}\n"
+                prompt = propose_with_simplified_prompt.format(
+                    problem=problem,
+                    previous_step=previous_step,
                     in_context_example=in_context_example
                 )
             else:
@@ -126,6 +157,14 @@ class Math2Task(Task):
                 prompt = start_with_skill_prompt.format(
                     problem=problem,
                     skill=skill,
+                    in_context_example=in_context_example
+                )
+            elif decompose_problem:
+                simplified_problem = self.simplify_problem(problem, previous_step, model)
+                simplified_solution = self.solve_simplified_problem(simplified_problem, model)
+                in_context_example = f"Simplified Problem:\n{simplified_problem}\n\n Solution to Simplified Problem:\n{simplified_solution}\n"
+                prompt = start_with_simplified_prompt.format(
+                    problem=problem,
                     in_context_example=in_context_example
                 )
             else:

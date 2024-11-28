@@ -114,7 +114,7 @@ class MathTask(Task):
     def naive_prompt_wrap(x: str, y:str='') -> str:
         return naive_prompt.format(problem=x) + y
     
-    def propose_prompt_wrap(self, apply_skills: bool, problem: str, model: str, previous_step: str = '') -> str:
+    def propose_prompt_wrap(self, apply_skills: bool, decompose_problem: bool, problem: str, model: str, previous_step: str = '') -> str:
         if previous_step.strip():
             if apply_skills:
                 skill_prompt = skill_identification_prompt.format(problem=problem, aggregated_skills=self.aggregated_skills, previous_step = previous_step)
@@ -184,7 +184,7 @@ class MathTask(Task):
         else:
             in_context_example = ''
         return in_context_example
-
+    
     def standard_prompt_wrap(self, x: str, y:str, apply_skills:bool, model:str) -> str:
         if apply_skills:
             skill_prompt = skill_identification_prompt_start.format(problem=x, aggregated_skills=self.aggregated_skills)

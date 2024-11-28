@@ -111,6 +111,62 @@ If you have found the answer, provide your answer in the following format: "Answ
 Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
 '''
 
+simplify_problem_prompt = '''Simplify the following problem to make it easier to solve, while retaining its essential structure.
+
+Problem:
+{problem}
+
+Provide the simplified problem in the following format: "Simplified Problem: [Your simplified problem]".
+'''
+
+simplify_problem_with_step_prompt = '''Given your current step in solving the problem, simplify the following problem to make it easier to solve, while retaining its essential structure.
+
+Problem:
+{problem}
+
+Your current step:
+{previous_step}
+
+Provide the simplified problem in the following format: "Simplified Problem: [Your simplified problem]".
+'''
+
+solve_simplified_problem_prompt = '''Solve the following simplified problem.
+
+Simplified Problem:
+{simplified_problem}
+
+Provide the solution in the following format: "Solution: [Your solution]".
+'''
+
+propose_with_simplified_prompt = '''Using the simplified problem and its solution as an example, provide the most likely next step to solve the original problem given your current step.
+
+Original Problem:
+{problem}
+
+Your current step:
+{previous_step}
+
+Example simplified problem and solution:
+{in_context_example}
+
+If the current step leads to an answer or already contains an answer, provide the answer in the required format.
+
+If you have found the answer, provide your answer in the following format: "Answer: [Your answer]".
+
+Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
+'''
+
+start_with_simplified_prompt = '''Using the simplified problem and its solution as an example, propose a possible first step to solve the original problem.
+
+Original Problem:
+{problem}
+
+Example simplified problem and solution:
+{in_context_example}
+
+Provide your proposal in the following format: "First step: [Your first step]".
+'''
+
 value_prompt = '''Evaluate the usefulness and correctness of the following step in solving the problem.
 
 Problem:

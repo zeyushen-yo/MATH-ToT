@@ -25,8 +25,8 @@ def get_values(task, x, ys, n_evaluate_sample, model, temperature, cache_value=T
         values.append(value)
     return values
 
-def get_proposals(task, x, y, apply_skills, n_generate_sample, model, temperature): 
-    propose_prompt = task.propose_prompt_wrap(apply_skills, x, model, y)
+def get_proposals(task, x, y, apply_skills, decompose_problem, n_generate_sample, model, temperature): 
+    propose_prompt = task.propose_prompt_wrap(apply_skills, decompose_problem, x, model, y)
     proposals = get_output(propose_prompt, n=n_generate_sample, model=model, temperature=temperature)
     print(proposals)
     return proposals
@@ -51,11 +51,11 @@ def solve(args, task, idx, to_print=True):
     ids = []
     for step in range(task.steps):
         # generation
-        new_ys = [get_proposals(task, x, y, args.apply_skills, args.n_generate_sample, args.backend, temperature=args.temperature) for y in ys]
+        new_ys = [get_proposals(task, x, y, args.apply_skills, args.decompose_problem, args.n_generate_sample, args.backend, temperature=args.temperature) for y in ys]
         new_ys = list(itertools.chain(*new_ys))
         ids = list(range(len(new_ys)))
         # evaluation
-        values = get_values(task, x, new_ys, args.n_evaluate_sample, args.backend, 1e-9)
+        values = get_values(task, x, new_ys, args.n_evaluate_sample, args.backend, 0.1)
 
         selected_ids = [idx for idx in ids if values[idx] >= 1]
 
