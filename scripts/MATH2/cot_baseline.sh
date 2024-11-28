@@ -1,4 +1,4 @@
-python3 run.py \
+python3.11 -B run.py \
     --backend gpt-4o \
     --task MATH2 \
     --task_start_index 0 \

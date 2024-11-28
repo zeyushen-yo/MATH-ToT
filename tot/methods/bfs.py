@@ -79,18 +79,18 @@ def solve(args, task, idx, to_print=True):
             print(f'-- new_ys --: {sorted_new_ys}\n-- sol values --: {sorted_values}\n-- choices --: {select_new_ys}\n')
         
         infos.append({'step': step, 'x': x, 'ys': ys, 'new_ys': new_ys, 'values': values, 'select_new_ys': select_new_ys})
-        if select_new_ys:
-            ys = select_new_ys
-        else:
-            ys = ['']
 
         # if the model is already sure about an answer, just output it
         cur_values = [values[idx] for idx in select_ids]
-        ys_with_values = list(zip(ys, cur_values))
+        ys_with_values = list(zip(select_new_ys, cur_values))
         ys_with_answer_sure = [(y, v) for y, v in ys_with_values if "Answer: " in y and v >= 20]
         if ys_with_answer_sure:
             y_max = max(ys_with_answer_sure, key=lambda x: x[1])[0]
             return [y_max], {'steps': infos}
+
+        ys = select_new_ys
+        if len(ys) < args.n_select_sample:
+            ys.append('')
     
     final_values = [values[idx] for idx in select_ids]
     ys_with_values = list(zip(ys, final_values))
