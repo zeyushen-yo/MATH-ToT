@@ -88,7 +88,7 @@ class Math2Task(Task):
             correct_solution=correct_solution,
             model_solution=model_solution
         )
-        response = get_output(prompt, model=model, temperature=1e-9)[0]
+        response = get_output(prompt, model="o1-mini", temperature=1e-9)[0]
         judgement = self.extract_from_text(response, ['Judgement:'])
         if judgement:
             judgement = judgement.strip().lower()
@@ -96,7 +96,7 @@ class Math2Task(Task):
         else:
             return False
 
-    def simplify_problem(self, problem: str, previous_step: str, model: str) -> str:
+    def simplify_problem(self, problem: str, previous_step: str, model: str, temperature: float) -> str:
         if previous_step.strip():
             prompt = simplify_problem_with_step_prompt.format(
                 problem=problem,
@@ -106,22 +106,22 @@ class Math2Task(Task):
             prompt = simplify_problem_prompt.format(
                 problem=problem
             )
-        simplified_problem = get_output(prompt, model=model)[0]
+        simplified_problem = get_output(prompt, model=model, temperature=temperature)[0]
         simplified_problem = self.extract_from_text(simplified_problem, ['Simplified Problem:']).strip()
         return simplified_problem
 
-    def solve_simplified_problem(self, simplified_problem: str, model: str) -> str:
+    def solve_simplified_problem(self, simplified_problem: str, model: str, temperature: float) -> str:
         prompt = solve_simplified_problem_prompt.format(
             simplified_problem=simplified_problem
         )
-        simplified_solution = get_output(prompt, model=model)[0]
+        simplified_solution = get_output(prompt, model=model, temperature=temperature)[0]
         return simplified_solution
 
-    def propose_prompt_wrap(self, apply_skills: bool, decompose_problem: bool, problem: str, model: str, previous_step: str = '') -> str:
+    def propose_prompt_wrap(self, apply_skills: bool, decompose_problem: bool, problem: str, model: str, temperature: float, previous_step: str = '') -> str:
         if previous_step.strip():
             if apply_skills:
-                skill_prompt = skill_identification_prompt.format(problem=problem, aggregated_skills=self.aggregated_skills, previous_step = previous_step)
-                skill_response = get_output(skill_prompt, model=model)[0]
+                skill_prompt = skill_identification_prompt.format(problem=problem, aggregated_skills=self.aggregated_skills, previous_step=previous_step)
+                skill_response = get_output(skill_prompt, model=model, temperature=temperature)[0]
                 skill = self.extract_from_text(skill_response, ['Skill:']).strip()
 
                 in_context_example = self.get_in_context_example(skill)
@@ -132,8 +132,8 @@ class Math2Task(Task):
                     in_context_example=in_context_example
                 )
             elif decompose_problem:
-                simplified_problem = self.simplify_problem(problem, previous_step, model)
-                simplified_solution = self.solve_simplified_problem(simplified_problem, model)
+                simplified_problem = self.simplify_problem(problem, previous_step, model, temperature)
+                simplified_solution = self.solve_simplified_problem(simplified_problem, model, temperature)
                 in_context_example = f"Simplified Problem:\n{simplified_problem}\n\n Solution to Simplified Problem:\n{simplified_solution}\n"
                 prompt = propose_with_simplified_prompt.format(
                     problem=problem,
@@ -149,7 +149,7 @@ class Math2Task(Task):
             # No previous steps; use starting prompt
             if apply_skills:
                 skill_prompt = skill_identification_prompt_start.format(problem=problem, aggregated_skills=self.aggregated_skills)
-                skill_response = get_output(skill_prompt, model=model)[0]
+                skill_response = get_output(skill_prompt, model=model, temperature=temperature)[0]
                 skill = self.extract_from_text(skill_response, ['Skill:']).strip()
 
                 in_context_example = self.get_in_context_example(skill)
@@ -159,8 +159,8 @@ class Math2Task(Task):
                     in_context_example=in_context_example
                 )
             elif decompose_problem:
-                simplified_problem = self.simplify_problem(problem, previous_step, model)
-                simplified_solution = self.solve_simplified_problem(simplified_problem, model)
+                simplified_problem = self.simplify_problem(problem, previous_step, model, temperature)
+                simplified_solution = self.solve_simplified_problem(simplified_problem, model, temperature)
                 in_context_example = f"Simplified Problem:\n{simplified_problem}\n\n Solution to Simplified Problem:\n{simplified_solution}\n"
                 prompt = start_with_simplified_prompt.format(
                     problem=problem,
@@ -204,33 +204,33 @@ class Math2Task(Task):
             in_context_example = ''
         return in_context_example
 
-    def standard_prompt_wrap(self, x: str, y:str, apply_skills:bool, decompose_problem:bool, model:str) -> str:
+    def standard_prompt_wrap(self, x: str, y:str, apply_skills:bool, decompose_problem:bool, model:str, temperature:float) -> str:
         if apply_skills:
             skill_prompt = skill_identification_prompt_start.format(problem=x, aggregated_skills=self.aggregated_skills)
-            skill_response = get_output(skill_prompt, model=model)[0]
+            skill_response = get_output(skill_prompt, model=model, temperature=temperature)[0]
             skill = self.extract_from_text(skill_response, ['Skill:']).strip()
 
             in_context_example = self.get_in_context_example(skill)
             return standard_with_skill_prompt.format(problem=x, skill=skill, in_context_example=in_context_example) + y
         elif decompose_problem:
-            simplified_problem = self.simplify_problem(x, '', model)
-            simplified_solution = self.solve_simplified_problem(simplified_problem, model)
+            simplified_problem = self.simplify_problem(x, '', model, temperature)
+            simplified_solution = self.solve_simplified_problem(simplified_problem, model, temperature)
             in_context_example = f"Simplified Problem:\n{simplified_problem}\n\n Solution to Simplified Problem:\n{simplified_solution}\n"  
             return standard_with_simplified_prompt.format(problem=x, in_context_example=in_context_example) + y          
         else:
             return standard_prompt.format(problem=x) + y
 
-    def cot_prompt_wrap(self, x: str, y:str, apply_skills:bool, decompose_problem:bool, model:str) -> str:
+    def cot_prompt_wrap(self, x: str, y:str, apply_skills:bool, decompose_problem:bool, model:str, temperature:float) -> str:
         if apply_skills:
             skill_prompt = skill_identification_prompt_start.format(problem=x, aggregated_skills=self.aggregated_skills)
-            skill_response = get_output(skill_prompt, model=model)[0]
+            skill_response = get_output(skill_prompt, model=model, temperature=temperature)[0]
             skill = self.extract_from_text(skill_response, ['Skill:']).strip()
 
             in_context_example = self.get_in_context_example(skill)
             return cot_with_skill_prompt.format(problem=x, skill=skill, in_context_example=in_context_example) + y
         elif decompose_problem:
-            simplified_problem = self.simplify_problem(x, '', model)
-            simplified_solution = self.solve_simplified_problem(simplified_problem, model)
+            simplified_problem = self.simplify_problem(x, '', model, temperature)
+            simplified_solution = self.solve_simplified_problem(simplified_problem, model, temperature)
             in_context_example = f"Simplified Problem:\n{simplified_problem}\n\n Solution to Simplified Problem:\n{simplified_solution}\n"  
             return cot_with_simplified_prompt.format(problem=x, in_context_example=in_context_example) + y              
         else:

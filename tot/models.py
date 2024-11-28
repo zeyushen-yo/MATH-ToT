@@ -24,7 +24,7 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 def completions_gpt(**kwargs):
     return openai.chat.completions.create(**kwargs)
 
-def completions_Llama(model_name, messages, temperature=0.7, max_tokens=1000, n=1):
+def completions_Llama(model_name, messages, temperature, max_tokens=5000, n=1):
     global tokenizer, model
     if tokenizer is None or model is None:
         bnb_config = BitsAndBytesConfig(
@@ -67,7 +67,7 @@ def completions_Llama(model_name, messages, temperature=0.7, max_tokens=1000, n=
     
     return outputs
 
-def completions_qwen(messages, temperature=0.7, max_tokens=1000, n=1):
+def completions_qwen(messages, temperature, max_tokens=5000, n=1):
     global tokenizer, model
     if tokenizer is None or model is None:
         tokenizer = AutoTokenizer.from_pretrained("/home/zs7353/Qwen2.5-1.5B-Instruct_tokenizer", local_files_only=True)
@@ -106,7 +106,7 @@ def completions_qwen(messages, temperature=0.7, max_tokens=1000, n=1):
     return outputs
 
 
-def get_output(prompt, model, temperature=0.7, max_tokens=1000, n=1) -> list:
+def get_output(prompt, model, temperature, max_tokens=5000, n=1) -> list:
     messages = [{"role": "user", "content": prompt}]
     outputs = []
     while n > 0:
