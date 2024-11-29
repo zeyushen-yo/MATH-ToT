@@ -1,0 +1,6 @@
+Warning: OPENAI_API_KEY is not set
+Namespace(backend='Llama-3.2-3B-Instruct', temperature=0.7, task='MATH2', task_start_index=0, task_end_index=100, naive_run=False, prompt_sample=None, method_select='greedy', apply_skills=False, decompose_problem=True, n_generate_sample=3, n_evaluate_sample=2, n_select_sample=2)
+Loading Llama-3.2-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:08<00:08,  8.80s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.29s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:11<00:00,  5.82s/it]
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+slurmstepd: error: *** JOB 60662418 ON della-l08g6 CANCELLED AT 2024-11-28T17:10:51 DUE TO TIME LIMIT ***

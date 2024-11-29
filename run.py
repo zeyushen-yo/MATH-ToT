@@ -6,6 +6,11 @@ from tot.tasks import get_task
 from tot.methods.bfs import solve, naive_solve
 from tot.models import usage
 
+from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+import torch
+
+from logger_config import logger
+
 def run(args):
     task = get_task(args.task)
     logs, cnt_correct = [], 0
@@ -15,35 +20,71 @@ def run(args):
         file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.n_select_sample}_apply_skills_{args.apply_skills}_decompose_problem_{args.decompose_problem}_start{args.task_start_index}_end{args.task_end_index}_retry.json'
     os.makedirs(os.path.dirname(file), exist_ok=True)
 
+    global tokenizer, model
+    bnb_config = BitsAndBytesConfig(
+        load_in_4bit=True,  # Set to True for 4-bit quantization
+        bnb_4bit_use_double_quant=True,
+        bnb_4bit_quant_type='nf4',
+        bnb_4bit_compute_dtype=torch.float16  # You can also try torch.bfloat16
+    )
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    name = args.backend
+    if args.backend == "Llama-3.1-8B-Instruct":
+        print("Loading Llama-3.1-8B-Instruct")
+        tokenizer = AutoTokenizer.from_pretrained(f'/scratch/gpfs/jx0800/Llama-3.1-8B-Instruct')
+        model = AutoModelForCausalLM.from_pretrained(f'/scratch/gpfs/jx0800/Llama-3.1-8B-Instruct', quantization_config=bnb_config)
+    elif args.backend == "Llama-3.2-3B-Instruct":
+        print("Loading Llama-3.2-3B-Instruct")
+        tokenizer = AutoTokenizer.from_pretrained('/scratch/gpfs/jx0800/Llama-3.2-3B-Instruct')
+        model = AutoModelForCausalLM.from_pretrained('/scratch/gpfs/jx0800/Llama-3.2-3B-Instruct').to(device)
+    elif args.backend == "Qwen2.5-1.5B-Instruct":
+        print("Loading Qwen2.5-1.5B-Instruct")
+        tokenizer = AutoTokenizer.from_pretrained("/scratch/gpfs/jx0800/Qwen2.5-1.5B-Instruct")
+        model = AutoModelForCausalLM.from_pretrained("/scratch/gpfs/jx0800/Qwen2.5-1.5B-Instruct").to(device)
+    
+    model_answers = []
     for i in range(args.task_start_index, args.task_end_index):
         # solve
         if args.naive_run:
-            ys, info = naive_solve(args, task, i) 
+            ys, info = naive_solve(model, tokenizer, name, args, task, i) 
         else:
-            ys, info = solve(args, task, i)
+            logger.info("solve start")
+            logger.info(f"Task {i}")
+            ys, info = solve(model, tokenizer, name, args, task, i)
 
         # log
-        infos = [task.test_output(i, y, args.backend) for y in ys]
+        for y in ys:
+            model_answer = task.extract_from_text(y, ['Answer:'])
+            if not model_answer:
+                model_answer = y
+            model_answers.append(model_answer)
+        logger.info(f"Task {i} done")
 
-        # log main metric
-        accs = [_['r'] for _ in infos]
+    with open(file, 'w') as f:
+        json.dump(model_answers, f, indent=4)
+
+    logger.info(f"Task {args.task_start_index} to {args.task_end_index} done")   
+    #     infos = [task.test_output(i, y, args.backend) for y in ys]
+
+    #     # log main metric
+    #     accs = [_['r'] for _ in infos]
         
-        # log main metric
-        cnt_correct += sum(accs) / len(accs)
-        cur_acc = cnt_correct / (i - args.task_start_index + 1)
-        print('current accuracy: ', cur_acc)
-        if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
-            info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
-        else:
-            info.update({'idx': i, 'ys': ys, 'infos': infos, 'current accuracy': cur_acc})
-        logs.append(info)
-        with open(file, 'w') as f:
-            json.dump(logs, f, indent=4)
+    #     # log main metric
+    #     cnt_correct += sum(accs) / len(accs)
+    #     cur_acc = cnt_correct / (i - args.task_start_index + 1)
+    #     print('current accuracy: ', cur_acc)
+    #     if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
+    #         info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
+    #     else:
+    #         info.update({'idx': i, 'ys': ys, 'infos': infos, 'current accuracy': cur_acc})
+    #     logs.append(info)
+    #     with open(file, 'w') as f:
+    #         json.dump(logs, f, indent=4)
     
-    n = args.task_end_index - args.task_start_index
-    print(cnt_correct / n)
-    if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
-        print('usage_so_far', usage(args.backend))
+    # n = args.task_end_index - args.task_start_index
+    # print(cnt_correct / n)
+    # if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
+    #     print('usage_so_far', usage(args.backend))
 
 def parse_args():
     args = argparse.ArgumentParser()

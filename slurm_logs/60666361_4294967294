@@ -1,0 +1,72 @@
+/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/transformers/generation/utils.py:2097: UserWarning: You are calling .generate() with the `input_ids` being on a device type different than your model's device. `input_ids` is on cuda, whereas the model is on cpu. You may experience unexpected behaviors or slower generation. Please make sure that you have put `input_ids` to the correct device by calling for example input_ids = input_ids.to('cpu') before running `.generate()`.
+  warnings.warn(
+Warning: OPENAI_API_KEY is not set
+Namespace(backend='Qwen2.5-1.5B-Instruct', temperature=0.7, task='MATH2', task_start_index=0, task_end_index=10, naive_run=False, prompt_sample=None, method_select='greedy', apply_skills=False, decompose_problem=True, n_generate_sample=3, n_evaluate_sample=2, n_select_sample=2)
+Loading Qwen2.5-1.5B-Instruct
+Traceback (most recent call last):
+  File "/home/jx0800/MATH-ToT/run.py", line 103, in <module>
+    run(args)
+  File "/home/jx0800/MATH-ToT/run.py", line 52, in run
+    ys, info = solve(model, tokenizer, name, args, task, i)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/methods/bfs.py", line 59, in solve
+    new_ys = [get_proposals(model, tokenizer, name, task, x, y, args.apply_skills, args.decompose_problem, args.n_generate_sample, temperature=args.temperature) for y in ys]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/methods/bfs.py", line 59, in <listcomp>
+    new_ys = [get_proposals(model, tokenizer, name, task, x, y, args.apply_skills, args.decompose_problem, args.n_generate_sample, temperature=args.temperature) for y in ys]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/methods/bfs.py", line 31, in get_proposals
+    propose_prompt = task.propose_prompt_wrap(model, tokenizer, name, apply_skills, decompose_problem, x, temperature, y)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/tasks/MATH2.py", line 162, in propose_prompt_wrap
+    simplified_problem = self.simplify_problem(model, tokenizer, name, problem, previous_step, temperature)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/tasks/MATH2.py", line 109, in simplify_problem
+    simplified_problem = get_output(model, tokenizer, name, prompt, temperature=temperature)[0]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/models.py", line 98, in get_output
+    res = completions_qwen(model, tokenizer, messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/models.py", line 66, in completions_qwen
+    generated_ids = model.generate(
+                    ^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/transformers/generation/utils.py", line 2215, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/transformers/generation/utils.py", line 3206, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 1164, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 854, in forward
+    inputs_embeds = self.embed_tokens(input_ids)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/torch/nn/modules/sparse.py", line 190, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "/home/jx0800/.conda/envs/tot/lib/python3.11/site-packages/torch/nn/functional.py", line 2551, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument index in method wrapper_CUDA__index_select)

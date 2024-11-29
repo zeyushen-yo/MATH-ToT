@@ -1,0 +1,28 @@
+Warning: OPENAI_API_KEY is not set
+Namespace(backend='Llama-3.2-3B-Instruct', temperature=0.7, task='MATH2', task_start_index=0, task_end_index=100, naive_run=False, prompt_sample=None, method_select='greedy', apply_skills=False, decompose_problem=True, n_generate_sample=3, n_evaluate_sample=2, n_select_sample=2)
+Loading Llama-3.2-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.91s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.73s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.90s/it]
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+generation
+completions_Llama generating
+completions_Llama generated
+completions_Llama decoded
+completions_Llama generating
+completions_Llama generated
+completions_Llama decoded
+Traceback (most recent call last):
+  File "/home/jx0800/MATH-ToT/run.py", line 99, in <module>
+    run(args)
+  File "/home/jx0800/MATH-ToT/run.py", line 48, in run
+    ys, info = solve(model, tokenizer, name, args, task, i)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/methods/bfs.py", line 57, in solve
+    new_ys = [get_proposals(model, tokenizer, name, task, x, y, args.apply_skills, args.decompose_problem, args.n_generate_sample, temperature=args.temperature) for y in ys]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/methods/bfs.py", line 57, in <listcomp>
+    new_ys = [get_proposals(model, tokenizer, name, task, x, y, args.apply_skills, args.decompose_problem, args.n_generate_sample, temperature=args.temperature) for y in ys]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jx0800/MATH-ToT/tot/methods/bfs.py", line 30, in get_proposals
+    proposals = get_output(propose_prompt, n=n_generate_sample, temperature=temperature)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: get_output() got multiple values for argument 'model'
