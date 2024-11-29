@@ -141,7 +141,7 @@ Problem:
 Provide the simplified problem in the following format: "Simplified Problem: [Your simplified problem]".
 '''
 
-simplify_problem_with_step_prompt = '''Given your current step in solving the problem, generate a simplified version of this problem that is easier to solve.
+simplify_problem_with_step_prompt = '''Generate a simplified version of this problem that is easier to solve given your current step in solving the problem.
 
 Problem:
 {problem}
