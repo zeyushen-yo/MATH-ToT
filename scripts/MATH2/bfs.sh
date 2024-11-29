@@ -1,7 +1,7 @@
 python3.11 -B run.py \
-    --backend Claude-3.5-Sonnet \
+    --backend gpt-4o-mini \
     --task MATH2 \
-    --task_start_index 80 \
+    --task_start_index 0 \
     --task_end_index 100 \
     --method_select greedy \
     --decompose_problem \

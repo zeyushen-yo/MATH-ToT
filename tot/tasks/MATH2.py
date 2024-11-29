@@ -101,19 +101,25 @@ class Math2Task(Task):
             prompt = simplify_problem_with_step_prompt.format(
                 problem=problem,
                 previous_step=previous_step
-            )
+            )               
         else:
             prompt = simplify_problem_prompt.format(
                 problem=problem
-            )
+            )               
         simplified_problem = get_output(prompt, model=model, temperature=temperature)[0]
         simplified_problem = self.extract_from_text(simplified_problem, ['Simplified Problem:']).strip()
         return simplified_problem
 
     def solve_simplified_problem(self, simplified_problem: str, model: str, temperature: float) -> str:
-        prompt = solve_simplified_problem_prompt.format(
-            simplified_problem=simplified_problem
-        )
+        if model == "o1-mini":
+            #o1-mini often flag prompts as "violating usage policy", needs to be dealt with separately
+            prompt = solve_simplified_problem_prompt_o1.format(
+                simplified_problem=simplified_problem
+            )
+        else:
+            prompt = solve_simplified_problem_prompt.format(
+                simplified_problem=simplified_problem
+            )            
         simplified_solution = get_output(prompt, model=model, temperature=temperature)[0]
         return simplified_solution
 
@@ -139,7 +145,7 @@ class Math2Task(Task):
                     problem=problem,
                     previous_step=previous_step,
                     in_context_example=in_context_example
-                )
+                )                    
             else:
                 prompt = propose_without_skill_prompt.format(
                     problem=problem,
@@ -165,7 +171,7 @@ class Math2Task(Task):
                 prompt = start_with_simplified_prompt.format(
                     problem=problem,
                     in_context_example=in_context_example
-                )
+                )                    
             else:
                 prompt = start_without_skill_prompt.format(
                     problem=problem

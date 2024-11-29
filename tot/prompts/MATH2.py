@@ -133,7 +133,7 @@ If you have found the answer, provide your answer in the following format: "Answ
 Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
 '''
 
-simplify_problem_prompt = '''Simplify the following problem to make it easier to solve.
+simplify_problem_prompt = '''Generate a simplified version of this problem that is easier to solve.
 
 Problem:
 {problem}
@@ -141,7 +141,7 @@ Problem:
 Provide the simplified problem in the following format: "Simplified Problem: [Your simplified problem]".
 '''
 
-simplify_problem_with_step_prompt = '''Given your current step in solving the problem, simplify the following problem to make it easier to solve.
+simplify_problem_with_step_prompt = '''Given your current step in solving the problem, generate a simplified version of this problem that is easier to solve.
 
 Problem:
 {problem}
@@ -152,7 +152,13 @@ Your current step:
 Provide the simplified problem in the following format: "Simplified Problem: [Your simplified problem]".
 '''
 
-solve_simplified_problem_prompt = '''Solve the following simplified problem. Your solution will be used for solving a harder version of this problem, so you should present your critical reasoning steps accurately and clearly.
+solve_simplified_problem_prompt = '''Solve the following simplified version of a problem. Your solution will be used for solving a harder version of this problem, so you should present your critical reasoning steps accurately and clearly.
+
+Simplified Problem:
+{simplified_problem}
+'''
+
+solve_simplified_problem_prompt_o1 = '''Solve the following simplified version of a problem.
 
 Simplified Problem:
 {simplified_problem}
