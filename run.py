@@ -12,7 +12,7 @@ def run(args):
     if args.naive_run:
         file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_sample_{args.prompt_sample}_{args.n_generate_sample}_apply_skills_{args.apply_skills}_decompose_problem_{args.decompose_problem}_start{args.task_start_index}_end{args.task_end_index}.json'
     else:
-        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.n_select_sample}_apply_skills_{args.apply_skills}_decompose_problem_{args.decompose_problem}_start{args.task_start_index}_end{args.task_end_index}.json'
+        file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.n_select_sample}_apply_skills_{args.apply_skills}_decompose_problem_{args.decompose_problem}_start{args.task_start_index}_end{args.task_end_index}_retry.json'
     os.makedirs(os.path.dirname(file), exist_ok=True)
 
     for i in range(args.task_start_index, args.task_end_index):
@@ -32,7 +32,7 @@ def run(args):
         cnt_correct += sum(accs) / len(accs)
         cur_acc = cnt_correct / (i - args.task_start_index + 1)
         print('current accuracy: ', cur_acc)
-        if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
+        if args.backend == 'o1-mini' or args.backend == 'gpt-4o' or args.backend == 'gpt-4o-mini':
             info.update({'idx': i, 'ys': ys, 'infos': infos, 'usage_so_far': usage(args.backend), 'current accuracy': cur_acc})
         else:
             info.update({'idx': i, 'ys': ys, 'infos': infos, 'current accuracy': cur_acc})
@@ -42,12 +42,12 @@ def run(args):
     
     n = args.task_end_index - args.task_start_index
     print(cnt_correct / n)
-    if args.backend == 'o1-mini' or args.backend == 'gpt-4o':
+    if args.backend == 'o1-mini' or args.backend == 'gpt-4o' or args.backend == 'gpt-4o-mini':
         print('usage_so_far', usage(args.backend))
 
 def parse_args():
     args = argparse.ArgumentParser()
-    args.add_argument('--backend', type=str, choices=['o1-mini', 'gpt-4o', 'Llama-3.1-8B-Instruct', 'Llama-3.2-3B-Instruct', 'Qwen2.5-1.5B-Instruct', 'gpt-4o-mini'], default='gpt-4o-mini')
+    args.add_argument('--backend', type=str, choices=['o1-mini', 'gpt-4o', 'Llama-3.1-8B-Instruct', 'Llama-3.2-3B-Instruct', 'Qwen2.5-1.5B-Instruct', 'gpt-4o-mini', 'Claude-3.5-Sonnet'], default='Claude-3.5-Sonnet')
     args.add_argument('--temperature', type=float, default=0.7) # only used for proposal; for value prompt, temperature is set as 0.1
 
     args.add_argument('--task', type=str, required=True, choices=['MATH', "MATH2"])

@@ -1,5 +1,6 @@
 import os
 import openai
+import anthropic
 
 import torch
 torch.cuda.empty_cache()
@@ -11,11 +12,17 @@ completion_tokens = prompt_tokens = 0
 
 api_key = os.getenv("OPENAI_API_KEY", "")
 hf_access_token = os.getenv("HF_ACCESS_TOKEN", "")
+anthropic_api_key = os.getenv("ANTHROPIC_API_KEY", "")
 
 if api_key != "":
     openai.api_key = api_key
 else:
     print("Warning: OPENAI_API_KEY is not set")
+
+if anthropic_api_key != "":
+    anthropic_client = anthropic.Client(api_key=anthropic_api_key)
+else:
+    print("Warning: ANTHROPIC_API_KEY is not set")
 
 tokenizer = None
 model = None
@@ -105,6 +112,20 @@ def completions_qwen(messages, temperature, max_tokens=5000, n=1):
     
     return outputs
 
+def completions_claude(messages, temperature, max_tokens=5000, n=1):
+    outputs = []
+    for _ in range(n):
+        response = anthropic_client.messages.create(
+            model="claude-3-5-sonnet-20241022",
+            messages=messages,
+            temperature=temperature,
+            max_tokens=max_tokens,
+        )
+        assistant_reply = ''.join(
+            [block.text for block in response.content if block.type == 'text']
+        ).strip()
+        outputs.append(assistant_reply)
+    return outputs
 
 def get_output(prompt, model, temperature, max_tokens=5000, n=1) -> list:
     messages = [{"role": "user", "content": prompt}]
@@ -121,6 +142,9 @@ def get_output(prompt, model, temperature, max_tokens=5000, n=1) -> list:
             outputs.extend([choice.message.content for choice in res.choices])
             completion_tokens += res.usage.completion_tokens
             prompt_tokens += res.usage.prompt_tokens
+        elif model == "Claude-3.5-Sonnet":
+            res = completions_claude(messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt)
+            outputs.extend(res)
         elif model == "Llama-3.1-8B-Instruct" or model == 'Llama-3.2-3B-Instruct':
             res = completions_Llama(model_name=model, messages=messages, temperature=temperature, max_tokens=max_tokens, n=cnt)
             outputs.extend(res)
