@@ -59,6 +59,22 @@ def solve(args, task, idx, to_print=True):
         # evaluation
         values = get_values(task, x, new_ys, args.n_evaluate_sample, args.backend, 0.1)
 
+        ys_with_values = list(zip(new_ys, values))
+        ys_with_answer = [(y, v) for y, v in ys_with_values if "Answer:" in y]
+        all_ys_with_answers.extend(ys_with_answer)
+        ys_with_answer_sure = [(y, v) for y, v in ys_with_answer if v >= 20]
+        if ys_with_answer_sure:
+            y_max = max(ys_with_answer_sure, key=lambda x: x[1])[0]
+            return [y_max], {'steps': infos}
+
+        # exceed maximum number of steps
+        if step > task.steps:
+            if all_ys_with_answers:
+                y_max = max(all_ys_with_answers, key=lambda x: x[1])[0]
+                return [y_max], {'steps': infos}
+            else:
+                return [''], {'steps': infos}
+
         selected_ids = [idx for idx in ids if values[idx] >= 1]
 
         if args.method_select == 'sample':
@@ -81,24 +97,6 @@ def solve(args, task, idx, to_print=True):
             print(f'-- new_ys --: {sorted_new_ys}\n-- sol values --: {sorted_values}\n-- choices --: {select_new_ys}\n')
         
         infos.append({'step': step, 'x': x, 'ys': ys, 'new_ys': new_ys, 'values': values, 'select_new_ys': select_new_ys})
-
-        # if the model is already sure about an answer, just output it
-        cur_values = [values[idx] for idx in select_ids]
-        ys_with_values = list(zip(select_new_ys, cur_values))
-        ys_with_answer = [(y, v) for y, v in ys_with_values if "Answer:" in y]
-        all_ys_with_answers.extend(ys_with_answer)
-        ys_with_answer_sure = [(y, v) for y, v in ys_with_answer if v >= 20]
-        if ys_with_answer_sure and step <= task.steps:
-            y_max = max(ys_with_answer_sure, key=lambda x: x[1])[0]
-            return [y_max], {'steps': infos}
-
-        # exceed maximum number of steps
-        if step > task.steps:
-            if all_ys_with_answers:
-                y_max = max(all_ys_with_answers, key=lambda x: x[1])[0]
-                return [y_max], {'steps': infos}
-            else:
-                return [''], {'steps': infos}
 
         ys = select_new_ys
         if len(ys) < args.n_select_sample:
