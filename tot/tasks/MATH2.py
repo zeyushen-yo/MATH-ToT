@@ -88,7 +88,7 @@ class Math2Task(Task):
             correct_solution=correct_solution,
             model_solution=model_solution
         )
-        response = get_output(prompt, model="o1-mini", temperature=1e-9)[0]
+        response = get_output(prompt, model=model, temperature=1e-9)[0]
         judgement = self.extract_from_text(response, ['Judgement:'])
         if judgement:
             judgement = judgement.strip().lower()
