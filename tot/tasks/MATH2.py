@@ -195,7 +195,7 @@ class Math2Task(Task):
             evaluation = self.extract_one_word_after_pattern(output, ['Evaluation:', 'Judgement:'])
             if evaluation:
                 value_names.append(evaluation.strip().lower())
-        value_map = {'impossible': 0.001, 'likely': 1, 'sure': 20}
+        value_map = {'impossible': 0.001, 'unlikely': 1, 'possible': 5, 'likely': 10, 'sure': 20}
         value = sum(value_map.get(name, 0) for name in value_names)
         return value
 

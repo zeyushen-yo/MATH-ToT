@@ -8,9 +8,7 @@ torch.cuda.empty_cache()
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 
 #chatgpt
-#completion_tokens = prompt_tokens = 0
-completion_tokens = 3461709
-prompt_tokens = 787350
+completion_tokens = prompt_tokens = 0
 
 api_key = os.getenv("OPENAI_API_KEY", "")
 hf_access_token = os.getenv("HF_ACCESS_TOKEN", "")
