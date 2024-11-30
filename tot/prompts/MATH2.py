@@ -201,9 +201,9 @@ Problem:
 Current Step:
 {current_step}
 
-Explicitly check whether the computation and logic in this step are correct. Then, provide an overall evaluation for whether this step can lead to the ultimate correct answer in one word from the following options: impossible, unlikely, possible, likely, sure.
+First, explicitly check whether the computation and logic in this step are correct. Then, provide an overall evaluation in one word from the following options: impossible, likely, sure.
 
-Provide your evaluation in the following format: "Evaluation: [impossible/unlikely/possible/likely/sure]".
+Provide your evaluation in the following format: "Evaluation: [impossible/likely/sure]".
 '''
 
 value_last_step_prompt = '''Evaluate the likelihood of the following answer in being the correct answer to the problem.
