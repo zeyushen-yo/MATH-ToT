@@ -14,24 +14,30 @@ Problem:
 Provide your answer in the following format: "Answer: [Your answer]".
 '''
 
-standard_with_skill_prompt = '''Using the identified skill "{skill}", solve the following problem. You can refer to the example problem and its solution for guidance. 
+standard_with_skill_prompt = '''Using the identified skills "{skill1}, {skill2}", solve the following problem. You can refer to the example problem and its solution for guidance. 
 
 Problem: 
 {problem}
 
-Example problem applying the identified skill:
-{in_context_example}
+Example problem applying the skill {skill1}:
+{in_context_example1}
+
+Example problem applying the skill {skill2}:
+{in_context_example2}
 
 Provide your answer in the following format: "Answer: [Your answer]".
 '''
 
-cot_with_skill_prompt = '''Using the identified skill "{skill}", solve the following problem by thinking step by step. You can refer to the example problem and its solution for guidance.
+cot_with_skill_prompt = '''Using the identified skill "{skill1}, {skill2}", solve the following problem by thinking step by step. You can refer to the example problem and its solution for guidance.
 
 Problem: 
 {problem}
 
-Example problem applying the identified skill:
-{in_context_example}
+Example problem applying the skill {skill1}:
+{in_context_example1}
+
+Example problem applying the skill {skill2}:
+{in_context_example2}
 
 Provide your answer in the following format: "Answer: [Your answer]".
 '''
@@ -66,6 +72,16 @@ Problem:
 {problem}
 
 Provide your answer in the following format: "Skill: [Your identified skill]".
+'''
+
+skill_identification_prompt_start2 = '''Here is a list of skills:\n {aggregated_skills} \n for solving mathematical problems.
+
+Identify the two most relevant mathematical skill from the list that can be used to solve the following problem. You must name the skill in exactly the same way as it appears in the list
+
+Problem: 
+{problem}
+
+Provide your answer in the following format: "Skill1: [Your first identified skill] \n Skill2: [Your second identified skill]".
 '''
 
 skill_identification_prompt = '''Here is a list of skills:\n {aggregated_skills} \n for solving mathematical problems.
@@ -133,7 +149,9 @@ If you have found the answer, provide your answer in the following format: "Answ
 Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
 '''
 
-simplify_problem_prompt = '''Generate a simplified version of this problem that is easier to solve.
+simplify_problem_prompt = '''Generate a simplified version of this problem that is easier to solve. 
+
+For example, you can substitute large values / complex expressions in the problem with small values / simple expressions. You can also consider special cases / subtasks of the original problem.
 
 Problem:
 {problem}
@@ -142,6 +160,8 @@ Provide the simplified problem in the following format: "Simplified Problem: [Yo
 '''
 
 simplify_problem_with_step_prompt = '''Generate a simplified version of this problem that is easier to solve given your current step in solving the problem.
+
+First, look at how you can simplify the problem using the current step. Then, if the problem is still hard, you can substitute large values / complex expressions in the problem with small values / simple expressions. You can also consider special cases / subtasks of the problem given the current step.
 
 Problem:
 {problem}
@@ -152,19 +172,19 @@ Your current step:
 Provide the simplified problem in the following format: "Simplified Problem: [Your simplified problem]".
 '''
 
-solve_simplified_problem_prompt = '''Solve the following simplified version of a problem. Your solution will be used for solving a harder version of this problem, so you should present your critical reasoning steps accurately and clearly.
+solve_simplified_problem_prompt = '''Generate a comprehensive and instructive solution to the following simplified problem. Then, summarize one or two most important observation you gain from the solution.
 
 Simplified Problem:
 {simplified_problem}
 '''
 
-solve_simplified_problem_prompt_o1 = '''Solve the following simplified version of a problem.
+solve_simplified_problem_prompt_o1 = '''Generate a comprehensive and instructive solution to the following simplified problem. Then, summarize one or two most important observations you gain from the solution.
 
 Simplified Problem:
 {simplified_problem}
 '''
 
-propose_with_simplified_prompt = '''Using the simplified problem and its solution as an example, provide the most likely next step to solve the original problem given your current step.  Your step needs to be concrete. In other words, you not only need to propose what you can do, but you should actually do it.
+propose_with_simplified_prompt = '''Using the simplified problem and its solution as an example, provide the most likely next step to solve the original problem given your current step. Utilize the observations from the simplified problem if that's useful and generalizable. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you should actually do it.
 
 If the current step leads to an answer / already contains an answer, provide the answer in the required format.
 
@@ -182,7 +202,7 @@ If you have found the answer, provide your answer in the following format: "Answ
 Otherwise, provide your next step in the following format: "Possible next step: [Your possible next step]".
 '''
 
-start_with_simplified_prompt = '''Using the simplified problem and its solution as an example, propose a possible first step to solve the original problem. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you should actually do it.
+start_with_simplified_prompt = '''Using the simplified problem and its solution as an example, propose a possible first step to solve the original problem. Utilize the observations from the simplified problem if that's useful and generalizable. Your step needs to be concrete. In other words, you not only need to propose what you can do, but you should actually do it.
 
 Original Problem:
 {problem}

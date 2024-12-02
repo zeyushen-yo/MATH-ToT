@@ -11,11 +11,11 @@ def run(args):
     
     # logs, cnt_correct = [], 0
     # if args.naive_run:
-    #     file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_sample_{args.prompt_sample}_{args.n_generate_sample}_apply_skills_{args.apply_skills}_decompose_problem_{args.decompose_problem}_start{args.task_start_index}_end{args.task_end_index}.json'
+    #     file = f'./logs/{args.task}/{args.backend}_{args.temperature}_naive_sample_{args.prompt_sample}_{args.n_generate_sample}_apply_skills_{args.apply_skills}_simplify_problem_{args.simplify_problem}_start{args.task_start_index}_end{args.task_end_index}.json'
     # else:
-    #     file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.n_select_sample}_apply_skills_{args.apply_skills}_decompose_problem_{args.decompose_problem}_start{args.task_start_index}_end{args.task_end_index}_retry.json'
+    #     file = f'./logs/{args.task}/{args.backend}_{args.temperature}_{args.n_generate_sample}_{args.n_evaluate_sample}_{args.method_select}_{args.n_select_sample}_apply_skills_{args.apply_skills}_simplify_problem_{args.simplify_problem}_start{args.task_start_index}_end{args.task_end_index}_retry.json'
     # os.makedirs(os.path.dirname(file), exist_ok=True)
-    file = './logs/MATH2/o1-mini_0.0_3_2_greedy_2_apply_skills_False_decompose_problem_True_start0_end100.json'
+    file = './logs/MATH2/o1-mini_0.0_3_2_greedy_2_apply_skills_False_simplify_problem_True_start0_end100.json'
     with open(file, 'r') as f:
         logs = json.load(f)  
     cnt_correct = 81
@@ -66,7 +66,7 @@ def parse_args():
 
     args.add_argument('--method_select', type=str, choices=['sample', 'greedy'], default='greedy')
     args.add_argument('--apply_skills', action='store_true')
-    args.add_argument('--decompose_problem', action='store_true') # haven't implemented the case where apply_skills and decompose_problem are simultaneously true. only used for math^2
+    args.add_argument('--simplify_problem', action='store_true') # haven't implemented the case where apply_skills and simplify_problem are simultaneously true. only used for math^2
     args.add_argument('--n_generate_sample', type=int, default=1) 
     args.add_argument('--n_evaluate_sample', type=int, default=1)
     args.add_argument('--n_select_sample', type=int, default=1)
